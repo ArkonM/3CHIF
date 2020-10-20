@@ -1,0 +1,5 @@
+AlterTableStmt
+       ::= 'alter' 'table' (schema-name '.') ? table-name ('rename' 'to' new-table-name 
+       | 'rename' 'column' ? column-name 'to' new-column-name
+       | 'add' 'column' ? column-def
+       ) ';'

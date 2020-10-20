@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+      <meta name="generator" content="Railroad Diagram Generator 1.62" />
+      <style type="text/css">
+    ::-moz-selection
+    {
+      color: #FFF0F5;
+      background: #0F0005;
+    }
+    ::selection
+    {
+      color: #FFF0F5;
+      background: #0F0005;
+    }
+    .ebnf a, .grammar a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover, .grammar a:hover
+    {
+      color: #050002;
+      text-decoration: underline;
+    }
+    .signature
+    {
+      color: #80002B;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #0F0005;
+      background: #FFF0F5;
+    }
+    a:link, a:visited
+    {
+      color: #0F0005;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #80002B;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #80002B;
+      background: #F1C6D4;
+      color: #80002B;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #050002;
+      background: #FFD1E0;
+      border-color: #050002;
+    }
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #0F0005;
+    }
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {
+      border-bottom: 1px solid #0F0005;
+    }
+    #tabs li a.active
+    {
+      color: #0F0005;
+      background: #FFF0F5;
+      border-color: #0F0005;
+      border-bottom: 1px solid #FFF0F5;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #80002B;
+      background: #FFFAFC;
+      color: #050002;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFF0F5;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #0F0005;
+    }
+    #divs div.ebnf, .ebnf code
+    {
+      display: block;
+      padding: 10px;
+      background: #FFD1E0;
+      width: 992px;
+    }
+    #divs div.grammar
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background: #FFD1E0;
+    }
+    pre
+    {
+      margin: 0px;
+    }
+    .ebnf div
+    {
+      padding-left: 13ch;
+      text-indent: -13ch;
+    }
+    .ebnf code, .grammar code, textarea, pre
+    {
+      font:12px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+    tr.option-line td:first-child
+    {
+      text-align: right
+    }
+    tr.option-text td
+    {
+      padding-bottom: 10px
+    }
+    table.palette
+    {
+      border-top: 1px solid #050002;
+      border-right: 1px solid #050002;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #050002;
+      border-left: 1px solid #050002;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style><svg xmlns="http://www.w3.org/2000/svg">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #330011; stroke-width: 1;}
+    .bold-line            {stroke: #140007; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F000A; shape-rendering: crispEdges}
+    .filled               {fill: #330011; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #140007;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A0009;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F000A;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #330011; stroke: #330011;}
+    rect.terminal         {fill: #FF4D88; stroke: #330011; stroke-width: 1;}
+    rect.nonterminal      {fill: #FF9EBF; stroke: #330011; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFC7DA; stroke: #330011; stroke-width: 1;}
+  </style>
+         </defs></svg></head>
+   <body>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><a name="AlterTableStmt">AlterTableStmt:</a></p><svg xmlns="http://www.w3.org/2000/svg" width="711" height="287">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #330011; stroke-width: 1;}
+    .bold-line            {stroke: #140007; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F000A; shape-rendering: crispEdges}
+    .filled               {fill: #330011; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #140007;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A0009;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F000A;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #330011; stroke: #330011;}
+    rect.terminal         {fill: #FF4D88; stroke: #330011; stroke-width: 1;}
+    rect.nonterminal      {fill: #FF9EBF; stroke: #330011; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFC7DA; stroke: #330011; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="11 17 3 13 3 21"/>
+         <polygon points="19 17 11 13 11 21"/>
+         <rect x="33" y="3" width="52" height="32" rx="10"/>
+         <rect x="31" y="1" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="41" y="21">alter</text>
+         <rect x="105" y="3" width="54" height="32" rx="10"/>
+         <rect x="103" y="1" width="54" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="113" y="21">table</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#schema-name" xlink:title="schema-name">
+            <rect x="199" y="35" width="110" height="32"/>
+            <rect x="197" y="33" width="110" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="207" y="53">schema-name</text></a><rect x="329" y="35" width="24" height="32" rx="10"/>
+         <rect x="327" y="33" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="337" y="53">.</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#table-name" xlink:title="table-name">
+            <rect x="393" y="3" width="92" height="32"/>
+            <rect x="391" y="1" width="92" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="401" y="21">table-name</text></a><rect x="45" y="101" width="70" height="32" rx="10"/>
+         <rect x="43" y="99" width="70" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="53" y="119">rename</text>
+         <rect x="155" y="101" width="34" height="32" rx="10"/>
+         <rect x="153" y="99" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="163" y="119">to</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#new-table-name" xlink:title="new-table-name">
+            <rect x="209" y="101" width="124" height="32"/>
+            <rect x="207" y="99" width="124" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="217" y="119">new-table-name</text></a><rect x="175" y="177" width="68" height="32" rx="10"/>
+         <rect x="173" y="175" width="68" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="183" y="195">column</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#column-name" xlink:title="column-name">
+            <rect x="283" y="145" width="106" height="32"/>
+            <rect x="281" y="143" width="106" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="291" y="163">column-name</text></a><rect x="409" y="145" width="34" height="32" rx="10"/>
+         <rect x="407" y="143" width="34" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="417" y="163">to</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#new-column-name" xlink:title="new-column-name">
+            <rect x="463" y="145" width="136" height="32"/>
+            <rect x="461" y="143" width="136" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="471" y="163">new-column-name</text></a><rect x="45" y="221" width="44" height="32" rx="10"/>
+         <rect x="43" y="219" width="44" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="53" y="239">add</text>
+         <rect x="129" y="253" width="68" height="32" rx="10"/>
+         <rect x="127" y="251" width="68" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="137" y="271">column</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#column-def" xlink:title="column-def">
+            <rect x="237" y="221" width="90" height="32"/>
+            <rect x="235" y="219" width="90" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="245" y="239">column-def</text></a><rect x="659" y="101" width="24" height="32" rx="10"/>
+         <rect x="657" y="99" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="667" y="119">;</text>
+         <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m19 17 h2 m0 0 h10 m52 0 h10 m0 0 h10 m54 0 h10 m20 0 h10 m0 0 h164 m-194 0 h20 m174 0 h20 m-214 0 q10 0 10 10 m194 0 q0 -10 10 -10 m-204 10 v12 m194 0 v-12 m-194 12 q0 10 10 10 m174 0 q10 0 10 -10 m-184 10 h10 m110 0 h10 m0 0 h10 m24 0 h10 m20 -32 h10 m92 0 h10 m2 0 l2 0 m2 0 l2 0 m2 0 l2 0 m-504 98 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m70 0 h10 m20 0 h10 m34 0 h10 m0 0 h10 m124 0 h10 m0 0 h266 m-484 0 h20 m464 0 h20 m-504 0 q10 0 10 10 m484 0 q0 -10 10 -10 m-494 10 v24 m484 0 v-24 m-484 24 q0 10 10 10 m464 0 q10 0 10 -10 m-454 10 h10 m0 0 h78 m-108 0 h20 m88 0 h20 m-128 0 q10 0 10 10 m108 0 q0 -10 10 -10 m-118 10 v12 m108 0 v-12 m-108 12 q0 10 10 10 m88 0 q10 0 10 -10 m-98 10 h10 m68 0 h10 m20 -32 h10 m106 0 h10 m0 0 h10 m34 0 h10 m0 0 h10 m136 0 h10 m-594 -44 h20 m594 0 h20 m-634 0 q10 0 10 10 m614 0 q0 -10 10 -10 m-624 10 v100 m614 0 v-100 m-614 100 q0 10 10 10 m594 0 q10 0 10 -10 m-604 10 h10 m44 0 h10 m20 0 h10 m0 0 h78 m-108 0 h20 m88 0 h20 m-128 0 q10 0 10 10 m108 0 q0 -10 10 -10 m-118 10 v12 m108 0 v-12 m-108 12 q0 10 10 10 m88 0 q10 0 10 -10 m-98 10 h10 m68 0 h10 m20 -32 h10 m90 0 h10 m0 0 h292 m20 -120 h10 m24 0 h10 m3 0 h-3"/>
+         <polygon points="701 115 709 111 709 119"/>
+         <polygon points="701 115 693 111 693 119"/></svg><p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <div class="ebnf"><code>
+               <div><a href="#AlterTableStmt" title="AlterTableStmt">AlterTableStmt</a></div>
+               <div>         ::= 'alter' 'table' ( <a href="#schema-name" title="schema-name">schema-name</a> '.' )? <a href="#table-name" title="table-name">table-name</a> ( 'rename' ( 'to' <a href="#new-table-name" title="new-table-name">new-table-name</a> | 'column'? <a href="#column-name" title="column-name">column-name</a> 'to' <a href="#new-column-name" title="new-column-name">new-column-name</a> ) | 'add' 'column'? <a href="#column-def" title="column-def">column-def</a> ) ';'</div></code></div>
+      </p>
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</p><br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />
+      <p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <table border="0" class="signature">
+            <tr>
+               <td style="width: 100%"> </td>
+               <td valign="top">
+                  <nobr class="signature">... generated by <a name="Railroad-Diagram-Generator" class="signature" title="https://bottlecaps.de/rr/ui" href="https://bottlecaps.de/rr/ui" target="_blank">RR - Railroad Diagram Generator</a></nobr>
+               </td>
+               <td><a name="Railroad-Diagram-Generator" title="https://bottlecaps.de/rr/ui" href="https://bottlecaps.de/rr/ui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                        <g transform="scale(0.178)">
+                           <circle cx="45" cy="45" r="45" style="stroke:none; fill:#FFCC00"/>
+                           <circle cx="45" cy="45" r="42" style="stroke:#332900; stroke-width:2px; fill:#FFCC00"/>
+                           <line x1="15" y1="15" x2="75" y2="75" stroke="#332900" style="stroke-width:9px;"/>
+                           <line x1="15" y1="75" x2="75" y2="15" stroke="#332900" style="stroke-width:9px;"/>
+                           <text x="7" y="54" style="font-size:26px; font-family:Arial, Sans-serif; font-weight:bold; fill: #332900">R</text>
+                           <text x="64" y="54" style="font-size:26px; font-family:Arial, Sans-serif; font-weight:bold; fill: #332900">R</text>
+                        </g></svg></a></td>
+            </tr>
+         </table>
+      </p>
+   </body>
+</html>

@@ -1,0 +1,17 @@
+CreateTable ::= 'create' 'table' TableName '(' ColumnDefinition ( ',' ColumnDefinition )* ( ',' TableConstraintDef )* ';'
+
+ColumnDefinition ::= ColumnName DataType DefaultValue? ColumnConsDef*
+
+DefaultValue ::= 'default' (Literal | NiladicFunctionRef | 'null')
+
+ColumnConstraintDef ::= 'not'? 'null' | 'unique' 
+				      | 'primary' 'key' 
+				      | 'check' '(' CheckCondition ')' 
+                                      | 'reference' TableName ('(' ColumnName ')')?
+
+TableConstraintDef ::= ('unique' 
+  		      | 'primary' 'key') ColumnNameList 
+		      | 'check' '(' CheckCondition ')' 
+		      | 'foreign' 'key' ColumnNameList 'reference' TableName ColumnNameList?
+
+ColumnNameList ::= '(' ColumnName (',' ColumnName)* ')'
