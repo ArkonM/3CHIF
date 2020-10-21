@@ -11,23 +11,26 @@ go
 drop table if exists lt;
 drop table if exists l;
 drop table if exists t;
+go
 
 
 create table l (
   lnr    varchar(2) not null primary key
-, lname  varchar(6) not null
+, lname  varchar(8) not null
 , rabatt decimal(3) not null
 , stadt  varchar(6) not null
 );
+go
 
 
 create table t (
   tnr    varchar(2)    not null primary key
-, tname  varchar(6)    not null
+, tname  varchar(8)    not null
 , farbe  varchar(4)    not null
 , preis  decimal(4, 2) not null
 , stadt  varchar(6)    not null
 );
+go
 
 
 create table lt (
@@ -36,6 +39,7 @@ create table lt (
 , menge  decimal(4) not null
 , primary key(lnr, tnr)
 );
+go
 
 
 create index idx_lt_lnr
@@ -49,6 +53,8 @@ create index idx_lt_tnr
 
 
 -- DML
+
+begin transaction;
 
 insert into l
    (lnr , lname   , rabatt,  stadt   )
@@ -88,20 +94,24 @@ values
 ,  ('L4', 'T5' ,   400)
 ;
 
+commit;
+go
+
 -- DQL
 
 select *
    from l
 ;
-
+go
 
 select *
    from t
 ;
-
+go
 
 select *
    from lt
 ;
+go
 
 -- Experimente
