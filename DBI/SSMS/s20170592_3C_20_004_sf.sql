@@ -25,13 +25,7 @@ create table person
 , fname    varchar(16) not null
 , vname    varchar(16) not null
 , ort      varchar(10) not null
-, land     varchar(3)  not null
-,  CHECK (land = 'A'  OR
-		  land = 'I'  OR
-		  land = 'GB' OR 
-		  land = 'F'  OR 
-		  land = 'D'  OR
-		  land = 'RUS' )
+, land     varchar(3)  not null check (land in ('A', 'D', 'F', 'GB', 'I', 'RUS'))
 );
 go
 
@@ -50,10 +44,9 @@ create table kurs
 (
   knr      integer       not null primary key
 , bezeichn varchar(20)   not null
-, tage     integer		 not null
+, tage     integer  	 not null check (tage between 1 and 10)
 , preis    decimal(6, 2) not null
 , unique(knr, tage)
-, CHECK (tage between 1 and 10)
 );
 go
 
@@ -63,14 +56,15 @@ create table setztvor
   knr      integer not null references kurs
 , knrvor   integer not null references kurs
 , primary key(knr, knrvor)
+, check(knr <> knrvor)
 );
 go
 
 
 create table geeignet
 (
-  knr      integer not null references kurs(knr)
-, pnr      integer not null references referent(pnr)
+  knr      integer not null references kurs
+, pnr      integer not null references referent
 , primary key(knr, pnr)
 );
 go
@@ -79,13 +73,13 @@ go
 
 create table kveranst
 (
-  knr      integer     not null references kurs(knr)
+  knr      integer     not null references kurs
 , knrlfnd  integer     not null
 , von      date        not null
 , bis      date
 , ort      varchar(10) not null
 , plaetze  integer     not null
-, pnr      integer				references referent(pnr)  -- kann NULL sein
+, pnr      integer		references referent  -- kann NULL sein
 , CHECK (von <= bis OR bis = NULL)
 , primary key(knr, knrlfnd)
 );
@@ -96,7 +90,7 @@ create table besucht
 (
   knr      integer not null
 , knrlfnd  integer not null
-, pnr      integer not null references person(pnr)
+, pnr      integer not null references person
 , bezahlt  date
 , primary key(knr, knrlfnd, pnr)
 , foreign key(knr, knrlfnd) references kveranst
@@ -107,14 +101,16 @@ go
 
 begin transaction;
 
-delete from person;
-delete from kurs;
-delete from setztvor;
-delete from referent;
-delete from geeignet;
-delete from kveranst;
+
 delete from besucht;
+delete from kveranst;
+delete from geeignet;
+delete from setztvor;
+delete from kurs;
+delete from referent;
+delete from person;
 go
+
 
 set dateformat dmy;
 
@@ -247,23 +243,8 @@ go
 -- create index
 
 
-create index idx_referent_pnr
-		  on referent(pnr)
-;
-go
-
-create index idx_setztvor_knr
-		  on setztvor(knr)
-;
-go
-
 create index idx_setztvor_knrvor
 		  on setztvor(knrvor)
-;
-go
-
-create index idx_geeignet_knr
-		  on geeignet(knr)
 ;
 go
 
