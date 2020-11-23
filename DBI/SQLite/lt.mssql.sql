@@ -34,9 +34,10 @@ go
 
 
 create table lt (
-  lnr    varchar(2) not null references l
-, tnr    varchar(2) not null references t
-, menge  decimal(4) not null
+  lnr     varchar(2) not null references l
+, tnr     varchar(2) not null references t
+, menge   decimal(4) not null
+, ankunft datetime	 not null
 , primary key(lnr, tnr)
 );
 go
@@ -55,6 +56,10 @@ create index idx_lt_tnr
 -- DML
 
 begin transaction;
+
+delete from lt;
+delete from t;
+delete from l;
 
 insert into l
    (lnr , lname   , rabatt,  stadt   )
@@ -78,20 +83,20 @@ values
 ;
 
 insert into lt
-   (lnr ,  tnr , menge)
+   (lnr ,  tnr , menge, ankunft)
 values
-   ('L1', 'T1' ,   300)
-,  ('L1', 'T2' ,   200)
-,  ('L1', 'T3' ,   400)
-,  ('L1', 'T4' ,   200)
-,  ('L1', 'T5' ,   100)
-,  ('L1', 'T6' ,   100)
-,  ('L2', 'T1' ,   300)
-,  ('L2', 'T2' ,   400)
-,  ('L3', 'T2' ,   200)
-,  ('L4', 'T2' ,   200)
-,  ('L4', 'T4' ,   300)
-,  ('L4', 'T5' ,   400)
+   ('L1', 'T1' ,   300, '2021-04-01')
+,  ('L1', 'T2' ,   200, '2020-11-22')
+,  ('L1', 'T3' ,   400, '2020-09-13')
+,  ('L1', 'T4' ,   200, '2020-05-28')
+,  ('L1', 'T5' ,   100, '2020-01-09')
+,  ('L1', 'T6' ,   100, '2020-03-03')
+,  ('L2', 'T1' ,   300, '2020-07-17')
+,  ('L2', 'T2' ,   400, '2020-03-14')
+,  ('L3', 'T2' ,   200, '2020-10-23')
+,  ('L4', 'T2' ,   200, '2020-03-20')
+,  ('L4', 'T4' ,   300, '2020-04-02')
+,  ('L4', 'T5' ,   400, '2020-05-18')
 ;
 
 commit;
@@ -99,19 +104,10 @@ go
 
 -- DQL
 
-select *
-   from l
+select 
+  datediff(dd, ankunft, getdate()) "diff"
+  from lt
 ;
 go
 
-select *
-   from t
-;
-go
-
-select *
-   from lt
-;
-go
-
--- Experimente
+-- schneider.armin@student.htlwrn.ac.at
