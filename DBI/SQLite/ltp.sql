@@ -1,8 +1,3 @@
-.mode column
-.head on
-
-pragma foreign_keys = on;
-
 -- DDL
 
 drop table if exists ltp;
@@ -22,7 +17,7 @@ create table l (
 
 create table t (
   tnr    varchar(2)    not null primary key
-, tname  varchar(6)    not null
+, tname  varchar(8)    not null
 , farbe  varchar(4)    not null
 , preis  decimal(4, 2) not null
 , stadt  varchar(6)    not null
@@ -31,7 +26,7 @@ create table t (
 
 create table p (
   pnr    varchar(2) not null primary key
-, pname  varchar(6) not null
+, pname  varchar(9) not null
 , stadt  varchar(6) not null
 );
 go
@@ -139,24 +134,18 @@ select *
    from l
 ;
 
-.print
-
 select *
    from t
 ;
 
-.print
+
 
 select *
    from p
 ;
 
-.print
-
 select *
    from ltp
 ;
-
-.print
 
 -- Experimente
