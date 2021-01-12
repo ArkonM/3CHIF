@@ -1,13 +1,8 @@
--- Marlene Reiterer
 use ltp;
 go
 
-
--- Aufgaben: 5a) - 5f) von LTP
-
--- s20170582
--- Aufgabe 5a)
-
+--s20170592
+--5a
 select ltp.lnr, ltp.tnr, ltp.pnr
   from ltp
   join l on l.lnr = ltp.lnr
@@ -19,9 +14,9 @@ select ltp.lnr, ltp.tnr, ltp.pnr
 ;
 go
 
--- s20170582
--- Aufgabe 5b)
 
+--s20170592
+--5b
 select ltp.lnr, ltp.tnr, ltp.pnr
   from ltp
   join l on l.lnr = ltp.lnr
@@ -33,9 +28,9 @@ select ltp.lnr, ltp.tnr, ltp.pnr
 ;
 go
 
--- s20170582
--- Aufgabe 5c)
 
+--s20170592
+--5c
 select ltp.lnr, ltp.tnr, ltp.pnr
   from ltp
   join l on l.lnr = ltp.lnr
@@ -47,9 +42,9 @@ select ltp.lnr, ltp.tnr, ltp.pnr
 ;
 go
 
--- s20170582
--- Aufgabe 5d)
 
+--s20170592
+--5d
 select distinct t.tnr
   from ltp
   join l on l.lnr = ltp.lnr
@@ -58,10 +53,9 @@ select distinct t.tnr
 ;
 go
 
--- s20370582
--- Aufgabe 5e)
 
-
+--s20170592
+--5e
 select distinct t.tnr
   from ltp
   join l on l.lnr = ltp.lnr
@@ -72,9 +66,9 @@ select distinct t.tnr
 ;
 go
 
--- s20170582
--- Aufgabe 5f)
 
+--s20170592
+--5f
 select distinct l.stadt 'l_stadt', p.stadt 'p_stadt'
   from ltp
   join l on l.lnr = ltp.lnr
@@ -82,3 +76,4 @@ select distinct l.stadt 'l_stadt', p.stadt 'p_stadt'
  where l.stadt = p.stadt
 ;
 go
+
