@@ -1,5 +1,5 @@
---use ltp
---go
+use ltp
+go
 
 --s20170592
 --5g
@@ -34,8 +34,8 @@ select distinct ltp1.tnr, ltp2.tnr
 go
 
 
---use schulungsfirma
---go
+use schulungsfirma
+go
 
 
 --s20170592
@@ -50,13 +50,12 @@ go
 
 --s20170592
 --21
-select distinct fname
+select fname, vname, von, bis, kv.ort
   from person p
   join besucht b on p.pnr = b.pnr
   join kveranst kv on b.knr = kv.knr and b.knrlfnd = kv.knrlfnd
 									 and p.ort = kv.ort
-  join kurs k on kv.knr = k.knr
-   and k.tage > 2
+ order by von
 ;
 go
 
