@@ -40,7 +40,14 @@ go
 --s20170592
 --43
 select k.bezeichn, kv.von, kv.bis, k.preis, k.preis+k.preis/10*((DATEPART(dw , kv.von) + 
-																 DATEDIFF(dw, kv.von, kv.bis))) we_preis
+																 DATEDIFF(dw, kv.von, kv.bis))-5) we_preis
   from kurs k
   join kveranst kv on k.knr = kv.knr
+  where (DATEPART(dw , kv.von) + DATEDIFF(dw, kv.von, kv.bis)) >= 5
+union
+select k.bezeichn, kv.von, kv.bis, k.preis, k.preis we_preis
+  from kurs k
+  join kveranst kv on k.knr = kv.knr
+  where (DATEPART(dw , kv.von) + DATEDIFF(dw, kv.von, kv.bis)) < 5
+  order by kv.von
 ;
