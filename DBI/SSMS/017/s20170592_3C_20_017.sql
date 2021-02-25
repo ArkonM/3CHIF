@@ -26,15 +26,16 @@ go
 
 --20170592
 --set language German;
---set DATEFIRST 7;
+--set DATEFIRST 2;
 select k.knr, k.bezeichn, k.tage, kv.knrlfnd,
        kv.von, DATENAME(dw, DATEPART(dw, kv.von)) von_wotag, kv.bis, 
 	   DATENAME(dw, DATEPART(dw, kv.bis)) bis_wotag, DATEDIFF(dw, kv.von, kv.bis)+1 von_bis_tage
   from kurs k
   join kveranst kv on k.knr = kv.knr
   where DATEPART(dw, kv.von) < DATEPART(dw, kv.bis)
-    and DATEPART(dw, kv.bis) >=6
+    and DATEPART(dw, kv.bis) >= 5
 	 or DATEPART(dw, kv.von) > DATEPART(dw, kv.bis)
+	and DATEPART(dw, kv.von) < 7
 ;
 go
 
