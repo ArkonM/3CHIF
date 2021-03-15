@@ -1,0 +1,455 @@
+// Winkler Christian
+
+Chapter 0 (rows: 5 - 102)
+    Explains the commands and can help you understand what you are doing better.
+Chapter 1 (rows: 103 - 453)
+    This is the guide for the current challenge (OSPFv3 single area ospf)
+
+------ Chapter 0 ------
+
+In englisch ist es für mich einfacher zu erklären, weil ich es auch in englisch gelernt habe.
+
+(0.1 - go to globale configuration mode)
+Router>enable
+Router#configure terminal
+Router(config)#
+
+(0.2 - set hostname (in globale configuration mode (see 0.1))
+Router(config)#hostname <hostname you want this router to have>
+e.g.
+Router(config)#hostname R1
+R1(config)#
+
+(0.3 - set a message of the day 'motd' (see 0.1))
+R1(config)#banner motd <Starting-Ending-Character><message><Starting-Ending-Character>
+e.g.
+Here the " represents the <Starting-Ending-Character>. This Character can not be used inside the message.
+The message is 'Authorized entry only!'.
+R1(config)#banner motd "Authorized entry only!"
+R1(config)#
+
+(0.4 - turn on ipv6 routing (see 0.1))
+R1(config)#ipv6 unicast-routing
+
+(0.5 - set default route (ipv6) (see 0.1))
+R1(config)#ipv6 route ::/0 { <destination-ipv6-address> | <outgoing-interface> }
+e.g.
+The <destination-ipv6-address> is '2001::'. The mask (e.g. /64) is not needed.
+R1(config)#ipv6 route ::/0 2001::
+R1(config)#
+e.g.
+The <outgoing-interface> is the FastEthernet0/0 interface.
+R1(config)#ipv6 route ::/0 f0/0
+R1(config)#
+
+(0.6 - turn on ospfv3 / go to ospfv3 configuration mode (see 0.1))
+R1(config)#ipv6 router ospf <process-id>
+e.g.
+The <process-id> is the unique number to differentiate multiple ospfv3 processes.
+<process-id> is 1 in this example.
+R1(config)#ipv6 router ospf 1
+R1(config-rtr)#
+
+(0.7 - configure passive interfaces (see 0.6))
+R1(config-rtr)#passive-interface { <interface> | default }
+e.g.
+Choosing a specific interface with <interface> turns this interface into an passive interface.
+'default' makes every interface a passive interface.
+Passive interfaces don't send ospf information. Only interfaces that are connected to other routers using the same ospf process need these bits of information.
+R1(config-rtr)#passive-interface default
+R1(config-rtr)#no passive-interface f0/0
+R1(config-rtr)#
+Turns every interface into a passive-interface and then makes FastEthernet0/0 active again.
+
+(0.8 - configure interface (see 0.1))
+R1(config)#interface <interface>
+e.g.
+R1(config)#interface f0/0
+R1(config-if)#
+Interface description.
+R1(config-if)#description <description>
+e.g.
+R1(config-if)#description Connection to R2
+IPv4 address
+R1(config-if)#ip address <ipv4-address> <ipv4-mask>
+e.g.
+R1(config-if)#ip address 192.168.1.1 255.255.255.0
+R1(config-if)#
+IPv6 address
+R1(config-if)#ipv6 address <ipv6-address>/<ipv6-mask>
+e.g.
+R1(config-if)#ipv6 address 2001::1/64
+R1(config-if)#
+link-local ip address
+ipv6
+R1(config-if)#ipv6 address <ipv6-address> link-local
+e.g.
+R1(config-if)#ipv6 address fe80::1 link-local
+R1(config-if)#
+
+(0.9 - set interface ospf priority (see 0.8))
+R1(config-if)#ipv6 ospf priority <priority>
+e.g.
+The higher the ospf priority is the higher is the chance for this router to be the DR/BDR of the network this interface is connected to. If priority is 0 this router can not be the DR or BDR. <priority> can be 0-255.
+R1(config-if)#ipv6 ospf priority 1
+R1(config-if)#
+
+(0.10 - add this interface to the ospfv3 process)
+R1(config-if)#ipv6 ospf <process-id> area <area>
+e.g.
+<area> is 0 when using single area ospf.
+R1(config-if)#ipv6 ospf 1 area 0
+R1(config-if)#
+
+
+
+------ Chapter 1 ------
+
+Es gibt eine Tabelle in der Angabe mit Router-, Interface- und Netzwerkangaben.
+Ich referenziere darauf mit beispielsweise <R1-f0/1-network>. An diesen Stellen die dazugehörigen Daten aus der Tabelle einsetzen.
+z.B.
+In der Tabelle gibt es den Eintrag.
+R3 | Fa0/1 | 1384:1384:1384:3::/64
+Wenn ich <R3-f0/1-network> schreibe dann folgendes einsetzen: 1384:1384:1384::
+<R3-f0/1-network>1/64 wäre dann: 1384:1384:1384:3::1/64
+Bei einem der Netzwerke (wahrscheinlich <R1-f0/1-network>) ist hinten vor dem Schrägstrich schon eine 1. Ignorier die einfach.
+z.B. wenn da steht 2001::1/64
+Mit <R1-f0/1-network> meine ich 2001:: (also ohne 1 am Ende)
+
+R1:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R1
+R1(config)#banner motd #Authorized entry only!#
+R1(config)#ipv6 unicast-routing
+R1(config)#ipv6 route ::/0 <R1-f0/1-network>
+R1(config)#interface loopback 0
+R1(config-if)#description Loopback0
+R1(config-if)#ip address 11.11.11.1 255.255.255.255
+R1(config-if)#int f0/0
+R1(config-if)#description Connection to Switch0
+R1(config-if)#int f0/1
+R1(config-if)#description Connection to Internet
+R1(config-if)#ipv6 address fe80::2 link-local
+R1(config-if)#ipv6 address <R1-f0/1-network>1/64
+R1(config-if)#no shutdown
+R1(config-if)#end
+R1#
+
+R2:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R2
+R2(config)#banner motd #Authorized entry only!#
+R2(config)#ipv6 unicast-routing
+R2(config)#interface loopback 0
+R2(config-if)#description Loopback0
+R2(config-if)#ip address 11.11.11.2 255.255.255.255
+R2(config-if)#int f0/0
+R2(config-if)#description Connection to Switch0
+R2(config-if)#int f0/1
+R2(config-if)#description Connection to LAN1
+R2(config-if)#ipv6 address <R2-f0/1-network>1/64
+R2(config-if)#no shutdown
+R2(config-if)#int s0/2/0
+R2(config-if)#description Connection to R5
+R2(config-if)#ipv6 address fe80::1 link-local
+R2(config-if)#clock rate 2000000
+R2(config-if)#no shutdown
+R2(config-if)#end
+R2#
+
+R3:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R3
+R3(config)#banner motd #Authorized entry only!#
+R3(config)#ipv6 unicast-routing
+R3(config)#interface loopback 0
+R3(config-if)#description Loopback0
+R3(config-if)#ip address 11.11.11.3 255.255.255.255
+R3(config-if)#int f0/0
+R3(config-if)#description Connection to Switch0
+R3(config-if)#int f0/1
+R3(config-if)#description Connection to LAN0
+R3(config-if)#ipv6 address <R3-f0/1-network>1/64
+R3(config-if)#no shutdown
+R3(config-if)#end
+R3#
+
+R4:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R4
+R4(config)#banner motd #Authorized entry only!#
+R4(config)#ipv6 unicast-routing
+R4(config)#interface loopback 0
+R4(config-if)#description Loopback0
+R4(config-if)#ip address 11.11.11.4 255.255.255.255
+R4(config-if)#int f0/0
+R4(config-if)#description Connection to Switch0
+R4(config-if)#int f0/1
+R4(config-if)#description Connection to LAN4
+R4(config-if)#ipv6 address <R4-f0/1-network>1/64
+R4(config-if)#no shutdown
+R4(config-if)#int s0/2/0
+R4(config-if)#description Connection to R6
+R4(config-if)#ipv6 address fe80::3 link-local
+R4(config-if)#clock rate 2000000
+R4(config-if)#no shutdown
+R4(config-if)#end
+R4#
+
+R5:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R5
+R5(config)#banner motd #Authorized entry only!#
+R5(config)#ipv6 unicast-routing
+R5(config)#interface loopback 0
+R5(config-if)#description Loopback0
+R5(config-if)#ip address 11.11.11.5 255.255.255.255
+R5(config-if)#int f0/0
+R5(config-if)#description Connection to LAN3
+R5(config-if)#ipv6 address <R5-f0/0-network>1/64
+R5(config-if)#no shutdown
+R5(config-if)#int f0/1
+R5(config-if)#description Connection to LAN2
+R5(config-if)#ipv6 address <R5-f0/1-network>1/64
+R5(config-if)#no shutdown
+R5(config-if)#int s0/0/0
+R5(config-if)#description Connection to R2
+R5(config-if)#ipv6 address fe80::2 link-local
+R5(config-if)#no shutdown
+R5(config-if)#end
+R5#
+
+R6:
+Router>enable
+Router#configure terminal
+Router(config)#hostname R6
+R6(config)#banner motd #Authorized entry only!#
+R6(config)#ipv6 unicast-routing
+R6(config)#interface loopback 0
+R6(config-if)#description Loopback0
+R6(config-if)#ip address 11.11.11.6 255.255.255.255
+R6(config-if)#int f0/0
+R6(config-if)#description Connection to LAN6
+R6(config-if)#ipv6 address <R6-f0/0-network>1/64
+R6(config-if)#no shutdown
+R6(config-if)#int f0/1
+R6(config-if)#description Connection to LAN5
+R6(config-if)#ipv6 address <R6-f0/1-network>1/64
+R6(config-if)#no shutdown
+R6(config-if)#int s0/0/0
+R6(config-if)#description Connection to R4
+R6(config-if)#ipv6 address fe80::1 link-local
+R6(config-if)#no shutdown
+
+OSPFv3 konfigurieren
+
+R1:
+R1>enable
+R1#configure terminal
+R1(config)#ipv6 router ospf 1
+R1(config-rtr)#passive-interface default
+R1(config-rtr)#no passive-interface f0/0
+R1(config-rtr)#default-information originate
+R1(config-rtr)#exit
+R1(config)#interface f0/0
+R1(config-if)#ipv6 ospf priority 0
+R1(config-if)#end
+R1#
+
+R2:
+R2>enable
+R2#configure terminal
+R2(config)#ipv6 router ospf 1
+R2(config-rtr)#passive-interface default
+R2(config-rtr)#no passive-interface f0/0
+R2(config-rtr)#no passive-interface s0/2/0
+R2(config-rtr)#exit
+R2(config)#interface f0/0
+R2(config-if)#ipv6 ospf priority 255
+R2(config-if)#end
+R2#
+
+R3:
+R3>enable
+R3#configure terminal
+R3(config)#ipv6 router ospf 1
+R3(config-rtr)#passive-interface default
+R3(config-rtr)#no passive-interface f0/0
+R3(config-rtr)#exit
+R3(config)#interface f0/0
+R3(config-if)#ipv6 ospf priority 100
+R3(config-if)#end
+R3#
+
+R4:
+R4>enable
+R4#configure terminal
+R4(config)#ipv6 router ospf 1
+R4(config-rtr)#passive-interface default
+R4(config-rtr)#no passive-interface f0/0
+R4(config-rtr)#no passive-interface s0/2/0
+R4(config-rtr)#exit
+R4(config)#interface f0/0
+R4(config-if)#ipv6 ospf priority 254
+R4(config-if)#end
+R4#
+
+R5:
+R5>enable
+R5#configure terminal
+R5(config)#ipv6 router ospf 1
+R5(config-rtr)#passive-interface default
+R5(config-rtr)#no passive-interface s0/0/0
+R5(config-rtr)#end
+R5#
+
+R6:
+R6>enable
+R6#configure terminal
+R6(config)#ipv6 router ospf 1
+R6(config-rtr)#passive-interface default
+R6(config-rtr)#no passive-interface s0/0/0
+R6(config-rtr)#end
+R6#
+
+Die interfaces zum ospf process hinzufügen.
+Wichtig: zuerst R2 dann R4. (R2 soll DR sein. R4 soll BDR sein) Dann ist die Reihenfolge egal.
+
+R2:
+R2>enable
+R2#configure terminal
+R2(config)#interface f0/0
+R2(config-if)#ipv6 ospf 1 area 0
+R2(config-if)#int f0/1
+R2(config-if)#ipv6 ospf 1 area 0
+R2(config-if)#int s0/2/0
+R2(config-if)#ipv6 ospf 1 area 0
+R2(config-if)#end
+R2#
+
+R4:
+R4>enable
+R4#configure terminal
+R4(config)#interface f0/0
+R4(config-if)#ipv6 ospf 1 area 0
+R4(config-if)#int f0/1
+R4(config-if)#ipv6 ospf 1 area 0
+R4(config-if)#int s0/2/0
+R4(config-if)#ipv6 ospf 1 area 0
+R4(config-if)#end
+R4#
+
+R3:
+R3>enable
+R3#configure terminal
+R3(config)#interface f0/0
+R3(config-if)#ipv6 ospf 1 area 0
+R3(config-if)#int f0/1
+R3(config-if)#ipv6 ospf 1 area 0
+R3(config-if)#end
+R3#
+
+R1:
+R1>enable
+R1#configure terminal
+R1(config)#interface f0/0
+R1(config-if)#ipv6 ospf 1 area 0
+R1(config-if)#int f0/1
+R1(config-if)#ipv6 ospf 1 area 0
+R1(config-if)#end
+R1#
+
+R5:
+R5>enable
+R5#configure terminal
+R5(config)#interface f0/0
+R5(config-if)#ipv6 ospf 1 area 0
+R5(config-if)#int f0/1
+R5(config-if)#ipv6 ospf 1 area 0
+R5(config-if)#int s0/0/0
+R5(config-if)#ipv6 ospf 1 area 0
+R5(config-if)#end
+R5#
+
+R6:
+R6>enable
+R6#configure terminal
+R6(config)#interface f0/0
+R6(config-if)#ipv6 ospf 1 area 0
+R6(config-if)#int f0/1
+R6(config-if)#ipv6 ospf 1 area 0
+R6(config-if)#int s0/0/0
+R6(config-if)#ipv6 ospf 1 area 0
+R6(config-if)#end
+R6#
+
+Jetzt noch die Server und PCs konfigurieren.
+Intranetserver: im mittleren Netzwerk in dem sich auch Switch0 befindet.
+    Einmal drauf drücken. Dann Anschalten (im ersten Tab nach rechts scrollen und auf roten Knopf drücken)
+    Desktop -> IP Configuration:
+        IPv6 Address '10:10:10:10::5' / '64'
+        Default Gateway '10:10:10:10::2'
+    Services -> HTTP:
+        HTTP = on
+        HTTPS = on
+    Services -> DNS:
+        Name 'intranet.intranet.com'
+        Address '10:10:10:10::5'
+        Dann Add drücken.
+        Name 'internetserver.internet.com'
+        Address '<R1-f0/1-network>2'
+        Add.
+        DNS = on
+Internetserver: Oben auf die Wolke mit dem Namen Internet drücken. Rechts steht der Internetserver.
+    Wenn du wieder zurück willst, kannst du oben in der blauen Leiste auf den Pfeil, der nach links zeigt, drücken (das linkeste Symbol).
+    Einmal auf den Server drücken und anschalten (1. Tab nach rechts scrollen -> roter Knopf)
+    Desktop -> IP Configuration
+        IPv6 Address '<R1-f0/1-network>2' / '64'
+        Default Gateway '<R1-f0/1-network>1'
+    Services -> HTTP:
+        HTTP = on
+        HTTPS = on
+
+Zurück zu dem ersten Bereich gehen (Bereich mit unserem Netzwerk): Oben blaue Leiste, linkestes Symbol (Pfeil nach links).
+
+LAN0 ist alles was an dem Interface f0/1 vom Router R3 hängt (ein Switch und ein PC). Das befindet sich in der Mitte unten.
+LAN0 - <R3-f0/1-netzwerk> (Hieraus kann man sehen was das Netzwerk ist und auch an welchem Router an welchem Interface sich das LAN befindet.)
+    PC dieses LANs öffnen:
+        Desktop -> IP Configuration:
+            IPv6 Address '<network>2' / '64' (mit netzwerk ist das Netzwerk gemeint, das oben neben dem LAN zu sehen ist. Hier <R3-f0/1-network>.)
+            Default Gateway '<network>1' (address vom Router in diesem LAN (hier R3-f0/1))
+			DNS Server '10:10:10:10::5' (der DNS Server ist auf jedem PC in jedem LAN diese Addresse.
+
+LAN0 - <R3-f0/1-netzwerk> (unterhalb von R3)
+LAN1 - <R2-f0/1-netzwerk> (links unterhalb von R2)
+LAN2 - <R5-f0/1-netzwerk> (oberhalb von R5)
+LAN3 - <R5-f0/0-netzwerk> (links von R5)
+LAN4 - <R4-f0/1-netzwerk> (rechts unterhalb von R4)
+LAN5 - <R6-f0/1-netzwerk> (oberhalb von R6)
+LAN6 - <R6-f0/0-netzwerk> (rechts von R6)
+
+Testen:
+Auf jedem PC:
+    Desktop -> Web Browser:
+        Oben bei der Addresse [10:10:10:10::5] eingeben und go drücken (einfach enter geht auch). (Das ruft die http dienst vom Intranetserver auf (direkt mit ipv6 addresse ansprechen))
+		Wenn das funktioniert, dann Web Browser schließen, neu öffnen und intranet.intranet.com aufrufen. (sollte das gleiche rauskommen.)
+		Wenn das auch funktioniert, wieder Web Browser neu öffnen und internetserver.internet.com aufrufen. (sollte wieder das gleiche rauskommen, weil bei beiden Servern die selben https dateien gespeichert sind.)
+Dann noch pingen:
+(von jedem PC zu jedem anderen PC)
+Beispiel-ping:
+    PC0 -> CopyPC0
+	Oben in der Toolbar 'Create Complex PDU' auswählen (shortcut: C).
+	Auf PC0 drücken, dann auf CopyPC0 drücken. Dann bei sequence number irgendeine Zahl hineinschreiben (egal welche Zahl). Das selbe unten bei Time.
+	Dann Create drücken.
+	Rechts unten kommt im ausgewählten Scenario ein neuer Eintrag. Die zweite Spalte zeigt an ob es erfolgreich war.
+	Mit Doppelklick auf die erste Spalte 'fire' wird der ping erneut ausgeführt.
+	Wenn du aus versehen einen ping gemacht hast, den du nicht in der Liste haben willst, kannst du in der letzten Spalte 'delete' einen Doppelklick machen und dieser eintrag wird gelöscht.
+	Wenn du den ping gemacht musst du ein anderes tool auswählen und dann wieder 'Create Complex PDU' auswählen und den nächsten ping machen.
+	(z.B. mit ESC zum Auswahl-(standard-)tool wechseln und mit C wieder zu Create Complex PDU.)
+
+Your done!
