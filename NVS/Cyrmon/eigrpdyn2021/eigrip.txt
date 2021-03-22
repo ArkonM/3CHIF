@@ -11,4 +11,105 @@ Router[config-router]#redistribute static
 
 Router[config]#int s0/0/0
 Router[config-if]#bandwith 2000
-Router[config-if]#
+
+
+
+150.96.0.1 - 150.96.1.254
+255.255.254.0
+0.0.1.255
+
+150.96.2.1 - 150.96.2.254
+255.255.255.0
+0.0.0.255
+
+150.96.3.1 - 150.96.3.126
+255.255.255.128
+0.0.0.127
+
+150.96.3.129 - 150.96.3.190
+255.255.255.192
+0.0.0.63
+
+
+
+
+
+
+Wolke:
+2811 ISP:
+
+en
+conf T
+int fa0/0
+des "isp cloud"
+no shutdown
+
+int fa0/1
+des "isp switch4"
+ip address 192.170.149.254 255.255.255.0
+no shutdown
+exit
+
+ip domain-lookup
+ip name-server 150.96.3.190
+banner motd "Authorized entry only"
+exit
+
+
+
+Internet-Server
+150.96.3.190
+255.255.0.0
+192.170.149.254
+150.96.3.190
+
+
+
+
+PC0:
+192.170.149.1
+255.255.255.0
+192.170.149.254
+150.96.3.190
+
+
+
+
+
+Wolke ende
+
+HQ:
+enable
+conf t
+ip domain-lookop
+ip name-server 150.96.3.190
+int fa0/0
+ip address 150.96.0.1 255.255.254.0
+no shutdown
+desc "HQ"
+int fa0/1
+ip address 209.165.200.226 255.255.255.252
+no shutdown
+desc "HQ - Internet"
+
+int se0/0/0
+ip address 192.168.168.17 255.255.255.252
+clock rate 1000000
+bandwith 1000
+desc "HQ - branch1"
+no shutdown
+
+int se0/0/1
+ip address 192.168.168.21 255.255.255.252
+clock rate 64000
+bandwith 64
+desc "HQ - branch2"
+no shutdown
+
+ip route 0.0.0.0 0.0.0.0 fa0/1
+
+router eigrp 2579
+network 192.168.168.16 0.0.0.3
+network 192.168.168.20 0.0.0.3
+network 150.96.0.1 0.0.1.255
+passive interface fa0/0
