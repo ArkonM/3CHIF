@@ -1,0 +1,14 @@
+Router[config]#router eigrp 11
+Router[config-router]#network 10.4.0.0 0.0.0.3
+Router[config-router]#network 10.5.0.0 0.0.0.3
+Router[config-router]#network 10.2.0.0 0.0.0.255
+Router[config-router]#pass g0/0
+Router[config-router]#exit
+Router[config]#ip route 0.0.0.0 0.0.0.0 g0/1
+Router[config]#router eigrp 11
+Router[config-router]#redistribute static
+
+
+Router[config]#int s0/0/0
+Router[config-if]#bandwith 2000
+Router[config-if]#
