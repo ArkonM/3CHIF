@@ -1,0 +1,577 @@
+Variablen
+
+    VTP domain: navy
+    Domain name: ocsic.com
+    Vlan 10: Kids
+    Vlan 20: susu
+    Vlan 30: test
+    Vlan 40:  
+    Vlan 50: server
+    Native Vlan: 119
+    10.36.x.x
+
+DNS server
+
+Name Adresse
+
+ws1.intranet.ocsic.com 10.36.50.254, ws2.intranet.ocsic.com 10.36.50.253, is1.intranet.ocsic.com 10.36.50.252
+
+VTP/DHCP-L3Switch
+
+enable
+    conf t
+	banner motd $....$
+        ip name-server 10.36.50.254
+        ip routing
+        hostname VTP/DHCP-L3Switch
+        vtp domain navy
+        vtp mode server
+        ip domain-name ocsic.com
+        ip dhcp excluded-address 10.36.10.1
+        ip dhcp excluded-address 10.36.10.254
+        ip dhcp excluded-address 10.36.20.1
+        ip dhcp excluded-address 10.36.20.254
+        ip dhcp excluded-address 10.36.30.1
+        ip dhcp excluded-address 10.36.30.254
+        ip dhcp excluded-address 10.36.40.1
+	ip dhcp excluded-address 10.36.40.254
+        ip dhcp excluded-address 10.36.50.1
+	ip dhcp excluded-address 10.36.50.252
+	ip dhcp excluded-address 10.36.50.253
+	ip dhcp excluded-address 10.36.50.254
+        ip dhcp excluded-address 10.36.119.1
+        ip dhcp pool VLAN10
+            network 10.36.10.0 255.255.255.0
+            default-router 10.36.10.1
+            dns-server 10.36.50.254
+        ip dhcp pool VLAN20
+            network 10.36.20.0 255.255.255.0
+            default-router 10.36.20.1
+            dns-server 10.36.50.254
+        ip dhcp pool VLAN30
+            network 10.36.30.0 255.255.255.0
+            default-router 10.36.30.1
+            dns-server 10.36.50.253
+        ip dhcp pool VLAN40
+            network 10.36.40.0 255.255.255.0
+            default-router 10.36.40.1
+            dns-server 10.36.50.253
+        ip dhcp pool VLAN50
+            network 10.36.50.0 255.255.255.0
+            default-router 10.36.50.1
+            dns-server 10.36.50.253
+        ip dhcp pool VLAN119
+            network 10.36.119.0 255.255.255.0
+            default-router 10.36.119.1
+            dns-server 10.36.50.253
+        vlan 10
+            name kids
+        vlan 20
+            name susu
+        vlan 30
+            name test
+        vlan 40
+            name  
+        vlan 50
+            name server
+        vlan 119
+            name native
+        interface gig0/1
+            no shutdown
+            switchport trunk encapsulation dot1q
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig0/2
+            no shutdown
+            switchport trunk encapsulation dot1q
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface fastethernet0/13
+            switchport mode access
+            switch access vlan 50
+        interface vlan 10
+            no shutdown
+            ip address 10.36.10.1 255.255.255.0
+        interface vlan 20
+            no shutdown
+            ip address 10.36.20.1 255.255.255.0
+        interface vlan 30
+            no shutdown
+            ip address 10.36.30.1 255.255.255.0
+        interface vlan 50
+            no shutdown
+            ip address 10.36.50.1 255.255.255.0
+        spanning-tree vlan 10
+        spanning-tree vlan 20
+        spanning-tree vlan 30
+        spanning-tree vlan 40
+        spanning-tree vlan 50
+        spanning-tree vlan 119
+        exit
+    cop ru st
+
+Switch1
+
+enable
+    conf t
+banner motd $....$
+        hostname SW1
+        vtp domain navy
+        vtp mode client
+        interface gig0/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig4/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface gig5/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig6/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+            channel-group 2 mode active
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface port-channel 2
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface port-channel 3
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        spanning-tree vlan 10 root primary
+        exit
+    cop ru st
+
+Switch2
+
+enable
+    conf t
+banner motd $....$
+        hostname SW2
+        vtp domain navy
+        vtp mode client
+	interface gig0/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig1/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+        interface gig2/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig3/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig4/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface gig5/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig6/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+            channel-group 3 mode active
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface port-channel 2
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface port-channel 3
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        spanning-tree vlan 20 root primary
+        exit
+    cop ru st
+
+Switch3
+
+enable
+    conf t
+banner motd $....$
+        hostname SW3
+        vtp domain navy
+        vtp mode client
+	interface gig0/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig1/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig2/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig3/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig4/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig5/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig6/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface port-channel 2
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface port-channel 3
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        spanning-tree vlan 30 root primary
+        exit
+    cop ru st
+
+Switch4
+
+enable
+    conf t
+banner motd $....$
+        hostname SW4
+        vtp domain navy
+        vtp mode client
+	interface gig0/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig4/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig5/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig6/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 2 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 3 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface port-channel 2
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface port-channel 3
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        exit
+    cop ru st
+
+
+SW-A
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-A
+        vtp domain navy
+        vtp mode client
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+        interface gig0/1
+            switchport mode access
+            switch access vlan 50
+            exit
+        exit
+    cop ru st
+
+SW-B
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-B
+        vtp domain navy
+        vtp mode client
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+            exit
+        exit
+    cop ru st
+
+SW-C
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-C
+        vtp domain navy
+        vtp mode client
+	interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+	    exit
+        exit
+    cop ru st
+
+SW-D
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-D
+        vtp domain navy
+        vtp mode client
+        interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+	    exit
+        exit
+    cop ru st
+
+SW-E
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-E
+        vtp domain navy
+        vtp mode client
+	interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+        interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+         interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+	    exit
+        exit
+    cop ru st
+
+SW-F
+
+enable
+    conf t
+banner motd $....$
+        hostname SW-F
+        vtp domain navy
+        vtp mode client
+        interface gig7/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface gig8/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig9/1
+            switchport mode trunk
+            switchport trunk native vlan 119
+	    channel-group 1 mode active
+        interface port-channel 1
+            no shutdown
+            switchport mode trunk
+            switchport trunk native vlan 119
+	interface gig1/1
+            switchport mode access
+            switch access vlan 10
+        interface gig2/1
+            switchport mode access
+            switch access vlan 20
+        interface gig3/1
+            switchport mode access
+            switch access vlan 30
+        interface gig4/1
+            switchport mode access
+            switch access vlan 40
+        interface gig6/1
+            switchport mode access
+            switch access vlan 50
+            exit
+        exit
+    cop ru st
+
+
+
+
+zum schluss alle pcs auf dhcp
+bis auf die 4er
