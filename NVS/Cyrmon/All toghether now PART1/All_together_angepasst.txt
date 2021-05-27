@@ -5,7 +5,7 @@ Variablen
     Vlan 10: Kids
     Vlan 20: susu
     Vlan 30: test
-    Vlan 40:  
+    Vlan 40: abc
     Vlan 50: server
     Native Vlan: 119
     10.36.x.x
@@ -14,7 +14,9 @@ DNS server
 
 Name Adresse
 
-ws1.intranet.ocsic.com 10.36.50.254, ws2.intranet.ocsic.com 10.36.50.253, is1.intranet.ocsic.com 10.36.50.252
+ws1.intranet.ocsic.com 10.36.50.254, 
+ws2.intranet.ocsic.com 10.36.50.253, 
+is1.intranet.ocsic.com 10.36.50.252
 
 VTP/DHCP-L3Switch
 
@@ -71,7 +73,7 @@ enable
         vlan 30
             name test
         vlan 40
-            name  
+            name abc
         vlan 50
             name server
         vlan 119
