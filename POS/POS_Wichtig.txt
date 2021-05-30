@@ -1,0 +1,199 @@
+Treiber für db --> projekt rechtsklick open pom --> reinkopieren, projekt rechtsklick reload pom
+<dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.17</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.13.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.13.1.1</version>
+        </dependency>
+    </dependencies>
+	
+	Für Charts --> projekt rechtsklick open pom --> reinkopieren, projekt rechtsklick reload pom und build
+	
+	        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+		
+	JTable
+	Add Row
+	((DefaultTableModel)jTable1.getModel()).addRow(new Object[] [] {null, null});
+	Delete Row
+	((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.getSelectedRow());
+	
+	-----XML
+	
+	-------------Writer
+	try {
+	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+	Document doc = docBuilder.newDocument();
+	
+	//Elemente werden Erstellt
+	Element rootElement = doc.createElement("Root");
+	doc.appendChild(rootElement);
+	//Schleife: damit mehrere Elemente eingefügt werden
+	for (int i = 0; i < name.size(); i++) {
+		//Person Element erstellen
+		Element person = doc.createElement("Person");
+		rootElement.appendChild(person);
+		//Element Name wird erstellt
+		Element name = doc.createElement(name.get(i));
+		person.appendChild(name);
+		//Element datum wird erstellt
+		Element datum = doc.createElement(datum.get(i));
+		person.appendChild(datum);
+	}
+	//Komplettes Element wurde erstellt
+	//Diese Baum struktur wird nun in die datei geschrieben
+	TransformerFactory transformerFactory = TransformerFactory.newDefaultInstance();
+    Transformer transformer = transformerFactory.newTransformer();
+    DOMSource source = new DOMSource(doc);
+    StreamResult result = new StreamResult(new File("Pfad"));
+    transformer.transform(source, result);
+	} catch (ParserConfigurationException e) {
+        e.printStackTrace();
+    } catch (TransformerException e) {
+        e.printStackTrace();
+    }
+	
+	-------------Reader
+	try {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newDefaultInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(new File("Pfad"));
+            
+		NodeList nList = doc.getElementsByTagName("Person");
+		
+		for (int i=0; i < nList.getLength(); i++) {
+			Node person = nList.item(i);
+			Element e = (Element) person;
+			//string von Name und von Datum bekommen:
+			e.getElementsByTagName("name").item(0).getTextContent().trim();
+			e.getElementsByTagName("datum").item(0).getTextContent().trim();
+		}
+	
+	} catch (FactoryConfigurationError e) {
+        e.printStackTrace();
+    } catch (SAXException ex) {
+        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ParserConfigurationException ex) {
+        Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+	----------read DB
+	
+	public class readDB {
+
+    public static ArrayList<land> sucheLand(String landname) {
+        ArrayList<land> laender = new ArrayList<>();
+        //Notwendig
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        ResultSet rs = null;
+
+        try {
+            //DB URL
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/World");
+            //SQL Code
+            stmt = con.prepareStatement("SQL Code ohne ;(?) --> Platzhalter");
+
+            //ersetzen der ? im sql code
+            stmt.setString(1, "%" + landname + "%");
+            //ausführen
+            rs = stmt.executeQuery();
+            //result abarbeiten
+            while (rs.next()) {
+                land temp = new land(rs.getString("name"), rs.getString("code"), null);
+                laender.add(temp);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            /**
+             * Schritt 6: Ressourcen freigeben
+             */
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getCause());
+            }
+        }
+
+        return laender;
+    }
+	}
+
+
+
+	----------write
+
+private void databaseInput(){
+        Connection con = null;
+        Statement stmt = null;
+
+        ResultSet rs = null;
+        
+        try {
+            
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/SudokuDatabase", "Armin", "Armin");
+            stmt = con.createStatement();
+            stmt.execute("DELETE from Sudokutable");
+            for(int i=0; i<row.size(); i++){
+                    for(int y=0; y<row.get(i).size(); y++){
+                        stmt.execute("INSERT into SudokuTable"
+                                   + "(ID, Value) values (" + ((box) row.get(i).get(y)).getID() + "," + ((box) row.get(i).get(y)).getVAL() + ")");
+                    }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            // Schritt 6: Ressourcen freigeben
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+	
+	
+	
+	
+	
+	
+		
+	
