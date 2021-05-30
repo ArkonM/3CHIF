@@ -1,0 +1,20 @@
+Sun May 30 13:12:39 CEST 2021 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sun May 30 13:12:39 CEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0179-bcf9-c02d-ffffc281737a 
+on database directory C:\Users\armin\Documents\GitHub\3CHIF\POS\NBProjects\SwingAirlines\AirlinesDB\Airlines with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44 
+Loaded from file:/C:/Users/armin/Documents/NetBeansProjects/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=13.0.2+8
+user.dir=C:\Users\armin\Documents\NetBeansProjects\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\armin\Documents\GitHub\3CHIF\POS\NBProjects\SwingAirlines\AirlinesDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun May 30 16:08:15 CEST 2021: Shutting down Derby engine
+----------------------------------------------------------------
+Sun May 30 16:08:15 CEST 2021:
+Shutting down instance a816c00e-0179-bcf9-c02d-ffffc281737a on database directory C:\Users\armin\Documents\GitHub\3CHIF\POS\NBProjects\SwingAirlines\AirlinesDB\Airlines with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44 
+----------------------------------------------------------------
