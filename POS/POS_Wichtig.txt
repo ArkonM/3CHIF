@@ -39,9 +39,16 @@ Treiber für db --> projekt rechtsklick open pom --> reinkopieren, projekt recht
 	Delete Row
 	((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.getSelectedRow());
 	
-	-----XML
+	PopUp Fenster
+	JOptionPane.showMessageDialog(this, "Message");
 	
-	-------------Writer
+	Bei Start und vor beenden code ausführen rechtsklick auf jFrame -> event -> Window ->  
+	formWindowOpened();
+	formWindowClosing();
+	
+	-------------XML
+	
+	---------------Writer
 	try {
 	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
     DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -75,7 +82,7 @@ Treiber für db --> projekt rechtsklick open pom --> reinkopieren, projekt recht
         e.printStackTrace();
     }
 	
-	-------------Reader
+	---------------------Reader
 	try {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newDefaultInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -101,7 +108,7 @@ Treiber für db --> projekt rechtsklick open pom --> reinkopieren, projekt recht
         Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-	----------read DB
+	---------------read DB
 	
 	public class readDB {
 
@@ -154,9 +161,25 @@ Treiber für db --> projekt rechtsklick open pom --> reinkopieren, projekt recht
     }
 	}
 
+jFreeCharts:
 
 
-	----------write
+1) 	dependencies in pom eingügen und reloaden und builden	
+		<dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+
+
+-------------------DB WRITE
+
 
 private void databaseInput(){
         Connection con = null;
@@ -189,8 +212,96 @@ private void databaseInput(){
             }
         }
     }
+
+
+-------------------Balkendiagramm
+
+DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
 	
+barCharData.setValue(value,"Titel", "Balkennamen");	//Bei bedarf mit schleife füllen
+
+JFreeChart barChart = ChartFactory.createBarChart("Titel(Überschrift)", "x-Achse benennung", "y-Achse benennung", barChartData, 
+														PlotOrientation.VERTICAL, false, true, false);
+          //PlotOrientation bei bedarf ändern
+CategoryPlot barchrt = barChart.getCategoryPlot();
+barchrt.setRangeGridlinePaint(Color.BLUE); //Farben der Balken
+ChartPanel barPanel = new ChartPanel(barChart); //Diagramm erstellen
+//Panel bei Design erstellen
+jPanel.removeAll();
+jPanel.add(barPanel, BorderLayout.CENTER);
+jPanel.validate();
 	
+
+-------------KreisDiagramm
+		DefaultPieDataset pieDataSet = new DefaultPieDataset();
+		pieDataSet.setValue("Value", "Name");
+        JFreeChart pieChart = ChartFactory.createPieChart3D("Titel", pieDataSet, true, true, true);
+        PiePlot3D Pie = (PiePlot3D) pieChart.getPlot();
+        
+        ChartPanel pieChartPanel = new ChartPanel(pieChart);
+        
+        jChartPanel.removeAll();
+        jChartPanel.add(pieChartPanel,BorderLayout.CENTER );
+        jChartPanel.validate();
+
+
+
+	
+-------------Algorithmus um aus db route zu erstellen:
+-------------Breadth first search
+public static ArrayList<airport> staticRoute (airport start, airport ziel) {
+        
+        Queue<airport> queue = new LinkedList<>();
+        Set<airport> besucht = new HashSet<>();
+		//HashMap um die Verbindung zu den Airports zu merken
+        Map<airport, airport> parents = new HashMap<>();
+        
+		//zur queue wird der startpunkt hinzugefügt
+        queue.add(start);		
+		//zur besucht liste wird start hinzugefügt
+        besucht.add(start);
+		//solange die queue nicht leer ist
+        while (!queue.isEmpty()) {
+			//queue first in first out, ersten wird genommen
+            airport airport = queue.poll();	//der nächste airport wird genommen
+            System.out.println("BFS visit: " + airport.name + " (" + airport.id + ")");
+			//Wenn die aus der Queue genommener airport das ziel ist
+            if (airport.getId() == ziel.getId()) {
+                //route als liste zurückliefern
+				//Liste wo die Route erstellt wird
+                ArrayList<airport> route = new ArrayList<>();
+                //temporärer airport
+                airport temp = airport;
+                while (parents.containsKey(temp)) {
+                    route.add(temp);
+                    temp = parents.get(temp);
+                }
+				//route ist vom ziel bis zum letzen nachbar gebaut worden, nun wird noch der start angehängt
+                route.add(start);
+				//route wird umgedreht, damit die route bei start anfängt
+                Collections.reverse(route);
+				//fertige route wird returned
+                return route;
+            }
+			//Endflughafen wurde (noch) nicht gefunden
+			//eine Liste mit allen Nachbarn des aktuellen airports
+            for(airport nachbar : ReadDatabase.nachbarn(airport)) {
+				//wenn der nachbar noch nicht besucht war
+                if(!besucht.contains(nachbar)) {
+                    //System.out.println("BFS add nachbar: " + nachbar.name + " (" + nachbar.id + ")");
+					//Airport wird zu besucht hinzugefügt / verhindert endlosschleife
+                    besucht.add(nachbar);
+					//alle nachbarn werden in die queue gegeben
+                    queue.add(nachbar);
+					//parents (verbindungen) werden vom airport zu jedem Nachbar gemacht
+                    parents.put(nachbar, airport);
+                }
+            }
+        }
+        
+        // 4. wenn keine route gefunden, nix zurückliefern
+        return null;
+    }
 	
 	
 	

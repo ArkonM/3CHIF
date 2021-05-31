@@ -1,3 +1,44 @@
+All together now .... 2020/21 V1.01
+
+PART 1
+PLEASE SAVE OFTEN!! IN CASE OF A PACKETTRACER CRASH RESULTING IN A DAMAGED FILE MOST OF THE TIME THERE IS AN AUTOMAGICALLY CREATED .~pka FILE. RENAME IT TO .pka AND RESUME YOUR WORK WITH THIS FILE.
+
+In a first step we will configure only the orange part of the topology, the Intranet.
+VLANS: VTP/DHCP-L3Switch acts as VTP server for the VTP domain navy. All other switches are VTP clients.
+
+On the VTP server switch create Vlan 10 Kids, Vlan 20 susu, Vlan 30 test, Vlan 40 , Vlan 50 server . All other switches get their Vlan configuration autmatically.
+On each access-layer switch use port 1 Vlan 10 , port 2 Vlan 20, port 3 Vlan 30, port 4 Vlan 40, port 0 Vlan 50 if a server exists. Don't forgett to put the used/active ports in the correct Vlan!
+Between the layers of the topology configure trunks, native vlan 119.
+Switches : configure the "double and quadruple trunks" with etherchannel LACP channelgroups to double/quadruple the available bandwidth.
+
+Configure STP 802.1D
+Use show spanning-tree to check for the root bridge in each vlan
+Change the root bridges: Switch1 for VLAN 10, Switch2 for VLAN 20, Switch3 for VLAN 30
+
+Internal Intervlan Routing: Create a SVI for each VLAN except Vlan40, with the following ip: 10.36.Vlanid.1/24
+Activate ip routing on the L3 switch.
+Since the router automatically routes data between directly connected networks, we do not need any routes or a routing protocol at this time.
+Use ocsic.com as domain name.
+
+Internal Network DHCP: VTP/DHCP-L3Switch is a Layer3-Switch and acts as DHCP Server and Inter-VLAN router for the intranet.
+Create a DHCP Pool with the name VLAN and the Vlan Id (eg. ip dhcp pool VLAN10 for Vlan 10) for each Vlan. 
+Subnet 10.36.0.0/8 with a /24 mask and use 10.36.Vlanid.0/24 for each VLAN as network address. Use the lowest ip in each subnet as standard gateway. Make sure that this addresses will not be used by DHCP for the pc's!
+The servers in Vlan 50 and the Pcs in Vlan 40 get static ip addresses (the highest available in their subnet).
+
+DNS/HTTPS: Configure workgroup server 1 as DNS for VLANs 10-20, and workgroup server 2 as DNS for the rest of the VLANs.
+The resolved server names should be: ws1.intranet.ocsic.com, ws2.intranet.ocsic.com, is1.intranet.ocsic.com
+Start https on each server.
+
+Testing:All pings inside the Vlans must be working. Since all created SVIs are directly connected interfaces on the one and only router in the toplogy, pings between these VLANs/subnets must be working. Pings from VLANS with an SVI to the VLAN without an SVI should not be working. Test!
+Try opening the webpages on all servers from the allowed VLANs.
+
+END PART 1
+
+
+
+
+
+
 Variablen
 
     VTP domain: navy
@@ -30,13 +71,9 @@ enable
         vtp mode server
         ip domain-name ocsic.com
         ip dhcp excluded-address 10.36.10.1
-        ip dhcp excluded-address 10.36.10.254
         ip dhcp excluded-address 10.36.20.1
-        ip dhcp excluded-address 10.36.20.254
         ip dhcp excluded-address 10.36.30.1
-        ip dhcp excluded-address 10.36.30.254
         ip dhcp excluded-address 10.36.40.1
-	ip dhcp excluded-address 10.36.40.254
         ip dhcp excluded-address 10.36.50.1
 	ip dhcp excluded-address 10.36.50.252
 	ip dhcp excluded-address 10.36.50.253

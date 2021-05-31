@@ -51,6 +51,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Folgende Flughäfen wurden gefunden:");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDialogLayout = new javax.swing.GroupLayout(jPanelDialog);
         jPanelDialog.setLayout(jPanelDialogLayout);
         jPanelDialogLayout.setHorizontalGroup(
@@ -94,6 +100,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabelEnd.setText("Endflughafen");
         jPanel2.add(jLabelEnd);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField1);
         jPanel2.add(jTextField2);
         jPanel2.add(jLabel1);
@@ -159,6 +171,14 @@ public class Main extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
