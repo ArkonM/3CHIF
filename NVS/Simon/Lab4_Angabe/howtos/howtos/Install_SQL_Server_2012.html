@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <!--Start of Help.com Live Chat Script-->
+  <script src="Install_SQL_Server_2012-Dateien/bat.js" async=""></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/hotjar-473797.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/8331.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/insight.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/conversion_async.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/roundtrip.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/conversion_async.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/analytics.js"></script><script src="Install_SQL_Server_2012-Dateien/quant.js" async="" type="text/javascript"></script><script async="" src="Install_SQL_Server_2012-Dateien/gtm.js"></script><script type="text/javascript" async="" src="Install_SQL_Server_2012-Dateien/livechat.js" id="helpdotcom-script" data-org-id="3d14ea61-24b1-4efc-85f1-36f894e2ea75" data-widget-id="006947f9-1977-4ed6-a1d0-4ef5fdbfcb45"></script><script>
+    window.Helpdotcom=window.Helpdotcom||function(a){window.Helpdotcom.q.push(a)},window.Helpdotcom.q=[];var d=document,s=d.createElement("script");s.type="text/javascript",s.async=!0,s.src="//plugins.help.com/livechat.js",s.id="helpdotcom-script",s.setAttribute("data-org-id","3d14ea61-24b1-4efc-85f1-36f894e2ea75"),s.setAttribute("data-widget-id","006947f9-1977-4ed6-a1d0-4ef5fdbfcb45");var x=d.getElementsByTagName("script")[0];x.parentNode.insertBefore(s,x);
+  </script>
+  <!--End of Help.com Live Chat Script-->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5JVRL5');</script>
+<!-- End Google Tag Manager -->
+
+<title>How to install SQL Server 2012 Express on Windows server 2012 | Knowledge Base</title>
+<meta name="keywords" content="">
+<meta name="description" content="Before installing SQL Server 2012 make sure you have the below components installed or enabled on your Windows server.">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to install SQL Server 2012 Express on Windows server 2012 | Knowledge Base">
+<meta property="og:url" content="">
+<meta property="og:site_name" content="Knowledge Base">
+
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" href="https://www.hivelocity.net/storage/blog-kb/favicon.ico">
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.hivelocity.net/kb/feeds/rss/">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="https://www.hivelocity.net/kb/feeds/atom/">
+
+
+
+<link rel="stylesheet" href="Install_SQL_Server_2012-Dateien/font-awesome.css">
+
+
+<link rel="stylesheet" href="Install_SQL_Server_2012-Dateien/main.css">
+
+
+<script src="Install_SQL_Server_2012-Dateien/269879548.js"></script><style>@media print {#ghostery-purple-box {display:none !important}}</style>
+
+
+
+<style type="text/css">.helpdotcom-widget-active {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.helpdotcom-livechat {
+  position: fixed;
+  bottom: 0;
+  transition: none;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+
+.helpdotcom-livechat.helpdotcom-hidden {
+  visibility: hidden;
+}
+
+@media (max-width: 480px), (max-height: 464px) {
+  .helpdotcom-livechat.helpdotcom-open {
+    top: 0;
+  }
+}
+
+.helpdotcom-livechat.helpdotcom-bottom-right {
+  right: 30px;
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-livechat.helpdotcom-bottom-right {
+    right: 10px;
+  }
+}
+
+.helpdotcom-livechat.helpdotcom-bottom-right .helpdotcom-embed-main {
+  float: right;
+}
+
+.helpdotcom-livechat.helpdotcom-bottom-center {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.helpdotcom-livechat.helpdotcom-bottom-left {
+  left: 30px;
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-livechat.helpdotcom-bottom-left {
+    left: 10px;
+  }
+}
+
+.helpdotcom-livechat.helpdotcom-bottom-left .helpdotcom-embed-main {
+  float: left;
+}
+
+.helpdotcom-livechat * {
+  transition: inherit;
+}
+
+.helpdotcom-livechat iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  overflow: hidden;
+}
+
+.helpdotcom-livechat .helpdotcom-embed-main {
+  position: relative;
+  height: 38px;
+  overflow: hidden;
+  border-radius: 0.000001%;
+  pointer-events: all;
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-livechat .helpdotcom-embed-main {
+    margin: 0 -10px;
+  }
+}
+
+.helpdotcom-livechat[class*="style"]:not(.helpdotcom-open).helpdotcom-livechat .helpdotcom-embed-main {
+  margin: 0 auto 10px auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.helpdotcom-livechat:not([class*="style"]).helpdotcom-livechat .helpdotcom-embed-main {
+  width: 340px !important;
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-livechat:not([class*="style"]).helpdotcom-livechat .helpdotcom-embed-main {
+    width: 100vw !important;
+  }
+}
+
+.helpdotcom-style-button:not(.helpdotcom-open).helpdotcom-livechat .helpdotcom-embed-main {
+  height: 40px;
+  border-radius: 40px;
+}
+
+.helpdotcom-style-badge:not(.helpdotcom-open).helpdotcom-livechat .helpdotcom-embed-main {
+  height: 76px;
+  border-radius: 50%;
+}
+
+.helpdotcom-style-balloon:not(.helpdotcom-open).helpdotcom-livechat .helpdotcom-embed-main {
+  height: 60px;
+  border-radius: 60px 20px 60px 60px;
+}
+
+.helpdotcom-popout-long.helpdotcom-livechat .helpdotcom-embed-main {
+  height: 5px;
+}
+
+.helpdotcom-open.helpdotcom-livechat .helpdotcom-embed-main {
+  width: 340px !important;
+  height: 464px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 480px), (max-height: 464px) {
+  .helpdotcom-open.helpdotcom-livechat .helpdotcom-embed-main {
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-open.helpdotcom-livechat .helpdotcom-embed-main {
+    width: 100vw !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .helpdotcom-popout-long:not(.helpdotcom-open).helpdotcom-livechat .helpdotcom-embed-main {
+    display: none;
+  }
+}
+
+.helpdotcom-livechat .helpdotcom-embed-popout {
+  margin: 0 auto 10px auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  overflow: hidden;
+  pointer-events: all;
+}
+
+.helpdotcom-popout-short.helpdotcom-livechat .helpdotcom-embed-popout {
+  width: 220px;
+}
+
+.helpdotcom-popout-long.helpdotcom-livechat .helpdotcom-embed-popout {
+  width: 300px;
+}
+
+.helpdotcom-popout-avatar.helpdotcom-livechat .helpdotcom-embed-popout {
+  min-width: 320px;
+  margin: 0 -10px;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.helpdotcom-popout-avatars.helpdotcom-livechat .helpdotcom-embed-popout {
+  min-width: 320px;
+  margin: 0 -10px;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.helpdotcom-open.helpdotcom-livechat .helpdotcom-embed-popout {
+  position: absolute;
+  visibility: hidden;
+}
+
+</style><link rel="canonical" href="https://hivelocity.net/kb/how-to-install-sql-server-2012-express-on-windows-server-2012/"></head>
+
+<body id="body" style="padding-top: 138px;" class="">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JVRL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header id="site-header">
+    <div id="site-alerts" style="display: block;">
+        <a href="#" class="alert-close" data-dismiss="alert"><span id="close-dealbar" class="icon-close"></span></a>
+        <div class="alerts">
+            <center>
+            <span class="alert active" id="alert-dealbar">
+		<a href="https://www.hivelocity.net/blog/hivelocity-acquires-dallas-iaas-provider-incerocom/">DATA CENTERS: DALLAS, SEATTLE, MIAMI, NEW YORK CITY, TAMPA, LOS ANGELES &amp; ATLANTA</a>
+            </span>
+            </center>
+        </div>
+    </div>
+    <nav class="navbar top-navbar" role="navigation">
+
+        <a class="navbar-brand" href="https://www.hivelocity.net/"><span class="text">Hivelocity</span></a>
+
+        <button type="button" class="navbar-toggle toggle-mobile-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar one"></span>
+            <span class="icon-bar two"></span>
+            <span class="icon-bar three"></span>
+        </button>
+        
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="link-primary" href="https://my.hivelocity.net/" target="_blank">Login</a></li>
+            <li><a class="link-primary" id="cart-total" href="https://store.hivelocity.net/cart">View Cart</a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right navbar-hide-mobile navbar-general">
+            <li class="dropdown"><a href="#solutions" data-menu="1" class="link-primary">All Solutions</a></li>
+            <li class="dropdown"><a href="https://www.hivelocity.net/about/" data-menu="2" class="link-primary">About Us</a></li>
+            <li class="dropdown"><a href="https://www.hivelocity.net/about/contact-us/" data-menu="3" class="link-primary">Help</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right navbar-dedicated-servers">
+            <li class="dropdown"><a class="link-primary" href="https://www.hivelocity.net/dedicated-servers/" data-menu="0">Dedicated Servers</a></li>
+        </ul>
+        <div class="big-menu" style="top: 138px; max-height: calc(-137px + 100vh); display: none;">
+    <div class="menu-solutions-container" data-menu="0" style="top: 137px; display: none;">
+        <div class="menu-title">Dedicated Servers</div>
+        <div class="menu-block">
+            <ul class="menu-solutions">
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Instant Deployment</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/dedicated-servers/#dedicated-servers-table-full-1" class="link-secondary ds2">Pre-Built Servers</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">~24 Hr Deployment</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/dedicated-servers/#dedicated-servers-table-full-2" class="link-secondary ds1">Custom Built Servers</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">~96 Hr Deployment</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/dedicated-servers/gpu/" class="link-secondary">GPU Servers</a></li>
+                            <li><a href="https://www.hivelocity.net/dedicated-servers/massive-storage/" class="link-secondary">Storage Servers</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Oldies but Goodies</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/outlet/" class="link-secondary">Server Outlet</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="menu-solutions-container" data-menu="1" style="top: 137px; display: none;">
+        <div class="menu-title">All Solutions</div>
+        <div class="menu-block">
+            <ul class="menu-solutions">
+                <li class="menu-solution">
+                    <div class="menu-solution-container products">
+                        <a href="https://www.hivelocity.net/products/" class="solution-category">Products</a>
+                        <ul class="solution-items">
+                            <ul class="link">
+                                <a href="https://www.hivelocity.net/dedicated-servers/" class="link-secondary link">Dedicated Servers</a>
+                                <li class="sublink"><a href="https://www.hivelocity.net/dedicated-servers/gpu/" class="link-secondary">GPU Dedicated Servers</a></li>
+                                <li class="sublink"><a href="https://www.hivelocity.net/dedicated-servers/massive-storage/" class="link-secondary">Massive Storage Servers</a></li>
+                            </ul>
+                            <li><a href="https://www.hivelocity.net/products/colocation/" class="link-secondary">Colocation</a></li>
+                            <li><a href="https://www.hivelocity.net/products/cdn/" class="link-secondary">Content Delivery Network</a></li>
+                            <li><a href="https://www.hivelocity.net/products/private-cloud/" class="link-secondary">Private Cloud</a></li>
+                            <li><a href="https://www.hivelocity.net/products/custom-solutions/" class="link-secondary">Custom Solutions</a></li>
+                            <li><a href="https://www.hivelocity.net/outlet/" class="link-secondary menu-highlight">Dedicated Server Outlet</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container enhancements">
+                        <a href="https://www.hivelocity.net/enhancements/" class="solution-category">Enhancements</a>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/enhancements/ddos-protection/" class="link-secondary">DDoS Protection</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/firewall/" class="link-secondary">Firewall</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/rapid-restore/" class="link-secondary">Rapid Restore</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/storage/" class="link-secondary">Storage</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/software/" class="link-secondary">Software</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/load-balancing/" class="link-secondary">Load Balancing</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/unmetered-ports/" class="link-secondary">Unmetered Ports</a></li>
+                            <li><a href="https://www.hivelocity.net/enhancements/ssl/" class="link-secondary">SSL Certificates</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <a href="https://www.hivelocity.net/services/" class="solution-category">Services</a>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/services/data-migration/" class="link-secondary">Data Migration</a></li>
+                            <li><a href="https://www.hivelocity.net/services/server-management/" class="link-secondary">Server Management</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="menu-solutions-container" data-menu="2" style="top: 137px; display: none;">
+        <div class="menu-title">About Us</div>
+        <div class="menu-block">
+            <ul class="menu-solutions">
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">About Us</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/about/our-company/" class="link-secondary">Our Company</a></li>
+                            <li><a href="https://www.hivelocity.net/about/our-team/" class="link-secondary">Team</a></li>
+                            <li><a href="https://www.hivelocity.net/about/network/" class="link-secondary">Network</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/" class="link-secondary show-menu-to-burger">Data Centers</a></li>
+                            <li><a href="https://www.hivelocity.net/about/myvelocity/" class="link-secondary">myVelocity</a></li>
+                            <li><a href="https://www.hivelocity.net/about/resellers/" class="link-secondary">Partner Program</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Get in Touch</span>
+                        <ul class="solution-items">
+                            <li><a href="tel:8888694678" class="link-secondary">Toll Free: <span class="inline-block">(888) 869-4678</span></a></li>
+                            <li><a href="tel:8134710355" class="link-secondary">Local: <span class="inline-block">(813) 471-0355</span></a></li>
+                            <li><a href="tel:8139026477" class="link-secondary">Fax: <span class="inline-block">(813) 902-6477</span></a></li>
+                            <li><a href="#chat" class="link-secondary chat">Live Chat</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution hide-menu-to-burger">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Data Centers</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/products/colocation/#tpa1" class="link-secondary colocation-link">Tampa 1</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#tpa2" class="link-secondary colocation-link">Tampa 2</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#atl1" class="link-secondary colocation-link">Atlanta 1</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#la1" class="link-secondary colocation-link">Los Angeles 1</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#la2" class="link-secondary colocation-link">Los Angeles 2</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#nyc1" class="link-secondary colocation-link">New York City 1</a></li>
+                            <li><a href="https://www.hivelocity.net/products/colocation/#mia1" class="link-secondary colocation-link">Miami 1</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Articles</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/kb/" class="link-secondary">KnowledgeBase</a><a></a></li><a>
+                            </a><li><a></a><a href="https://www.hivelocity.net/blog/" class="link-secondary">Blog &amp; News</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="menu-solutions-container" data-menu="3" style="top: 137px; display: none;">
+        <div class="menu-title">Help</div>
+        <div class="menu-block">
+            <ul class="menu-solutions">
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">24/7 Help</span>
+                        <ul class="solution-items">
+                            <li><a href="#chat" class="link-secondary chat">Live Chat</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Call Now</span>
+                        <ul class="solution-items">
+                            <li><a href="tel:8888694678" class="link-secondary">(888) 869-4678</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Search Topics</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/kb/" class="link-secondary">KnowledgeBase</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-solution">
+                    <div class="menu-solution-container">
+                        <span class="solution-category">Manage</span>
+                        <ul class="solution-items">
+                            <li><a href="https://www.hivelocity.net/about/myvelocity/" class="link-secondary">myVelocity</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</nav>
+    <div class="big-menu-close-mask" style="display: none;"></div>
+</header>
+
+
+
+<div class="site-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-xs-8 middle">
+                <div class="row">
+                    <header class="col-xs-12">
+                        
+
+<div class="search">
+    <form method="get" action="/kb/search/" id="search" class="frm-search">
+        <input type="search" name="q" id="q" placeholder="Search the Knowledge Base…">
+    </form>
+</div>
+
+                    </header>
+                    <div class="col-xs-12">
+                        
+    <h1 class="detail-header">How to install SQL Server 2012 Express on Windows server 2012</h1>
+    <div class="post-meta">
+        
+        
+        <p>
+        by
+        Javier Vidueira
+        </p>
+        
+        
+    </div>
+
+                    </div>
+                </div>
+
+                
+<div class="posts">
+<article class="detail">
+    
+    
+    
+
+    
+    <p>Before installing SQL Server 2012 make sure you have the below components installed or enabled on your Windows server.</p>
+<ol type="a">
+<li>
+<p>Download and install .NET Framework 4.0. If the computer has Internet access, SQL Server setup will download it when needed.</p>
+</li>
+<li>
+<p>Enable .NET Framework 3.5 using Control Panel -&gt; Programs and Features -&gt; Turn on/off features</p>
+</li>
+</ol>
+<p>Now go through the next steps for the installation.</p>
+<ol>
+<li>
+<p>Login to your Windows server with the administrator user.</p>
+</li>
+<li>
+<p>Down load the proper SQL server set up from the link <a href="http://www.microsoft.com/en-us/download/details.aspx?id=29062">http://www.microsoft.com/en-us/download/details.aspx?id=29062</a></p>
+</li>
+<li>
+<p>Double click the installer file and then click on RUN<br><img src="Install_SQL_Server_2012-Dateien/express3.png" width="562" height="390"></p>
+</li>
+<li>
+<p>&nbsp;<span style="line-height: 1.428571429;">The set up file will start extracting the installation files<br><img src="Install_SQL_Server_2012-Dateien/express4.png" width="351" height="141"></span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">&nbsp;</span><span style="line-height: 1.428571429;">On the next screen choose the top option to install a new stand-alone installation and click on it.<br><img src="Install_SQL_Server_2012-Dateien/express5.png" width="800" height="232"></span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;"><span style="line-height: 1.428571429;">The set up will process the basic operations and you will see the licensing screen where you have to check the box for “</span><b style="line-height: 1.428571429;">I accept the license terms</b><span style="line-height: 1.428571429;">” click on next.<br><img src="Install_SQL_Server_2012-Dateien/express6.png" width="818" height="608">&nbsp;</span></span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">The next screen will be Product Updates. SQL server will check for and install any updates. Leave it as it is and click on next.<br><img src="Install_SQL_Server_2012-Dateien/express7.png" width="816" height="608">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">On The next screen you will see that the set up is getting ready for installations.<br><img src="Install_SQL_Server_2012-Dateien/express8.png" width="812" height="610">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">On the Feature Selection 
+page, please select the features you would like to install. A 
+description of each feature will appear on the "Feature description" 
+area when you click on a feature. Click on Next.<br><img src="Install_SQL_Server_2012-Dateien/express9.png" width="815" height="612">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">On the Instance Configuration
+ page, choose a name for the instance or select a default instance. 
+SQLExpress is the name of the instance as we have selected Named 
+Instance. Click on Next.<br><img src="Install_SQL_Server_2012-Dateien/express10.png" width="816" height="613">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">The next step is server 
+configuration. From here you can change the Windows services associated 
+with this instance of SQL Server. You can keep the defaults here unless 
+you want to specify different user accounts for the services. You can 
+also change the default collation settings if you are not in the United 
+States. Click Next to continue.<br><img src="Install_SQL_Server_2012-Dateien/express11.png" width="816" height="606">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">The next step is Database 
+Engine configuration. On the Server Configuration tab you can select 
+whether SQL Server will only authenticate using Windows accounts or you 
+can choose Mixed Mode which will allow Windows accounts and SQL 
+accounts. Mixed mode authentication is generally used so we will select 
+it. Provide the password for "sa" user and then click on next.<br><img src="Install_SQL_Server_2012-Dateien/express12.png" width="805" height="599">&nbsp;</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;"></span></p>
+<p>&nbsp;On the Data Directories tab you can change the locations of log
+ files and other files that SQL will use. Depending on your server 
+configuration and the load that will be put on SQL, you may want to put 
+the database and log&nbsp;<span style="line-height: 1.428571429;">folders on separate drives. For most users, you can leave the default values. Click on next.<br><img src="Install_SQL_Server_2012-Dateien/express13.png" width="806" height="602"></span></p>
+<p><span style="line-height: 1.428571429;"><br></span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">The next screen is of Error 
+Reporting option. You can choose whether or not you would like to send 
+error reports to Microsoft. Just click on next.</span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;">At this point, SQL server 
+will install on your computer. This could take a while to complete 
+depending on the computer you are using.<br>&nbsp;<img src="Install_SQL_Server_2012-Dateien/express15.png" width="819" height="607"></span></p>
+</li>
+<li>
+<p><span style="line-height: 1.428571429;"><span style="line-height: 1.428571429;">Once
+ the installation has completed, you will receive a screen showing the 
+details of what was completed and if there were any problems.<br><img src="Install_SQL_Server_2012-Dateien/express16.png" width="801" height="610">&nbsp;</span></span></p>
+</li>
+</ol>
+    
+
+    
+    
+    
+    
+
+    
+    
+    <br><br>
+    <p>
+        <a class="btn btn-sm share-twitter" target="_blank" href="http://twitter.com/home?status=https://www.hivelocity.com/kb/how-to-install-sql-server-2012-express-on-windows-server-2012/%20How%20to%20install%20SQL%20Server%202012%20Express%20on%20Windows%20server%202012">Share on Twitter</a>
+    </p>
+    <p>
+        <a class="btn btn-sm share-facebook" target="_blank" href="http://facebook.com/sharer.php?u=https://www.hivelocity.com/kb/how-to-install-sql-server-2012-express-on-windows-server-2012/&amp;t=How%20to%20install%20SQL%20Server%202012%20Express%20on%20Windows%20server%202012">Share on Facebook</a>
+    </p>
+    
+
+    
+    
+    
+</article>
+</div>
+
+            </main>
+
+            <aside class="col-xs-4 pull-right">
+                <nav class="blog-nav">
+                    
+    
+
+
+
+
+    <h3>KNOWLEDGE BASE</h3>
+    <ul class="list-unstyled kb-menu">
+        <li><a href="https://www.hivelocity.net/kb/">HOME</a></li>
+        <li><a href="https://www.hivelocity.net/kb/tag/videos/">VIDEOS</a></li>
+        <li><a href="https://www.hivelocity.net/kb/tag/downloads/">DOWNLOADS</a></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="list-unstyled">
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/account-operations/">
+            Account Operations 
+            
+            (15)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/apache/">
+            Apache 
+            
+            (13)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/asp/">
+            ASP 
+            
+            (4)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/cpanel/">
+            cPanel 
+            
+            (129)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/direct-admin/">
+            Direct Admin 
+            
+            (13)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/domain-admin/">
+            Domain Admin 
+            
+            (19)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/domain-pointer/">
+            Domain Pointer 
+            
+            (6)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/email/">
+            Email 
+            
+            (20)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/flash/">
+            Flash 
+            
+            (2)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/freebsd/">
+            FreeBSD 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/ftp/">
+            FTP 
+            
+            (13)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/hardware/">
+            Hardware 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/hosting/">
+            Hosting 
+            
+            (7)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/hsphere/">
+            Hsphere 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/iptables/">
+            Iptables 
+            
+            (2)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/linux/">
+            Linux 
+            
+            (143)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/logs/">
+            Logs 
+            
+            (2)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/minecraft/">
+            minecraft 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/mssql/">
+            MSSQL 
+            
+            (7)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/mysql/">
+            MySQL 
+            
+            (38)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/nameservers/">
+            NameServers 
+            
+            (24)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/nic/">
+            NIC 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/php/">
+            PHP 
+            
+            (15)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/phpmyadmin/">
+            phpMyAdmin 
+            
+            (7)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/plesk/">
+            Plesk 
+            
+            (87)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/security/">
+            Security 
+            
+            (24)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/softaculous/">
+            Softaculous 
+            
+            (6)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/spamassassin/">
+            Spamassassin 
+            
+            (3)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/ssh/">
+            ssh 
+            
+            (4)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/stargate/">
+            Stargate 
+            
+            (1)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/uncategorized/">
+            Uncategorized 
+            
+            (33)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/virtuozzo/">
+            Virtuozzo 
+            
+            (2)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/webadmin/">
+            Webadmin 
+            
+            (5)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/whm/">
+            WHM 
+            
+            (24)
+            
+        </a>
+    </li>
+
+    <li>
+        <a href="https://www.hivelocity.net/kb/category/windows/">
+            Windows 
+            
+            (40)
+            
+        </a>
+    </li>
+
+</ul>
+
+
+
+
+
+
+<div class="feeds">
+
+
+
+
+
+
+
+
+    <a href="https://www.hivelocity.net/kb/feeds/rss/">RSS</a> /
+    <a href="https://www.hivelocity.net/kb/feeds/atom/">Atom</a>
+
+
+</div>
+
+
+
+
+                <nav>
+            </nav></nav></aside>
+
+        </div>
+    </div>
+<footer id="site-footer">
+    <div class="container-fluid">
+        <div class="btns">
+            <a href="https://www.hivelocity.net/live-feed/" class="btn btn-danger-outline">Live Data Center Cam</a>
+            <a href="https://www.hivelocity.net/about/network" class="btn btn-danger-outline hidden-xs hidden-sm">Test Our Network Speed</a>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 social-media">
+                <a target="_blank" href="https://twitter.com/HIVELOCITY" class="social-twitter">
+                    <svg viewBox="0 0 250 204"><path d="M78.62,204C173,204,224.56,125.51,224.56,57.44c0-2.23,0-4.45-.15-6.66A104.61,104.61,0,0,0,250,24.12a102,102,0,0,1-29.46,8.1A51.65,51.65,0,0,0,243.09,3.73a102.53,102.53,0,0,1-32.57,12.5,51.37,51.37,0,0,0-87.41,47A145.41,145.41,0,0,1,17.4,9.4,51.68,51.68,0,0,0,33.28,78.16,50.75,50.75,0,0,1,10,71.71v0.65a51.47,51.47,0,0,0,41.15,50.49,51,51,0,0,1-23.16.88,51.38,51.38,0,0,0,47.92,35.77,102.64,102.64,0,0,1-63.7,22.09A104,104,0,0,1,0,180.86,144.76,144.76,0,0,0,78.62,204"></path></svg>
+                </a>
+                <a target="_blank" href="https://www.facebook.com/pages/Hivelocity-Hosting/108951265858090" class="social-facebook">
+                    <svg style="transform:scale(0.5);" viewBox="88.428 12.828 107.543 207.085"><path d="M158.232 219.912v-94.461h31.707l4.747-36.813h-36.454V65.134c0-10.658 2.96-17.922 18.245-17.922l19.494-.009V14.278c-3.373-.447-14.944-1.449-28.406-1.449-28.106 0-47.348 17.155-47.348 48.661v27.149H88.428v36.813h31.788v94.461l38.016-.001z"></path></svg>
+                </a>
+                <a target="_blank" href="https://plus.google.com/+HivelocityNet/" class="social-google-plus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11v2.4h3.97c-.16 1.029-1.2 3.02-3.97 3.02-2.39 0-4.34-1.979-4.34-4.42 0-2.44 1.95-4.42 4.34-4.42 1.36 0 2.27.58 2.79 1.08l1.9-1.83c-1.22-1.14-2.8-1.83-4.69-1.83-3.87 0-7 3.13-7 7s3.13 7 7 7c4.04 0 6.721-2.84 6.721-6.84 0-.46-.051-.81-.111-1.16h-6.61zm0 0 17 2h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+        <hr class="separator1">
+        <div class="row">
+            <div class="col-xs-12 hq-address">
+                <div class="address" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+                    <span>
+                        <a href="https://www.google.com/maps/place/8010+Woodland+Center+Blvd+%23700,+Tampa,+FL+33614/@28.0198804,-82.5268895,17z/data=!3m1!4b1!4m5!3m4!1s0x88c2c19be33e800d:0xa0da1fbcd8f952ca!8m2!3d28.0198804!4d-82.5247008" class="address-link" target="_blank">
+                            <span itemprop="streetAddress">Headquarters - 8010 Woodland Center Blvd #700,&nbsp;</span>
+                            <span itemprop="addressLocality">Tampa&nbsp;</span>
+                            <span itemprop="addressRegion">FL,&nbsp;</span>
+                            <span itemprop="postalCode">33614</span>
+                        </a>
+                    </span>
+                    <span class="phone">
+                        <a href="tel:18888694678" itemprop="telephone">888-869-4678</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row site-links">
+            <div class="col-xs-12">
+                <a href="https://my.hivelocity.net/" target="_blank">myVelocity</a>
+                <a href="https://www.hivelocity.net/blog/">Blog &amp; News</a>
+                <a href="https://www.hivelocity.net/kb/">Knowledgebase</a>
+                <a href="https://www.hivelocity.net/about/resellers/">Agents &amp; Resellers</a>
+            </div>
+        </div>
+        <div class="row payment-methods">
+            <div class="col-xs-12">
+                <span class="inline-block">
+                    <span class="method"><svg width="752px" height="471px" viewBox="0 0 752 471" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="amex" sketch:type="MSLayerGroup">
+            <rect id="Rectangle-1" fill="#2557D6" sketch:type="MSShapeGroup" x="1" y="0" width="750" height="471" rx="40"></rect>
+            <path d="M1.002688,221.18508 L37.026849,221.18508 L45.149579,201.67506 L63.334596,201.67506 L71.436042,221.18508 L142.31637,221.18508 L142.31637,206.26909 L148.64322,221.24866 L185.43894,221.24866 L191.76579,206.04654 L191.76579,221.18508 L367.91701,221.18508 L367.83451,189.15941 L371.2427,189.15941 C373.62924,189.24161 374.3263,189.46144 374.3263,193.38516 L374.3263,221.18508 L465.43232,221.18508 L465.43232,213.72973 C472.78082,217.6508 484.21064,221.18508 499.25086,221.18508 L537.57908,221.18508 L545.78163,201.67506 L563.96664,201.67506 L571.98828,221.18508 L645.84844,221.18508 L645.84844,202.65269 L657.0335,221.18508 L716.22061,221.18508 L716.22061,98.67789 L657.64543,98.67789 L657.64543,113.14614 L649.44288,98.67789 L589.33787,98.67789 L589.33787,113.14614 L581.80579,98.67789 L500.61839,98.67789 C487.02818,98.67789 475.08221,100.5669 465.43232,105.83121 L465.43232,98.67789 L409.40596,98.67789 L409.40596,105.83121 C403.26536,100.40529 394.89786,98.67789 385.59383,98.67789 L180.90796,98.67789 L167.17407,130.3194 L153.07037,98.67789 L88.59937,98.67789 L88.59937,113.14614 L81.516924,98.67789 L26.533518,98.67789 L0.999997,156.92445 L0.999997,221.18508 L1.002597,221.18508 L1.002688,221.18508 Z M228.39922,203.51436 L206.78472,203.51436 L206.70492,134.72064 L176.13228,203.51436 L157.62,203.51436 L126.96754,134.6597 L126.96754,203.51436 L84.084427,203.51436 L75.982981,183.92222 L32.083524,183.92222 L23.8996,203.51436 L1.000047,203.51436 L38.756241,115.67692 L70.08183,115.67692 L105.94103,198.84086 L105.94103,115.67692 L140.35289,115.67692 L167.94569,175.26406 L193.29297,115.67692 L228.39657,115.67692 L228.39657,203.51436 L228.39957,203.51436 L228.39922,203.51436 Z M68.777214,165.69287 L54.346265,130.67606 L39.997794,165.69287 L68.777214,165.69287 L68.777214,165.69287 Z M314.41947,203.51436 L243.98611,203.51436 L243.98611,115.67692 L314.41947,115.67692 L314.41947,133.96821 L265.07116,133.96821 L265.07116,149.8009 L313.23551,149.8009 L313.23551,167.80606 L265.07116,167.80606 L265.07116,185.34759 L314.41947,185.34759 L314.41947,203.51436 L314.41947,203.51436 Z M413.67528,139.33321 C413.67528,153.33782 404.28877,160.57326 398.81863,162.74575 C403.43206,164.49434 407.37237,167.58351 409.24808,170.14281 C412.22525,174.51164 412.73875,178.41416 412.73875,186.25897 L412.73875,203.51436 L391.47278,203.51436 L391.39298,192.43732 C391.39298,187.1518 391.90115,179.55074 388.0646,175.32499 C384.98366,172.23581 380.28774,171.56552 372.69714,171.56552 L350.06363,171.56552 L350.06363,203.51436 L328.98125,203.51436 L328.98125,115.67692 L377.47552,115.67692 C388.25084,115.67692 396.18999,115.9604 403.00639,119.88413 C409.67644,123.80786 413.67529,129.53581 413.67529,139.33321 L413.67528,139.33321 Z M387.02277,152.37632 C384.1254,154.12756 380.69859,154.18584 376.59333,154.18584 L350.97998,154.18584 L350.97998,134.67583 L376.94186,134.67583 C380.61611,134.67583 384.44999,134.8401 386.94029,136.26016 C389.67536,137.53981 391.36749,140.26337 391.36749,144.02548 C391.36749,147.86443 389.75784,150.95361 387.02277,152.37632 L387.02277,152.37632 Z M447.48908,203.51436 L425.97569,203.51436 L425.97569,115.67692 L447.48908,115.67692 L447.48908,203.51436 L447.48908,203.51436 Z M697.22856,203.51436 L667.35032,203.51436 L627.38585,137.58727 L627.38585,203.51436 L584.44687,203.51436 L576.24166,183.92222 L532.44331,183.92222 L524.48287,203.51436 L499.81137,203.51436 C489.56284,203.51436 476.58722,201.25709 469.23872,193.79909 C461.82903,186.3411 457.97386,176.23903 457.97386,160.26593 C457.97386,147.23895 460.27791,135.33 469.33983,125.91941 C476.15621,118.90916 486.83044,115.67692 501.35982,115.67692 L521.77174,115.67692 L521.77174,134.49809 L501.78818,134.49809 C494.0938,134.49809 489.74909,135.63733 485.564,139.70147 C481.96957,143.4 479.50322,150.39171 479.50322,159.59829 C479.50322,169.00887 481.38158,175.79393 485.30061,180.22633 C488.5465,183.70232 494.445,184.75677 499.99495,184.75677 L509.46393,184.75677 L539.17987,115.67957 L570.77152,115.67957 L606.46843,198.76138 L606.46843,115.67957 L638.5709,115.67957 L675.6327,176.85368 L675.6327,115.67957 L697.22856,115.67957 L697.22856,203.51436 L697.22856,203.51436 Z M569.07051,165.69287 L554.47993,130.67606 L539.96916,165.69287 L569.07051,165.69287 L569.07051,165.69287 Z" id="Path" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            <path d="M750.95644,343.76716 C745.83485,351.22516 735.85504,355.00582 722.34464,355.00582 L681.62723,355.00582 L681.62723,336.1661 L722.17969,336.1661 C726.20248,336.1661 729.01736,335.63887 730.71215,333.99096 C732.18079,332.63183 733.2051,330.65804 733.2051,328.26036 C733.2051,325.70107 732.18079,323.66899 730.62967,322.45028 C729.09984,321.10969 726.87294,320.50033 723.20135,320.50033 C703.40402,319.83005 678.70592,321.10969 678.70592,293.30714 C678.70592,280.56363 686.83131,267.14983 708.95664,267.14983 L750.95379,267.14983 L750.95379,249.66925 L711.93382,249.66925 C700.15812,249.66925 691.60438,252.47759 685.54626,256.84375 L685.54626,249.66925 L627.83044,249.66925 C618.60091,249.66925 607.76706,251.94771 602.64279,256.84375 L602.64279,249.66925 L499.57751,249.66925 L499.57751,256.84375 C491.37496,250.95154 477.53466,249.66925 471.14663,249.66925 L403.16366,249.66925 L403.16366,256.84375 C396.67452,250.58593 382.24357,249.66925 373.44772,249.66925 L297.3633,249.66925 L279.95252,268.43213 L263.64586,249.66925 L149.99149,249.66925 L149.99149,372.26121 L261.50676,372.26121 L279.447,353.20159 L296.34697,372.26121 L365.08554,372.32211 L365.08554,343.48364 L371.84339,343.48364 C380.96384,343.62405 391.72054,343.25845 401.21079,339.17311 L401.21079,372.25852 L457.90762,372.25852 L457.90762,340.30704 L460.64268,340.30704 C464.13336,340.30704 464.47657,340.45011 464.47657,343.92344 L464.47657,372.25587 L636.71144,372.25587 C647.64639,372.25587 659.07621,369.46873 665.40571,364.41107 L665.40571,372.25587 L720.03792,372.25587 C731.40656,372.25587 742.50913,370.66889 750.95644,366.60475 L750.95644,343.76712 L750.95644,343.76716 Z M409.45301,296.61266 C409.45301,321.01872 391.16689,326.05784 372.7371,326.05784 L346.42935,326.05784 L346.42935,355.52685 L305.44855,355.52685 L279.48667,326.44199 L252.5058,355.52685 L168.9904,355.52685 L168.9904,267.66822 L253.79086,267.66822 L279.73144,296.46694 L306.55002,267.66822 L373.92106,267.66822 C390.6534,267.66822 409.45301,272.28078 409.45301,296.61266 L409.45301,296.61266 Z M241.82781,337.04655 L189.9892,337.04655 L189.9892,319.56596 L236.27785,319.56596 L236.27785,301.64028 L189.9892,301.64028 L189.9892,285.66718 L242.84947,285.66718 L265.91132,311.27077 L241.82781,337.04655 L241.82781,337.04655 Z M325.3545,347.10668 L292.9833,311.3189 L325.3545,276.6677 L325.3545,347.10668 L325.3545,347.10668 Z M373.2272,308.04117 L345.98027,308.04117 L345.98027,285.66718 L373.47197,285.66718 C381.08388,285.66718 386.36777,288.75636 386.36777,296.43956 C386.36777,304.03796 381.32865,308.04117 373.2272,308.04117 L373.2272,308.04117 Z M515.97053,267.66822 L586.34004,267.66822 L586.34004,285.83764 L536.96778,285.83764 L536.96778,301.81074 L585.1348,301.81074 L585.1348,319.73642 L536.96778,319.73642 L536.96778,337.21701 L586.34004,337.29641 L586.34004,355.52678 L515.97053,355.52678 L515.97053,267.66815 L515.97053,267.66822 Z M488.91724,314.6973 C493.61049,316.42205 497.44703,319.51387 499.24559,322.07317 C502.22276,326.36251 502.65378,330.36571 502.73891,338.10985 L502.73891,355.52685 L481.5714,355.52685 L481.5714,344.53458 C481.5714,339.24908 482.08223,331.42282 478.1632,327.33748 C475.08226,324.19002 470.38635,323.4376 462.69463,323.4376 L440.16223,323.4376 L440.16223,355.52685 L418.97609,355.52685 L418.97609,267.66822 L467.65393,267.66822 C478.32816,267.66822 486.10236,268.13716 493.02251,271.81449 C499.6766,275.8177 503.86168,281.30191 503.86168,291.3245 C503.85868,305.34765 494.46719,312.50362 488.91724,314.6973 L488.91724,314.6973 Z M476.99899,303.59022 C474.17879,305.25668 470.69077,305.39975 466.58817,305.39975 L440.97483,305.39975 L440.97483,285.66718 L466.9367,285.66718 C470.69077,285.66718 474.4475,285.74658 476.99899,287.25416 C479.7314,288.67687 481.36499,291.39779 481.36499,295.15725 C481.36499,298.91672 479.7314,301.94496 476.99899,303.59022 L476.99899,303.59022 Z M667.33539,309.1866 C671.44067,313.41766 673.64095,318.7588 673.64095,327.80112 C673.64095,346.70178 661.78278,355.5242 640.51948,355.5242 L599.45353,355.5242 L599.45353,336.68449 L640.35453,336.68449 C644.35337,336.68449 647.18954,336.15726 648.9668,334.50934 C650.41681,333.15021 651.45709,331.17643 651.45709,328.77875 C651.45709,326.21944 650.33167,324.18738 648.88433,322.96866 C647.27201,321.62807 645.04778,321.01872 641.37619,321.01872 C621.65868,320.34843 596.9659,321.62807 596.9659,293.82551 C596.9659,281.08201 605.00615,267.66822 627.11019,267.66822 L669.37872,267.66822 L669.37872,286.36752 L630.70196,286.36752 C626.86809,286.36752 624.37512,286.51059 622.25464,287.9545 C619.94527,289.37721 619.08856,291.48876 619.08856,294.2759 C619.08856,297.59028 621.04941,299.8449 623.702,300.81987 C625.92624,301.59084 628.31543,301.81603 631.9072,301.81603 L643.25722,302.12071 C654.703,302.39889 662.55967,304.37003 667.33539,309.1866 L667.33539,309.1866 Z M751,285.66718 L712.57335,285.66718 C708.7368,285.66718 706.18797,285.81025 704.04088,287.25416 C701.81665,288.67687 700.95995,290.78843 700.95995,293.57558 C700.95995,296.88994 702.83831,299.14456 705.57071,300.11953 C707.79495,300.8905 710.18415,301.1157 713.6961,301.1157 L725.12327,301.42038 C736.65419,301.70387 744.35123,303.67765 749.04448,308.49157 C749.89852,309.16186 750.41202,309.91428 751,310.6667 L751,285.66718 L751,285.66718 Z" id="path13" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg></span>
+                    <span class="method"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 471"><defs><style>.cls-111{fill:#0e4595;}.cls-211{fill:#fff;}.cls-311{fill:#f2ae14;}</style></defs><title>visa</title><rect id="Rectangle-1" class="cls-111" width="750" height="471" rx="40" ry="40"></rect><g id="visa"><path id="Shape" class="cls-211" d="M297.56,314.48l26.69-156.61h42.69L340.23,314.48H297.56Z"></path><path id="path13" class="cls-211" d="M494.45,161.25a110.25,110.25,0,0,0-38.26-6.58c-42.18,0-71.89,21.24-72.14,51.68-0.24,22.5,21.21,35.06,37.4,42.55,16.62,7.68,22.2,12.57,22.12,19.43-0.11,10.5-13.27,15.29-25.54,15.29-17.09,0-26.16-2.37-40.18-8.22l-5.5-2.49-6,35.06c10,4.37,28.41,8.16,47.55,8.36,44.87,0,74-21,74.33-53.51C488.4,245,477,231.45,452.4,220.27c-14.92-7.24-24.06-12.08-24-19.42,0-6.51,7.73-13.47,24.45-13.47a78.74,78.74,0,0,1,31.95,6l3.83,1.81,5.79-33.94"></path><path id="Path" class="cls-211" d="M604.29,157.87h-33c-10.22,0-17.86,2.79-22.35,13l-63.4,143.52h44.82s7.33-19.3,9-23.53L594,290.91c1.28,5.48,5.19,23.47,5.19,23.47h39.61L604.29,157.87h0ZM552,259c3.53-9,17-43.78,17-43.78-0.25.42,3.5-9.07,5.66-14.95l2.89,13.5s8.17,37.38,9.88,45.22H552Z"></path><path id="path16" class="cls-211" d="M261.32,157.87l-41.79,106.8L215.08,243c-7.78-25-32-52.12-59.12-65.7l38.21,137,45.16-.05,67.2-156.31H261.32"></path><path id="path18" class="cls-311" d="M180.54,157.87H111.7l-0.54,3.26c53.55,13,89,44.29,103.69,81.93l-15-72c-2.58-9.92-10.08-12.88-19.35-13.22"></path></g></svg></span>
+                    <span class="method"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 471"><defs><style>.cls-112{fill:#1d306d;}.cls-212{fill:#d9222a;}.cls-312{fill:#ee9f2d;}.cls-412{fill:#fff;}</style></defs><title>mastercard</title><rect id="Rectangle-1" class="cls-112" width="750" height="471" rx="40" ry="40"></rect><path id="Fill-1" class="cls-212" d="M425.16,235.5A152.58,152.58,0,1,1,272.58,82.92,152.58,152.58,0,0,1,425.16,235.5"></path><path id="Fill-2" class="cls-312" d="M477.42,82.92A152,152,0,0,0,375,122.42a155.07,155.07,0,0,0-15.41,16.15h30.83A154.53,154.53,0,0,1,402,154.73H348a151.91,151.91,0,0,0-8.79,16.16h71.67A152.31,152.31,0,0,1,417.29,187H332.71a150.7,150.7,0,0,0-4.43,16.16h93.45A153.4,153.4,0,0,1,417.29,284H332.71a151,151,0,0,0,6.46,16.16h71.67A153,153,0,0,1,402,316.29H348a154.35,154.35,0,0,0,11.63,16.15h30.82A152.4,152.4,0,0,1,375,348.59,152.58,152.58,0,1,0,477.42,82.92"></path><path id="Fill-12" class="cls-412" d="M200.93,275.66H184.36l9.5-59.49-21.19,59.49H161.38L160,216.51l-10,59.15H134.5l13-77.39h23.82l0.67,47.91L188,198.27h25.73l-12.81,77.39"></path><path id="Fill-13" class="cls-412" d="M241.71,247.62a27.57,27.57,0,0,0-3.69-.26c-9.39,0-14.14,3.22-14.14,9.58,0,3.91,2.32,6.41,5.93,6.41,6.75,0,11.62-6.42,11.9-15.74h0Zm12.05,28H240l0.31-6.51c-4.18,5.15-9.78,7.61-17.36,7.61-9,0-15.13-7-15.13-17.19,0-15.33,10.7-24.26,29.08-24.26a55.77,55.77,0,0,1,6.75.49,15.47,15.47,0,0,0,.65-4.09c0-4.17-2.88-5.72-10.62-5.72a55.32,55.32,0,0,0-17.53,2.82c0.17-1,2.3-14.14,2.3-14.14,8.25-2.43,13.7-3.34,19.82-3.34,14.23,0,21.76,6.39,21.75,18.45a81,81,0,0,1-1.35,12.47c-1.43,9.12-4.52,28.67-4.94,33.42h0Z"></path><path id="Fill-14" class="cls-412" d="M475.93,200.35l-2.71,16.8c-5.91-3-10.2-4.18-14.8-4.18-12.37,0-21,11.95-21,29,0,11.75,5.83,18.85,15.46,18.85,4.08,0,8.58-1.27,14.07-4L464,274.48a51.62,51.62,0,0,1-14.64,2.27c-17.83,0-28.94-12.82-28.94-33.41,0-27.67,15.35-47,37.3-47,7.23,0,15.78,3.07,18.21,4"></path><path id="Fill-15" class="cls-412" d="M502.66,247.62a27.53,27.53,0,0,0-3.69-.26c-9.39,0-14.14,3.22-14.14,9.58,0,3.91,2.32,6.41,5.94,6.41,6.75,0,11.61-6.42,11.9-15.74h0Zm12.05,28H501l0.32-6.51c-4.19,5.15-9.78,7.61-17.36,7.61-9,0-15.13-7-15.13-17.19,0-15.33,10.71-24.26,29.08-24.26a55.83,55.83,0,0,1,6.75.49,15.62,15.62,0,0,0,.65-4.09c0-4.17-2.88-5.72-10.62-5.72a55.34,55.34,0,0,0-17.53,2.82c0.17-1,2.3-14.14,2.3-14.14,8.25-2.43,13.7-3.34,19.82-3.34,14.23,0,21.76,6.39,21.75,18.45a80.07,80.07,0,0,1-1.34,12.47c-1.43,9.12-4.53,28.67-4.94,33.42h0Z"></path><path id="Fill-16" class="cls-412" d="M327.38,274.7a37.89,37.89,0,0,1-11.9,2c-8.47,0-13.09-4.87-13.09-13.83-0.12-2.79,1.22-10.1,2.27-16.78,1-5.89,7.18-43,7.18-43H328.3l-1.92,9.53h8.45l-2.25,15.12h-8.48c-1.91,12-4.64,26.88-4.67,28.86,0,3.25,1.74,4.66,5.67,4.66a13.42,13.42,0,0,0,4.47-.59l-2.19,13.93"></path><path id="Fill-17" class="cls-412" d="M377.86,274.2a56.32,56.32,0,0,1-16.9,2.55c-18.43,0-28-9.64-28-28.08,0-21.52,12.22-37.36,28.81-37.36,13.58,0,22.25,8.86,22.25,22.78a67.76,67.76,0,0,1-2,15.48H349.17c-1.11,9.13,4.74,12.94,14.31,12.94a38.88,38.88,0,0,0,17.12-4l-2.74,15.66h0Zm-9.26-37.33c0.1-1.31,1.75-11.23-7.66-11.23-5.24,0-9,4-10.52,11.23H368.6Z"></path><path id="Fill-18" class="cls-412" d="M263.7,232.62c0,8,3.86,13.44,12.62,17.57,6.71,3.15,7.75,4.09,7.75,6.95,0,3.92-3,5.69-9.51,5.69a46.66,46.66,0,0,1-14.85-2.48s-2.17,13.87-2.27,14.54c3.76,0.82,7.12,1.57,17.23,1.86,17.48,0,25.55-6.65,25.55-21,0-8.65-3.38-13.73-11.68-17.54-6.94-3.19-7.75-3.9-7.75-6.84,0-3.4,2.76-5.15,8.11-5.15a91.28,91.28,0,0,1,11.9,1l2.36-14.6a112.18,112.18,0,0,0-14.57-1.23c-18.53,0-24.94,9.67-24.89,21.31"></path><path id="Fill-19" class="cls-412" d="M602.38,275.66H586.71l0.78-5.86c-4.54,4.86-9.2,7-15.27,7-12,0-20-10.38-20-26.12,0-20.93,12.34-38.58,27-38.58,6.42,0,11.29,2.62,15.81,8.58l3.68-22.36H615l-12.62,77.39h0Zm-24.43-14.54c7.71,0,13.13-8.74,13.13-21.21,0-8-3.08-12.33-8.78-12.33-7.51,0-12.85,8.77-12.85,21.14,0,8.23,2.85,12.4,8.49,12.4h0Z"></path><path id="Fill-20" class="cls-412" d="M529.63,212.72c-2.08,19.48-5.76,39.21-8.64,58.7l-0.76,4.23H536.8c5.93-38.48,7.36-46,16.65-45.06a61.85,61.85,0,0,1,6.29-18.26c-6.94-1.44-10.81,2.48-15.88,9.92,0.4-3.22,1.13-6.35,1-9.54H529.63"></path><path id="Fill-21" class="cls-412" d="M393.28,212.72c-2.08,19.48-5.76,39.21-8.64,58.7l-0.75,4.23h16.58c5.92-38.48,7.35-46,16.64-45.06a62.27,62.27,0,0,1,6.29-18.26c-6.93-1.44-10.81,2.48-15.88,9.92,0.4-3.22,1.13-6.35,1-9.54H393.28"></path><path id="Fill-22" class="cls-412" d="M609.66,270.73a4.93,4.93,0,1,1,4.93,4.93,4.92,4.92,0,0,1-4.93-4.93h0Zm4.93,3.74a3.75,3.75,0,1,0-3.75-3.74,3.74,3.74,0,0,0,3.75,3.74h0Zm-0.67-1.59h-1v-4.32h1.83a2,2,0,0,1,1.1.22,1.3,1.3,0,0,1,.56,1.08,1.18,1.18,0,0,1-.75,1.12l0.8,1.9h-1.12l-0.66-1.71h-0.74v1.71h0Zm0-2.45h0.56a1.3,1.3,0,0,0,.62-0.09,0.59,0.59,0,0,0,.25-0.5,0.58,0.58,0,0,0-.24-0.45,1.43,1.43,0,0,0-.65-0.07h-0.53v1.1h0Z"></path></svg></span>
+                </span>
+                <span class="inline-block">
+                    <span class="method"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 501"><defs><style>.cls-113{fill:#003087;}.cls-213{fill:#fff;}.cls-313{fill:#009cde;}</style></defs><title>Paypal</title><path class="cls-113" d="M725,0H55A55.06,55.06,0,0,0,0,55V446a55.06,55.06,0,0,0,55,55H725a55.06,55.06,0,0,0,55-55V55A55.06,55.06,0,0,0,725,0Z"></path><path class="cls-213" d="M210.49,185.18q-10.2-7-26.63-7h-42.4q-5,0-5.56,5L118.66,291.31a3.54,3.54,0,0,0,.79,2.92,3.25,3.25,0,0,0,2.65,1.32h20.14q5.3,0,5.83-5l4.77-29.15a5.15,5.15,0,0,1,1.86-3.45,8.17,8.17,0,0,1,4-1.73,27.7,27.7,0,0,1,4.51-.39q2.12,0,5,.26t3.71,0.26q22.79,0,35.78-12.85t13-35.64Q220.69,192.2,210.49,185.18Zm-21.86,32.46q-1.33,9.28-6.89,12.19t-15.9,2.91l-8.75.27,4.51-28.36a3.17,3.17,0,0,1,3.44-2.91h5q10.59,0,15.37,3T188.63,217.64Z"></path><path class="cls-313" d="M657.94,178.15H638.33a3.17,3.17,0,0,0-3.44,2.92L617.66,291.31l-0.27.53a3.74,3.74,0,0,0,1.06,2.52,3.4,3.4,0,0,0,2.65,1.19H638.6q5,0,5.57-5l17.22-108.39v-0.26Q661.39,178.16,657.94,178.15Z"></path><path class="cls-213" d="M421,220.82A3.76,3.76,0,0,0,420,218.3a3.15,3.15,0,0,0-2.39-1.19H397.18a5.61,5.61,0,0,0-4.77,2.65L364.32,261.1l-11.66-39.75a5.57,5.57,0,0,0-5.83-4.24H327a3.13,3.13,0,0,0-2.38,1.19,3.74,3.74,0,0,0-1.06,2.52q0,0.53,5.17,15.64t11.13,32.6q6,17.49,6.23,18.55-21.73,29.68-21.73,31.8,0,3.45,3.44,3.45h20.41a5.61,5.61,0,0,0,4.77-2.65l67.58-97.52A2.58,2.58,0,0,0,421,220.82Z"></path><path class="cls-313" d="M611,217.11H590.9q-3.71,0-4.5,8.75-6.9-10.59-25.18-10.6-19.08,0-32.46,14.31a47.67,47.67,0,0,0-13.38,33.66q0,15.64,9.14,24.91T549,297.41a41.93,41.93,0,0,0,15.63-3.18,31.15,31.15,0,0,0,12.46-8.48,22.71,22.71,0,0,1-.53,2.38,14.38,14.38,0,0,0-.53,3.18q0,4.25,3.45,4.24h18.29q5,0,5.83-5l10.87-69.17a3.57,3.57,0,0,0-.8-2.92A3.27,3.27,0,0,0,611,217.11Zm-34.58,52.21a22.43,22.43,0,0,1-16.3,6.62q-7.69,0-12.46-4.24T542.93,260a22.76,22.76,0,0,1,6.63-16.56A22.08,22.08,0,0,1,566,236.72a17.84,17.84,0,0,1,12.32,4.37q4.9,4.37,4.9,12.06A21.78,21.78,0,0,1,576.46,269.32Z"></path><path class="cls-213" d="M310,217.11H289.86q-3.72,0-4.51,8.75-7.16-10.59-25.18-10.6-19.08,0-32.46,14.31a47.67,47.67,0,0,0-13.38,33.66q0,15.64,9.14,24.91T248,297.41a41.33,41.33,0,0,0,15.37-3.18,33.47,33.47,0,0,0,12.72-8.48,17.9,17.9,0,0,0-1.06,5.56q0,4.25,3.44,4.24h18.28q5,0,5.83-5l10.86-69.17a3.57,3.57,0,0,0-.79-2.92A3.27,3.27,0,0,0,310,217.11Zm-34.58,52.34a23,23,0,0,1-16.56,6.49q-7.69,0-12.32-4.24T241.89,260a22.75,22.75,0,0,1,6.63-16.56,22.08,22.08,0,0,1,16.43-6.76,17.84,17.84,0,0,1,12.32,4.37q4.9,4.37,4.9,12.06A21.64,21.64,0,0,1,275.41,269.45Z"></path><path class="cls-313" d="M511.53,185.18q-10.2-7-26.63-7H442.76q-5.3,0-5.83,5L419.71,291.31a3.54,3.54,0,0,0,.79,2.92,3.25,3.25,0,0,0,2.65,1.32h21.73q3.18,0,4.24-3.44l4.77-30.74a5.15,5.15,0,0,1,1.85-3.45,8.17,8.17,0,0,1,4-1.73,27.69,27.69,0,0,1,4.51-.39q2.12,0,5,.26c1.94,0.18,3.18.26,3.71,0.26q22.79,0,35.78-12.85t13-35.64Q521.73,192.2,511.53,185.18Zm-27.16,43.59q-5.83,4-17.49,4l-8.48.27,4.51-28.36a3.17,3.17,0,0,1,3.44-2.91h4.77a64.18,64.18,0,0,1,9.28.53,13.13,13.13,0,0,1,6.62,3.31q3.18,2.78,3.18,8.08Q490.2,224.79,484.37,228.77Z"></path></svg></span>
+                    <span class="method"><svg version="1.1" id="bitcoin_icon" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 780 501" style="enable-background:new 0 0 780 501;" xml:space="preserve">
+<style type="text/css"> #bitcoin_icon .st0{fill:#F7931A;} #bitcoin_icon .st1{fill:#FFFFFF;} </style>
+<path class="st0" d="M725,0H55C24.7,0,0,24.7,0,55v391c0,30.3,24.7,55,55,55h670c30.3,0,55-24.7,55-55V55C780,24.7,755.3,0,725,0z"></path>
+<g>
+	<path class="st1" d="M213.1,266.9c-8.4,33.6-42.4,54.1-76.1,45.7c-33.6-8.4-54.1-42.4-45.7-76.1c8.4-33.6,42.4-54.1,76.1-45.7
+		C201,199.3,221.4,233.3,213.1,266.9L213.1,266.9z"></path>
+	<path class="st0" d="M179.8,242.8c1.2-8.4-5.1-12.8-13.8-15.8l2.8-11.3L162,214l-2.7,11c-1.8-0.5-3.7-0.9-5.5-1.3l2.8-11.1
+		l-6.9-1.7l-2.8,11.3c-1.5-0.3-3-0.7-4.4-1l0,0l-9.5-2.4l-1.8,7.4c0,0,5.1,1.2,5,1.2c2.8,0.7,3.3,2.5,3.2,4l-3.2,12.9
+		c0.2,0,0.4,0.1,0.7,0.2c-0.2-0.1-0.5-0.1-0.7-0.2l-4.5,18.1c-0.3,0.8-1.2,2.1-3.2,1.6c0.1,0.1-5-1.2-5-1.2l-3.4,7.9l9,2.2
+		c1.7,0.4,3.3,0.9,4.9,1.3l-2.8,11.4l6.9,1.7l2.8-11.3c1.9,0.5,3.7,1,5.5,1.4l-2.8,11.3l6.9,1.7l2.8-11.4
+		c11.7,2.2,20.6,1.3,24.3-9.3c3-8.6-0.1-13.5-6.3-16.7C175.6,251.9,178.9,248.9,179.8,242.8L179.8,242.8z M164.1,264.9
+		c-2.1,8.6-16.5,3.9-21.2,2.8l3.8-15.2C151.4,253.7,166.3,256,164.1,264.9L164.1,264.9z M166.2,242.7c-1.9,7.8-13.9,3.8-17.8,2.9
+		l3.4-13.7C155.7,232.8,168.3,234.6,166.2,242.7z"></path>
+	<path class="st1" d="M273.3,227c5.1,0,9.5,0.9,13.2,2.7c3.7,1.8,6.8,4.2,9.2,7.3c2.4,3.1,4.2,6.7,5.4,10.8
+		c1.2,4.1,1.7,8.6,1.7,13.3c0,7.3-1.3,14.2-4,20.7c-2.7,6.5-6.4,12.2-11,17c-4.7,4.8-10.2,8.6-16.5,11.4c-6.3,2.8-13.2,4.2-20.6,4.2
+		c-1,0-2.6,0-5-0.1c-2.4,0-5.1-0.3-8.2-0.7c-3.1-0.4-6.3-1.1-9.8-1.9c-3.4-0.8-6.7-2-9.8-3.5l27.5-115.5L270,189l-9.8,41
+		c2.1-0.9,4.2-1.7,6.3-2.2C268.6,227.2,270.9,227,273.3,227L273.3,227z M252.7,295c3.7,0,7.2-0.9,10.5-2.7c3.3-1.8,6.1-4.2,8.5-7.2
+		c2.4-3,4.3-6.4,5.6-10.2s2.1-7.8,2.1-11.9c0-5.1-0.8-9-2.5-11.9c-1.7-2.9-4.8-4.3-9.4-4.3c-1.5,0-3.4,0.3-5.8,0.8
+		c-2.4,0.5-4.5,1.7-6.4,3.3l-10.5,43.5c0.6,0.1,1.2,0.2,1.7,0.3c0.5,0.1,1,0.2,1.5,0.2c0.5,0.1,1.2,0.1,1.9,0.1S251.5,295,252.7,295
+		L252.7,295z"></path>
+	<path class="st1" d="M328.4,312.3h-23.5l19.9-83.5h23.7L328.4,312.3z M339.9,218.6c-3.3,0-6.3-1-8.9-2.9c-2.7-1.9-4-4.9-4-9
+		c0-2.2,0.5-4.3,1.3-6.3c0.9-2,2.1-3.6,3.6-5.1c1.5-1.4,3.2-2.6,5.2-3.4c2-0.8,4.1-1.3,6.3-1.3c3.3,0,6.2,1,8.9,2.9c2.6,2,4,5,4,9
+		c0,2.2-0.4,4.3-1.4,6.3c-0.9,2-2.1,3.6-3.6,5.1c-1.5,1.4-3.2,2.6-5.2,3.4C344.2,218.2,342.1,218.6,339.9,218.6L339.9,218.6z"></path>
+	<path class="st1" d="M369,207.9l24.6-3.8l-6,24.6H414l-4.8,19.4H383l-7,29.2c-0.6,2.4-1,4.7-1.1,6.8c-0.1,2.1,0.2,3.9,0.8,5.5
+		c0.6,1.5,1.8,2.7,3.4,3.6c1.6,0.9,4,1.3,7.1,1.3c2.5,0,5-0.2,7.4-0.7c2.4-0.5,4.8-1.1,7.2-2l1.8,18.1c-3.2,1.2-6.6,2.2-10.3,3
+		c-3.7,0.9-8.1,1.3-13.2,1.3c-7.3,0-13-1.1-17-3.2c-4-2.2-6.9-5.1-8.6-8.9c-1.7-3.7-2.4-8.1-2.2-12.9c0.2-4.9,1-10,2.2-15.4
+		L369,207.9L369,207.9z"></path>
+	<path class="st1" d="M413,278.9c0-7.2,1.2-14,3.5-20.3c2.3-6.4,5.7-11.9,10-16.7c4.3-4.7,9.6-8.5,15.8-11.3
+		c6.2-2.7,13.1-4.1,20.7-4.1c4.8,0,9,0.5,12.8,1.4c3.8,0.9,7.2,2.1,10.3,3.6l-8.1,18.4c-2.1-0.9-4.3-1.6-6.6-2.3
+		c-2.3-0.7-5.1-1-8.3-1c-7.8,0-14.1,2.7-18.7,8.1c-4.6,5.4-6.9,12.7-6.9,21.8c0,5.4,1.2,9.8,3.5,13.1c2.3,3.3,6.6,5,12.9,5
+		c3.1,0,6.1-0.3,8.9-0.9c2.9-0.6,5.4-1.4,7.6-2.4l1.8,18.9c-3,1.2-6.3,2.2-9.8,3.1c-3.6,0.9-7.9,1.3-12.9,1.3
+		c-6.6,0-12.1-1-16.7-2.9c-4.6-1.9-8.3-4.5-11.3-7.7c-3-3.2-5.1-7-6.4-11.4C413.6,288.2,413,283.7,413,278.9L413,278.9z"></path>
+	<path class="st1" d="M517.4,314.5c-5.6,0-10.5-0.9-14.6-2.5c-4.1-1.7-7.5-4.1-10.2-7.1c-2.7-3.1-4.7-6.7-6.1-10.9
+		c-1.4-4.2-2.1-8.8-2.1-13.9c0-6.4,1-12.7,3.1-19.1c2.1-6.4,5.1-12.1,9.1-17.1c4-5.1,8.9-9.2,14.8-12.5c5.8-3.2,12.5-4.8,20-4.8
+		c5.5,0,10.4,0.9,14.5,2.5c4.2,1.7,7.6,4.1,10.3,7.1c2.7,3.1,4.7,6.7,6.1,10.9c1.4,4.2,2.1,8.8,2.1,13.9c0,6.3-1,12.7-3,19.1
+		c-2,6.3-5,12.1-8.9,17.1c-3.9,5.1-8.8,9.2-14.7,12.5C531.9,312.9,525.1,314.5,517.4,314.5L517.4,314.5z M529.1,246.5
+		c-3.5,0-6.6,1-9.2,3c-2.6,2-4.9,4.6-6.7,7.6c-1.8,3.1-3.2,6.4-4.1,10.1c-0.9,3.7-1.3,7.1-1.3,10.4c0,5.3,0.9,9.4,2.5,12.4
+		c1.7,3,4.8,4.4,9.2,4.4c3.5,0,6.6-1,9.2-3c2.6-2,4.9-4.6,6.7-7.6c1.8-3.1,3.2-6.4,4.1-10.1c0.9-3.6,1.3-7.1,1.3-10.4
+		c0-5.3-0.9-9.4-2.5-12.4C536.7,248,533.6,246.5,529.1,246.5L529.1,246.5z"></path>
+	<path class="st1" d="M590,312.3h-23.5l19.9-83.5H610L590,312.3z M601.4,218.6c-3.3,0-6.3-1-8.9-2.9c-2.6-1.9-4-4.9-4-9
+		c0-2.2,0.5-4.3,1.4-6.3c0.9-2,2.1-3.6,3.6-5.1c1.5-1.4,3.2-2.6,5.2-3.4c2-0.8,4-1.3,6.3-1.3c3.3,0,6.3,1,8.9,2.9c2.6,2,4,5,4,9
+		c0,2.2-0.5,4.3-1.4,6.3s-2.1,3.6-3.6,5.1c-1.5,1.4-3.2,2.6-5.2,3.4C605.8,218.2,603.7,218.6,601.4,218.6z"></path>
+	<path class="st1" d="M627,232.5c1.8-0.5,3.8-1.1,5.9-1.8c2.2-0.7,4.6-1.3,7.3-1.9c2.7-0.6,5.7-1.1,9-1.4c3.3-0.4,7.1-0.6,11.3-0.6
+		c12.4,0,20.9,3.6,25.7,10.8c4.7,7.2,5.5,17.1,2.5,29.5L678,312.3h-23.7l10.5-44.2c0.6-2.8,1.1-5.4,1.5-8c0.4-2.6,0.4-4.9-0.1-6.8
+		c-0.4-1.9-1.4-3.5-2.9-4.8c-1.6-1.2-3.9-1.8-7.1-1.8c-3.1,0-6.2,0.3-9.4,1l-15.4,64.6h-23.7L627,232.5z"></path>
+</g>
+</svg>
+</span>
+                    <span class="method"><svg id="echeck_icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 471">
+    <defs>
+        <style>#echeck_icon .cls-1 { fill: #58995f; } #echeck_icon 
+.cls-2 { font-size: 140px; font-family: Proxima Nova; } #echeck_icon 
+.cls-2, #echeck_icon .cls-3 { fill: #bad8bd; } </style>
+    </defs>
+    <rect id="Rectangle-1" class="cls-1" width="750" height="471" rx="40" ry="40"></rect>
+    <text class="cls-2" transform="translate(138.75 276.01)">eCheck</text>
+    <rect class="cls-3" x="79" y="68.8" width="592" height="18.39"></rect>
+    <rect class="cls-3" x="79" y="383.8" width="592" height="18.39"></rect>
+</svg>
+</span>
+                </span>
+            </div>
+        </div>
+        <div id="site-footer-bottom">
+            <ul id="site-footer-certifications">
+                <li><img src="Install_SQL_Server_2012-Dateien/SSAE16.png" alt="SSAE 16 Type 2 Audit Complete"></li>
+                <li><img src="Install_SQL_Server_2012-Dateien/HIPAA.png" alt="HIPAA Compliant Data Center"></li>
+                <li><img src="Install_SQL_Server_2012-Dateien/PCI.png" alt="PCI DSS Compliant"></li>
+                <li><img src="Install_SQL_Server_2012-Dateien/SOC.png" alt="AICPA SOC Compliant"></li>
+                <li><img src="Install_SQL_Server_2012-Dateien/PrivacyShield.png" alt="Privacy Shield Compliant"></li>
+            </ul>
+            <p>
+                <span class="inline-block">© Hivelocity Ventures Corporation. All Rights Reserved.</span>
+                <span class="inline-block">
+                    <a href="https://www.hivelocity.net/legal/">Legal Information</a>
+                    <a href="https://www.hivelocity.net/legal/">Privacy Policy</a>
+                    <a href="https://www.hivelocity.net/legal/#tos">Terms of Service</a>
+                    <a href="https://www.hivelocity.net/legal/#billing">Billing Agreement</a>
+                    <a href="mailto:abuse@hivelocity.net">Abuse</a>
+                </span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+</script>
+
+
+
+<script src="Install_SQL_Server_2012-Dateien/index.js"></script>
+
+
+
+
+
+
+<div class="helpdotcom-livechat helpdotcom-bottom-right  helpdotcom-popout-short helpdotcom-style-badge" style=""><div class="helpdotcom-embed-popout" style="visibility: hidden; height: 0px;"><iframe src="Install_SQL_Server_2012-Dateien/popout.html"></iframe></div><div class="helpdotcom-embed-main" style="width: 76px;"><iframe src="Install_SQL_Server_2012-Dateien/index.html"></iframe></div></div><script type="text/javascript" id="" src="Install_SQL_Server_2012-Dateien/oct.js"></script><script type="text/javascript" id="">(function(b,c,e,f,d){b[d]=b[d]||[];var g=function(){var a={ti:"5224507"};a.q=b[d];b[d]=new UET(a);b[d].push("pageLoad")};var a=c.createElement(e);a.src=f;a.async=1;a.onload=a.onreadystatechange=function(){var b=this.readyState;b&&"loaded"!==b&&"complete"!==b||(g(),a.onload=a.onreadystatechange=null)};c=c.getElementsByTagName(e)[0];c.parentNode.insertBefore(a,c)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script><noscript><img src="//bat.bing.com/action/0?ti=5224507&amp;Ver=2" height="0" width="0" style="display:none; visibility: hidden;"></noscript><script type="text/javascript" id="">var c=document.createElement("link");c.rel="canonical";c.href=google_tag_manager["GTM-5JVRL5"].macro(2);document.head.appendChild(c);</script></body></html>

@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual js" dir="ltr" data-authenticated="false" data-auth-status-determined="true" data-target="docs" x-ms-format-detection="none" lang="en-us"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="Backup-SqlDatabase(sqlserver)-Dateien/51-6d3a1e.css"><link rel="stylesheet" href="Backup-SqlDatabase(sqlserver)-Dateien/override.css"><meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="Backup-SqlDatabase (sqlserver)">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase">
+	<meta property="og:description" content="The Backup-SqlDatabase cmdlet performs backup operations on a SQL Server database. This includes full database backups, transaction log backups, and database file backups. This cmdlet is modeled afte…">
+	<meta property="og:image" content="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png">
+	<meta property="og:image:alt" content="Microsoft Logo">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@docsmsft">
+
+		<meta name="description" content="The Backup-SqlDatabase cmdlet performs backup operations on a SQL Server database. This includes full database backups, transaction log backups, and database file backups. This cmdlet is modeled afte…">
+<meta name="search.ms_sitename" content="Docs">
+<meta name="search.ms_docsetname" content="sqlserver-psdocs">
+<meta name="version" content="0">
+<meta name="locale" content="en-us">
+<meta name="site_name" content="Docs">
+<meta name="search.ms_product" content="MSDN">
+<meta name="depot_name" content="MSDN.sqlserver-psdocs">
+<meta name="ref_skeleton_gitcommit" content="https://github.com/MicrosoftDocs/sql-docs-powershell/blob/1c2228b2295310a57623f7de37b2295aaa83e71e/sqlserver-ps/sqlserver/Backup-SqlDatabase.md">
+<meta name="original_ref_skeleton_git_url" content="https://github.com/MicrosoftDocs/sql-docs-powershell/blob/live/sqlserver-ps/sqlserver/Backup-SqlDatabase.md">
+<meta name="updated_at" content="2018-06-19 09:52 PM">
+<meta name="document_id" content="5a00c30f-6c8b-051a-90d4-7add1cf9193c">
+<meta name="document_version_independent_id" content="ddc18cd9-9032-d7a3-f27e-801982c981b2">
+<meta name="page_type" content="powershell">
+<meta name="page_kind" content="command">
+<meta name="external_help_file" content="Microsoft.SqlServer.Management.PSSnapins.dll-Help.xml">
+<meta name="Module_Name" content="SqlServer">
+<meta name="online_version" content="">
+<meta name="schema" content="2.0.0">
+<meta name="breadcrumb_path" content="/powershell/sql-server/bread/toc.json?view=sqlserver-ps">
+<meta name="apiPlatform" content="powershell">
+<meta name="toc_rel" content="../sqlserver-ps/toc.json?view=sqlserver-ps">
+
+<link href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase" rel="canonical">
+	<title>Backup-SqlDatabase (sqlserver) | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="Backup-SqlDatabase(sqlserver)-Dateien/15b8e1c6.css">
+
+	<link rel="stylesheet" href="Backup-SqlDatabase(sqlserver)-Dateien/89eb8f33.css">
+
+
+	<script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/analytics.js"></script><script>
+	var msDocs = {
+		data:{
+			azureHeaderLocale: 'en-us',
+			contentLocale: 'en-us',
+			contentDir: 'ltr',
+			userLocale: 'en-us',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasComments: true,
+			feedbackSystem: 'LiveFyre',
+			feedbackGitHubRepo: '',
+			feedbackProductUrl: '',
+			contentGitUrl: 'https://github.com/MicrosoftDocs/sql-docs-powershell/blob/live/sqlserver-ps/sqlserver/Backup-SqlDatabase.md',
+			learnBannerDetails: {
+				learnBannerProducts: ''
+			}
+		},
+		functions:{},
+		settings:{
+			extendBreadcrumb: false,
+			enableUHFPPE: false
+		}
+	};
+	if (!('Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise)) {
+		document.write('<script src="https://static.docs.com/ui/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof fetch !== 'function') {
+		document.write('<script src="https://static.docs.com/ui/third-party/fetch/2.0.3/fetch.min.js" integrity="sha384-H3LQq82b6Mm80GYRHtRSlTwO9DoXctmYCVEYk9M8mp97lRzs6DuSrHVUg3SBP9w0" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof HTMLTemplateElement === 'undefined') {
+		document.write('<script src="https://static.docs.com/ui/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"><\/script>');
+	}
+	</script><style>@media print {#ghostery-purple-box {display:none !important}}</style>
+
+	<script src="Backup-SqlDatabase(sqlserver)-Dateien/jquery-3.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+		<script src="Backup-SqlDatabase(sqlserver)-Dateien/98377c1c.js"></script><style></style><script src="Backup-SqlDatabase(sqlserver)-Dateien/jsll-4.js" async="" defer="defer"></script>
+
+<script src="Backup-SqlDatabase(sqlserver)-Dateien/18-d72213" defer="defer"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_010.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_016.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_002.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_011.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_009.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_014.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_013.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_004.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_007.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_008.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_012.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_005.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_006.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_017.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_018.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_015.js"></script><script async="" src="Backup-SqlDatabase(sqlserver)-Dateien/t_003.js"></script><script async="" src="https://web.vortex.data.microsoft.com/collect/v1/t.js?ver='2.1'&amp;name='Ms.Webi.PageAction'&amp;time='2019-03-11T18%3A29%3A51.982Z'&amp;os='Unix'&amp;appId='JS%3ADocs'&amp;-ver='1.0'&amp;-impressionGuid='5177a496-9b72-4e44-ab7d-0c6e48f82265'&amp;-pageName='5a00c30f-6c8b-051a-90d4-7add1cf9193c'&amp;-uri='https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps'&amp;-pageTags='%7B%22depotname%22%3A%22MSDN.sqlserver-psdocs%22%2C%22publishtime%22%3A%222018-06-19%2009%3A52%20PM%22%2C%22document_version_independent_id%22%3A%22ddc18cd9-9032-d7a3-f27e-801982c981b2%22%2C%22contentlocale%22%3A%22en-us%22%2C%22highContrast%22%3A%22false%22%2C%22metaTags%22%3A%7B%7D%7D'&amp;-contentVer='2.0'&amp;-market='en-us'&amp;-pageType='powershell'&amp;-actionType='O'&amp;-behavior=300&amp;-content='%5B%7B%22event%22%3A%22page-focus-changed%22%2C%22value%22%3A%22focus%22%7D%5D'&amp;*baseType='Ms.Content.PageAction'&amp;*timeToAction=76510&amp;*cookieEnabled=true&amp;*isJs=true&amp;*title='Backup-SqlDatabase%20(sqlserver)%20%7C%20Microsoft%20Docs'&amp;*isLoggedIn=false&amp;*isManual=true&amp;*referrerUri='https%3A%2F%2Fwww.google.com%2F'&amp;ext-javascript-ver='1.1'&amp;ext-javascript-libVer='4.2.11'&amp;ext-javascript-domain='docs.microsoft.com'&amp;ext-javascript-msfpc='GUID%3D963ffde762dd4c609e847f2dcd079714%26HASH%3D963f%26LV%3D201809%26V%3D4%26LU%3D1537812228677'&amp;ext-javascript-userConsent=false&amp;ext-user-localId='t%3A20FC009FAEA4642F36120CCAAAA46723'&amp;$mscomCookies=false"></script></head>
+
+<body dir="ltr" lang="en-us">
+<div class="header-holder">
+		<div id="headerAreaHolder" data-bi-name="header">    <div id="headerArea" class="uhf" data-m="{&quot;cN&quot;:&quot;headerArea&quot;,&quot;cT&quot;:&quot;Area_coreuiArea&quot;,&quot;id&quot;:&quot;a1Body&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;Body&quot;}">
+                <div id="headerRegion" data-region-key="headerregion" data-m="{&quot;cN&quot;:&quot;headerRegion&quot;,&quot;cT&quot;:&quot;Region_coreui-region&quot;,&quot;id&quot;:&quot;r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;a1&quot;}">
+
+    <div id="headerUniversalHeader" data-m="{&quot;cN&quot;:&quot;headerUniversalHeader&quot;,&quot;cT&quot;:&quot;Module_coreui-universalheader&quot;,&quot;id&quot;:&quot;m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;r1a1&quot;}" data-module-id="Category|headerRegion|coreui-region|headerUniversalHeader|coreui-universalheader">
+        
+
+
+
+
+
+		<a id="uhfSkipToMain" class="m-skip-to-main" href="#main" tabindex="0" style="z-index:3000002" data-m="{&quot;cN&quot;:&quot;Skip to content_nonnav&quot;,&quot;id&quot;:&quot;nn1m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;m1r1a1&quot;}">Skip to main content</a>
+
+
+<header role="banner" class="c-uhfh context-uhf c-sgl-stck c-category-header" itemscope="itemscope" data-header-footprint="/MSDocs/MSDocsHeader-DocsL1, fromService: True" data-magict="true" itemtype="http://schema.org/Organization">
+	<div class="theme-light js-global-head f-closed  global-head-cont" data-m="{&quot;cN&quot;:&quot;Universal Header_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;m1r1a1&quot;}">
+		<div class="c-uhfh-gcontainer-st">
+			<button type="button" class="c-action-trigger c-glyph glyph-global-nav-button" aria-label="All Microsoft expand to see list of Microsoft products and services" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;Mobile menu button_nonnav&quot;,&quot;id&quot;:&quot;nn1c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2m1r1a1&quot;}"></button>
+			<button type="button" class="c-action-trigger c-glyph glyph-arrow-htmllegacy" aria-label="Close search" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;Close Search_nonnav&quot;,&quot;id&quot;:&quot;nn2c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c2m1r1a1&quot;}"></button>
+					<a id="uhfLogo" class="c-logo c-sgl-stk-uhfLogo" itemprop="url" href="https://www.microsoft.com/" aria-label="Microsoft" data-m="{&quot;cN&quot;:&quot;GlobalNav_Logo_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c2m1r1a1&quot;}">
+						<img alt="" itemprop="logo" itemscope="itemscope" class="c-image" src="Backup-SqlDatabase(sqlserver)-Dateien/RE1Mu3b.png" role="presentation" aria-hidden="true">
+						<span role="presentation" aria-hidden="true">Microsoft</span>
+					</a>
+			<div class="f-mobile-title">
+				<button type="button" class="c-action-trigger c-glyph glyph-chevron-left" aria-label="See more menu options" data-m="{&quot;cN&quot;:&quot;Mobile back button_nonnav&quot;,&quot;id&quot;:&quot;nn4c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c2m1r1a1&quot;}"></button>
+				<span data-global-title="Microsoft home" class="js-mobile-title">Docs</span>
+				<button type="button" class="c-action-trigger c-glyph glyph-chevron-right" aria-label="See more menu options" data-m="{&quot;cN&quot;:&quot;Mobile forward button_nonnav&quot;,&quot;id&quot;:&quot;nn5c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c2m1r1a1&quot;}"></button>
+			</div>
+					<div class="c-show-pipe x-hidden-vp-mobile-st">
+						<a id="uhfCatLogo" class="c-logo c-cat-logo" href="https://docs.microsoft.com/" aria-label="Docs" itemprop="url" data-m="{&quot;cN&quot;:&quot;CatNav_Docs_nav&quot;,&quot;id&quot;:&quot;n6c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c2m1r1a1&quot;}">
+								<span>Docs</span>
+						</a>
+					</div>
+				<div class="cat-logo-button-cont x-hidden">
+						<button type="button" id="uhfCatLogoButton" class="c-cat-logo-button x-hidden" aria-expanded="false" aria-label="Docs" data-m="{&quot;cN&quot;:&quot;Docs_nonnav&quot;,&quot;id&quot;:&quot;nn7c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c2m1r1a1&quot;}">
+							Docs
+						</button>
+				</div>
+
+
+
+			        <nav id="uhf-g-nav" aria-label="Contextual menu" class="c-uhfh-gnav" data-m="{&quot;cN&quot;:&quot;Category nav_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c8c2m1r1a1&quot;,&quot;sN&quot;:8,&quot;aN&quot;:&quot;c2m1r1a1&quot;}">
+            <ul class="js-paddle-items">
+                    <li class="single-link js-nav-menu x-hidden-none-mobile-vp uhf-menu-item">
+                        <a class="c-uhf-nav-link" href="https://docs.microsoft.com/" data-m="{&quot;cN&quot;:&quot;CatNav_Home_nav&quot;,&quot;id&quot;:&quot;n1c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}"> Home </a>
+                    </li>
+                                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_0" class="c-uhf-nav-link" href="https://docs.microsoft.com/windows" data-m="{&quot;cN&quot;:&quot;CatNav_docsWindows_nav&quot;,&quot;id&quot;:&quot;n2c8c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}">Windows</a>
+                        </li>
+                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_1" class="c-uhf-nav-link" href="https://docs.microsoft.com/azure/" data-m="{&quot;cN&quot;:&quot;CatNav_docsAzure_nav&quot;,&quot;id&quot;:&quot;n3c8c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}">Microsoft Azure</a>
+                        </li>
+                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_2" class="c-uhf-nav-link" href="https://docs.microsoft.com/visualstudio/products" data-m="{&quot;cN&quot;:&quot;CatNav_docsVisualStudio_nav&quot;,&quot;id&quot;:&quot;n4c8c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}">Visual Studio</a>
+                        </li>
+                        <li class="single-link js-nav-menu uhf-menu-item">
+                            <a id="c-shellmenu_3" class="c-uhf-nav-link" href="https://docs.microsoft.com/office/" data-m="{&quot;cN&quot;:&quot;CatNav_docsOffice_nav&quot;,&quot;id&quot;:&quot;n5c8c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}">Office</a>
+                        </li>
+                        <li class="nested-menu uhf-menu-item">
+                            <div class="c-uhf-menu js-nav-menu">
+                                <button type="button" id="c-shellmenu_4" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;CatNav_docsMore_nonnav&quot;,&quot;id&quot;:&quot;nn6c8c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}" style="white-space:nowrap">More</button>
+
+                                <ul class="" data-class-idn="" aria-hidden="true" data-m="{&quot;cN&quot;:&quot;docsMore_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c8c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsNET_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c1c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_5" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/dotnet/" data-m="{&quot;cN&quot;:&quot;CatNav_docsNET_nav&quot;,&quot;id&quot;:&quot;n1c1c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c1c7c8c2m1r1a1&quot;}">.NET</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsASPNET_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c7c8c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_6" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/aspnet/" data-m="{&quot;cN&quot;:&quot;CatNav_docsASPNET_nav&quot;,&quot;id&quot;:&quot;n1c2c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c7c8c2m1r1a1&quot;}">ASP.NET</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsCpp_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c7c8c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_7" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/cpp/" data-m="{&quot;cN&quot;:&quot;CatNav_docsCpp_nav&quot;,&quot;id&quot;:&quot;n1c3c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c7c8c2m1r1a1&quot;}">C++</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsDynamics_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c7c8c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_8" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/dynamics365/" data-m="{&quot;cN&quot;:&quot;CatNav_docsDynamics_nav&quot;,&quot;id&quot;:&quot;n1c4c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c7c8c2m1r1a1&quot;}">Dynamics 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsEducation_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c7c8c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_9" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/education/" data-m="{&quot;cN&quot;:&quot;CatNav_docsEducation_nav&quot;,&quot;id&quot;:&quot;n1c5c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c7c8c2m1r1a1&quot;}">Education</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsEM_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c7c8c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_10" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/enterprise-mobility-security/" data-m="{&quot;cN&quot;:&quot;CatNav_docsEM_nav&quot;,&quot;id&quot;:&quot;n1c6c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c7c8c2m1r1a1&quot;}">Enterprise Mobility + Security</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsHealthVault_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c7c8c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_11" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/healthvault/" data-m="{&quot;cN&quot;:&quot;CatNav_docsHealthVault_nav&quot;,&quot;id&quot;:&quot;n1c7c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c7c8c2m1r1a1&quot;}">HealthVault</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsIntune_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c8c7c8c2m1r1a1&quot;,&quot;sN&quot;:8,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_12" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/intune/" data-m="{&quot;cN&quot;:&quot;CatNav_docsIntune_nav&quot;,&quot;id&quot;:&quot;n1c8c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c8c7c8c2m1r1a1&quot;}">Intune</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsNuget_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c9c7c8c2m1r1a1&quot;,&quot;sN&quot;:9,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_13" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/nuget/" data-m="{&quot;cN&quot;:&quot;CatNav_docsNuget_nav&quot;,&quot;id&quot;:&quot;n1c9c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c9c7c8c2m1r1a1&quot;}">NuGet</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsPowerShell_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c10c7c8c2m1r1a1&quot;,&quot;sN&quot;:10,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_14" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/powershell/" data-m="{&quot;cN&quot;:&quot;CatNav_docsPowerShell_nav&quot;,&quot;id&quot;:&quot;n1c10c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c10c7c8c2m1r1a1&quot;}">PowerShell</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsSCCM_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c11c7c8c2m1r1a1&quot;,&quot;sN&quot;:11,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_15" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/sccm/" data-m="{&quot;cN&quot;:&quot;CatNav_docsSCCM_nav&quot;,&quot;id&quot;:&quot;n1c11c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c11c7c8c2m1r1a1&quot;}">System Center Configuration Manager</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsSql_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c12c7c8c2m1r1a1&quot;,&quot;sN&quot;:12,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_16" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/sql/" data-m="{&quot;cN&quot;:&quot;CatNav_docsSql_nav&quot;,&quot;id&quot;:&quot;n1c12c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c12c7c8c2m1r1a1&quot;}">SQL Server</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsSystemCenter_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c13c7c8c2m1r1a1&quot;,&quot;sN&quot;:13,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_17" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/system-center/" data-m="{&quot;cN&quot;:&quot;CatNav_docsSystemCenter_nav&quot;,&quot;id&quot;:&quot;n1c13c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c13c7c8c2m1r1a1&quot;}">System Center</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;docsXamarin_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c14c7c8c2m1r1a1&quot;,&quot;sN&quot;:14,&quot;aN&quot;:&quot;c7c8c2m1r1a1&quot;}">
+            <a id="c-shellmenu_18" class="js-subm-uhf-nav-link" href="https://developer.xamarin.com/" data-m="{&quot;cN&quot;:&quot;CatNav_docsXamarin_nav&quot;,&quot;id&quot;:&quot;n1c14c7c8c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c14c7c8c2m1r1a1&quot;}">Xamarin</a>
+            
+        </li>
+                                                    
+                                </ul>
+                            </div>
+                        </li>
+
+                <li id="overflow-menu" class="overflow-menu x-hidden uhf-menu-item">
+                        <div class="c-uhf-menu js-nav-menu">
+        <button data-m="{&quot;pid&quot;:&quot;More&quot;,&quot;id&quot;:&quot;nn8c8c2m1r1a1&quot;,&quot;sN&quot;:8,&quot;aN&quot;:&quot;c8c2m1r1a1&quot;}" type="button" aria-label="More" aria-expanded="false" style="white-space:nowrap">More</button>
+        <ul id="overflow-menu-list" aria-hidden="true" class="overflow-menu-list">
+        </ul>
+    </div>
+
+                </li>
+                            </ul>
+            
+        </nav>
+
+
+			<div class="c-uhfh-actions" data-m="{&quot;cN&quot;:&quot;Header actions_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c9c2m1r1a1&quot;,&quot;sN&quot;:9,&quot;aN&quot;:&quot;c2m1r1a1&quot;}">
+				<div class="wf-menu">        <nav id="uhf-c-nav" aria-label="All microsoft menu" data-m="{&quot;cN&quot;:&quot;GlobalNav_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c9c2m1r1a1&quot;}">
+            <ul class="js-paddle-items">
+                <li>
+                    <div class="c-uhf-menu js-nav-menu">
+                        <button type="button" class="c-button-logo all-ms-nav" aria-label="All Microsoft expand to see list of Microsoft products and services" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_nonnav&quot;,&quot;id&quot;:&quot;nn1c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c1c9c2m1r1a1&quot;}" style="white-space: nowrap"> <span>All Microsoft</span></button>
+                        <ul class="f-multi-column f-multi-column-6" aria-hidden="true" data-m="{&quot;cN&quot;:&quot;More_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c1c9c2m1r1a1&quot;}">
+                                    <li class="c-w0-contr">
+            <ul class="c-w0">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Office_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c1c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_19" class="js-subm-uhf-nav-link" href="https://products.office.com/en-us/home" data-m="{&quot;cN&quot;:&quot;W0Nav_Office_nav&quot;,&quot;id&quot;:&quot;n1c1c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c1c2c1c9c2m1r1a1&quot;}">Office</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Windows_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_20" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows/" data-m="{&quot;cN&quot;:&quot;W0Nav_Windows_nav&quot;,&quot;id&quot;:&quot;n1c2c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c2c1c9c2m1r1a1&quot;}">Windows</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Surface_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_21" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/surface" data-m="{&quot;cN&quot;:&quot;W0Nav_Surface_nav&quot;,&quot;id&quot;:&quot;n1c3c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c2c1c9c2m1r1a1&quot;}">Surface</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Xbox_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_22" class="js-subm-uhf-nav-link" href="https://www.xbox.com/" data-m="{&quot;cN&quot;:&quot;W0Nav_Xbox_nav&quot;,&quot;id&quot;:&quot;n1c4c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c2c1c9c2m1r1a1&quot;}">Xbox</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Deals_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_23" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/sale?icid=gm_nav_L0_salepage" data-m="{&quot;cN&quot;:&quot;W0Nav_Deals_nav&quot;,&quot;id&quot;:&quot;n1c5c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c2c1c9c2m1r1a1&quot;}">Deals</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Support_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+            <a id="l1_support" class="js-subm-uhf-nav-link" href="https://support.microsoft.com/en-us" data-m="{&quot;cN&quot;:&quot;W0Nav_Support_nav&quot;,&quot;id&quot;:&quot;n1c6c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c2c1c9c2m1r1a1&quot;}">Support</a>
+            
+        </li>
+            </ul>
+        </li>
+
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;id&quot;:&quot;nn1c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">Software</button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Software_WindowsApps_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_27" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows/windows-10-apps" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Software_WindowsApps_nav&quot;,&quot;id&quot;:&quot;n1c2c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c7c2c1c9c2m1r1a1&quot;}">Windows apps</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Software_OneDrive_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_28" class="js-subm-uhf-nav-link" href="https://onedrive.live.com/about/en-us/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Software_OneDrive_nav&quot;,&quot;id&quot;:&quot;n1c3c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c7c2c1c9c2m1r1a1&quot;}">OneDrive</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Software_Outlook_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_29" class="js-subm-uhf-nav-link" href="https://outlook.live.com/owa/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Software_Outlook_nav&quot;,&quot;id&quot;:&quot;n1c4c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c7c2c1c9c2m1r1a1&quot;}">Outlook</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Software_Skype_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_30" class="js-subm-uhf-nav-link" href="https://www.skype.com/en/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Software_Skype_nav&quot;,&quot;id&quot;:&quot;n1c5c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c7c2c1c9c2m1r1a1&quot;}">Skype</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Software_OneNote_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c7c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_31" class="js-subm-uhf-nav-link" href="https://www.onenote.com/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Software_OneNote_nav&quot;,&quot;id&quot;:&quot;n1c6c7c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c7c2c1c9c2m1r1a1&quot;}">OneNote</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cN&quot;:&quot;PCsAndDevices_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:8,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;GlobalNav_PCsAndDevices_nonnav&quot;,&quot;id&quot;:&quot;nn1c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c8c2c1c9c2m1r1a1&quot;}">PCs &amp; Devices  </button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_PCsAndDevices_PCsAndTablets_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c8c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_33" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows/devices" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_PCsAndDevices_PCsAndTablets_nav&quot;,&quot;id&quot;:&quot;n1c2c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c8c2c1c9c2m1r1a1&quot;}">PCs &amp; tablets</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_PCAndDevices_Accessories_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c8c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_34" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/accessories/en-us" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_PCAndDevices_Accessories_nav&quot;,&quot;id&quot;:&quot;n1c3c8c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c8c2c1c9c2m1r1a1&quot;}">Accessories</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:9,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;id&quot;:&quot;nn1c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">Entertainment</button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Products_DevicesAndXbox_XboxAndGames_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_36" class="js-subm-uhf-nav-link" href="https://www.xbox.com/en-us/games/xbox-one?xr=shellnav" data-m="{&quot;cN&quot;:&quot;GlobalNav_Products_DevicesAndXbox_XboxAndGames_nav&quot;,&quot;id&quot;:&quot;n1c2c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c9c2c1c9c2m1r1a1&quot;}">Xbox games</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Entertainment_PCGames_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_37" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/windows/windows-10-games" data-m="{&quot;cN&quot;:&quot;GlobalNav_Entertainment_PCGames_nav&quot;,&quot;id&quot;:&quot;n1c3c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c9c2c1c9c2m1r1a1&quot;}">PC games</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Entertainment_WindowsDigitalGames_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_38" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/games/windows?icid=TopNavWindowsGames" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Entertainment_WindowsDigitalGames_nav&quot;,&quot;id&quot;:&quot;n1c4c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c9c2c1c9c2m1r1a1&quot;}">Windows digital games</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Entertainment_MoviesAndTV_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_39" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/movies-and-tv?icid=TopNavMoviesAndTv" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Entertainment_MoviesAndTV_nav&quot;,&quot;id&quot;:&quot;n1c5c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c9c2c1c9c2m1r1a1&quot;}">Movies &amp; TV</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Entertainment_Books_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c9c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_40" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/books" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Entertainment_Books_nav&quot;,&quot;id&quot;:&quot;n1c6c9c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c9c2c1c9c2m1r1a1&quot;}">Books</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:10,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;id&quot;:&quot;nn1c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">Business</button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Business_MicrosoftAzure_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_42" class="js-subm-uhf-nav-link" href="https://azure.microsoft.com/en-us/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Business_MicrosoftAzure_nav&quot;,&quot;id&quot;:&quot;n1c2c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c10c2c1c9c2m1r1a1&quot;}">Microsoft Azure</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Business_MicrosoftDynamics365_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_43" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/dynamics365/home" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Business_MicrosoftDynamics365_nav&quot;,&quot;id&quot;:&quot;n1c3c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c10c2c1c9c2m1r1a1&quot;}">Microsoft Dynamics 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Business_Microsoft365_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_44" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/microsoft-365/?omkt=en-US" data-m="{&quot;cN&quot;:&quot;GlobalNav_Business_Microsoft365_nav&quot;,&quot;id&quot;:&quot;n1c4c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c10c2c1c9c2m1r1a1&quot;}">Microsoft 365</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Business_Enterprise_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_45" class="js-subm-uhf-nav-link" href="https://enterprise.microsoft.com/en-us/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Business_Enterprise_nav&quot;,&quot;id&quot;:&quot;n1c5c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c10c2c1c9c2m1r1a1&quot;}">Microsoft Industry</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Business_DataPlatform_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_46" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/sql-server/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Business_DataPlatform_nav&quot;,&quot;id&quot;:&quot;n1c6c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c10c2c1c9c2m1r1a1&quot;}">Data platform</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_MicrosoftAdvertising_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c10c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_47" class="js-subm-uhf-nav-link" href="https://go.microsoft.com/fwlink/?linkid=2026638" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_MicrosoftAdvertising_nav&quot;,&quot;id&quot;:&quot;n1c7c10c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c10c2c1c9c2m1r1a1&quot;}">Microsoft Advertising</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:11,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;id&quot;:&quot;nn1c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">Developer &amp; IT  </button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_DeveloperAndIT_.Net_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_49" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/net/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_DeveloperAndIT_.Net_nav&quot;,&quot;id&quot;:&quot;n1c2c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c11c2c1c9c2m1r1a1&quot;}">.NET</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_DevelopersAndIT_VisualStudio_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_50" class="js-subm-uhf-nav-link" href="https://visualstudio.microsoft.com/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_DevelopersAndIT_VisualStudio_nav&quot;,&quot;id&quot;:&quot;n1c3c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c11c2c1c9c2m1r1a1&quot;}">Visual Studio</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_ProductsandServices_WindowsServer_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_51" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/cloud-platform/windows-server" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_ProductsandServices_WindowsServer_nav&quot;,&quot;id&quot;:&quot;n1c4c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c11c2c1c9c2m1r1a1&quot;}">Windows Server</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_DeveloperAndIT_WindowsDevCenter_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_52" class="js-subm-uhf-nav-link" href="https://developer.microsoft.com/en-us/windows" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_DeveloperAndIT_WindowsDevCenter_nav&quot;,&quot;id&quot;:&quot;n1c5c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c11c2c1c9c2m1r1a1&quot;}">Windows Dev Center</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_DeveloperAndIT_Docs.microsoft.com_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c11c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_53" class="js-subm-uhf-nav-link" href="https://docs.microsoft.com/en-us/" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_DeveloperAndIT_Docs.microsoft.com_nav&quot;,&quot;id&quot;:&quot;n1c6c11c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c11c2c1c9c2m1r1a1&quot;}">Docs</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+        <li class="f-sub-menu js-nav-menu nested-menu" data-m="{&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:12,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}">
+
+            <button type="button" role="presentation" f-multi-parent="true" aria-expanded="false" data-m="{&quot;id&quot;:&quot;nn1c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">Other</button>
+            <ul aria-hidden="true" role="presentation">
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Other_MicrosoftStore_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c2c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_55" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/home" data-m="{&quot;cN&quot;:&quot;GlobalNav_Other_MicrosoftStore_nav&quot;,&quot;id&quot;:&quot;n1c2c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c2c12c2c1c9c2m1r1a1&quot;}">Microsoft Store</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Other_Microsoft Rewards_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_56" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/rewards" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Other_Microsoft Rewards_nav&quot;,&quot;id&quot;:&quot;n1c3c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c12c2c1c9c2m1r1a1&quot;}">Microsoft Rewards </a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Products_SoftwareAndServices_FreeDownloadsAndSecurity_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c4c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_57" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/download/default.aspx" data-m="{&quot;cN&quot;:&quot;GlobalNav_Products_SoftwareAndServices_FreeDownloadsAndSecurity_nav&quot;,&quot;id&quot;:&quot;n1c4c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c4c12c2c1c9c2m1r1a1&quot;}">Free downloads &amp; security</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Products_ForStudentsAndEducators_Education_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c5c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_58" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/education?icid=CNavMSCOML0_Studentsandeducation" data-m="{&quot;cN&quot;:&quot;GlobalNav_Products_ForStudentsAndEducators_Education_nav&quot;,&quot;id&quot;:&quot;n1c5c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c5c12c2c1c9c2m1r1a1&quot;}">Education</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;More_Other_Store_Locations_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c6c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_59" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/locations/find-a-store?icid=TopNavStoreLocations" data-m="{&quot;cN&quot;:&quot;GlobalNav_More_Other_Store_Locations_nav&quot;,&quot;id&quot;:&quot;n1c6c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c6c12c2c1c9c2m1r1a1&quot;}">Store locations</a>
+            
+        </li>
+        <li class="js-nav-menu single-link" data-m="{&quot;cN&quot;:&quot;Store_More_GiftCards_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c12c2c1c9c2m1r1a1&quot;}">
+            <a id="shellmenu_60" class="js-subm-uhf-nav-link" href="https://www.microsoft.com/en-us/store/b/gift-cards" data-m="{&quot;cN&quot;:&quot;GlobalNav_Store_More_GiftCards_nav&quot;,&quot;id&quot;:&quot;n1c7c12c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c12c2c1c9c2m1r1a1&quot;}">Gift cards</a>
+            
+        </li>
+            </ul>
+            
+        </li>
+                                                            <li class="f-multi-column-info">
+                                    <a data-m="{&quot;id&quot;:&quot;n13c2c1c9c2m1r1a1&quot;,&quot;sN&quot;:13,&quot;aN&quot;:&quot;c2c1c9c2m1r1a1&quot;}" href="https://www.microsoft.com/en-us/sitemap.aspx" aria-label="" class="c-glyph">View Sitemap</a>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+</div>
+		<form class="c-search" autocomplete="off" id="searchForm" name="searchForm" role="search" action="https://docs.microsoft.com/en-us/search/index" method="GET" title="Search" data-seautosuggest="{&quot;queryParams&quot;:{&quot;market&quot;:&quot;en-us&quot;,&quot;clientId&quot;:&quot;7F27B536-CF6B-4C65-8638-A0F8CBDFCA65&quot;,&quot;sources&quot;:&quot;Microsoft-Terms,Iris-Products,DCatAll-Products&quot;,&quot;filter&quot;:&quot;+ClientType:StoreWeb&quot;,&quot;counts&quot;:&quot;5,1,5&quot;},&quot;familyNames&quot;:{&quot;Apps&quot;:&quot;App&quot;,&quot;Books&quot;:&quot;Book&quot;,&quot;Bundles&quot;:&quot;Bundle&quot;,&quot;Devices&quot;:&quot;Device&quot;,&quot;Fees&quot;:&quot;Fee&quot;,&quot;Games&quot;:&quot;Game&quot;,&quot;MusicAlbums&quot;:&quot;Album&quot;,&quot;MusicTracks&quot;:&quot;Song&quot;,&quot;MusicVideos&quot;:&quot;Video&quot;,&quot;MusicArtists&quot;:&quot;Artist&quot;,&quot;OperatingSystem&quot;:&quot;Operating System&quot;,&quot;Software&quot;:&quot;Software&quot;,&quot;Movies&quot;:&quot;Movie&quot;,&quot;TV&quot;:&quot;TV&quot;,&quot;CSV&quot;:&quot;Gift Card&quot;,&quot;VideoActor&quot;:&quot;Actor&quot;}}" data-seautosuggestapi="https://www.microsoft.com/services/api/v3/suggest" data-m="{&quot;cN&quot;:&quot;GlobalNav_Search_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c1c9c2m1r1a1&quot;}" aria-expanded="false">
+			<input id="cli_shellHeaderSearchInput" aria-label="search expanded" aria-autocomplete="list" aria-controls="universal-header-search-auto-suggest-transparent" aria-owns="universal-header-search-auto-suggest-ul" type="search" name="search" placeholder="Search" data-m="{&quot;cN&quot;:&quot;SearchBox_nav&quot;,&quot;id&quot;:&quot;n1c3c1c9c2m1r1a1&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c3c1c9c2m1r1a1&quot;}"><div class="x-screen-reader" aria-live="assertive"></div>
+			<button id="search" aria-label="Search" class="c-glyph" data-m="{&quot;cN&quot;:&quot;Search_nav&quot;,&quot;id&quot;:&quot;n2c3c1c9c2m1r1a1&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c3c1c9c2m1r1a1&quot;}" data-bi-dnt="true" data-bi-mto="true" aria-expanded="false">
+				<span role="presentation">Search</span>
+			</button>
+			<div class="m-auto-suggest" id="universal-header-search-auto-suggest-transparent" role="group">
+				<ul class="c-menu" id="universal-header-search-auto-suggest-ul" aria-hidden="true" data-bi-dnt="true" data-bi-mto="true" data-js-auto-suggest-position="default" role="listbox" data-tel="jsll" data-m="{&quot;cN&quot;:&quot;search suggestions_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c3c3c1c9c2m1r1a1&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c3c1c9c2m1r1a1&quot;}"></ul>
+			</div>
+			
+		</form>
+		<button data-m="{&quot;cN&quot;:&quot;cancel-search&quot;,&quot;pid&quot;:&quot;Cancel Search&quot;,&quot;id&quot;:&quot;nn4c1c9c2m1r1a1&quot;,&quot;sN&quot;:4,&quot;aN&quot;:&quot;c1c9c2m1r1a1&quot;}" id="cancel-search" class="cancel-search" aria-label="Cancel Search">
+			<span>Cancel</span>
+		</button>
+				
+			<div class="auth-control" aria-busy="true" aria-label="Loading..."></div></div>
+		</div>
+		
+		
+	</div>
+	
+</header>
+
+
+
+
+    </div>
+        </div>
+
+    </div>
+</div>
+	<div class="content-header uhf-container has-padding has-default-focus" data-bi-name="content-header">
+		<nav class="has-padding-none-mobile" data-bi-name="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Breadcrumb">
+		<ul class="breadcrumbs"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemprop="item" href="https://docs.microsoft.com/en-us/?view=sqlserver-ps">Docs</a></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="mobile-breadcrumb"><a itemprop="item" href="https://docs.microsoft.com/en-us/sql/index?view=sqlserver-ps">SQL</a></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><span itemprop="name">SQL Power<wbr>Shell</span></li></ul>
+		</nav>
+		<div class="content-header-controls exit-focus">
+			<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse">
+				<span class="icon"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit focus mode</span>
+			</button>
+			
+		</div>
+		<div class="content-header-controls">
+			<button type="button" class="contents-button button" data-bi-name="contents-expand">
+				<span class="icon"><span class="docon docon-menu"></span></span>
+				<span>Contents</span>
+			</button>
+		</div>
+		<div class="action-bar">
+			<ul class="action-list">
+							<li id="contenteditbtn" hidden="">
+									<a href="https://github.com/MicrosoftDocs/sql-docs-powershell/blob/live/sqlserver-ps/sqlserver/Backup-SqlDatabase.md" class="button is-text is-icon-only-touch is-size-7" title="Edit This Document" data-bi-name="edit">
+									<span class="icon">
+										<span class="docon docon-edit-outline" aria-hidden="true"></span>
+									</span>
+									<span class="action-item-text">Edit</span>
+								</a>
+							</li>
+				<li>
+					<div class="sharing dropdown has-caret" auto-align="">
+						<a href="#" class="dropdown-trigger button is-text is-size-7 is-icon-only-touch" aria-haspopup="true" aria-controls="sharing-menu" aria-expanded="false" title="Share This Document" data-bi-name="share">
+							<span class="icon">
+								<span class="docon docon-sharing" aria-hidden="true"></span>
+							</span>
+							<span class="action-item-text">Share</span>
+						</a>
+						<div class="dropdown-menu" id="sharing-menu" role="menu">
+							<ul data-bi-name="share-links">
+								<li><a class="share-twitter" data-bi-name="twitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps%26WT.mc_id%3Dtwitter&amp;text=Backup-SqlDatabase%20(sqlserver)%20%7C%20Microsoft%20Docs&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps%26WT.mc_id%3Dtwitter">
+									<span class="icon">
+										<span class="docon docon-brand-twitter" aria-hidden="true"></span>
+									</span>
+									<span>Twitter</span></a></li>
+								<li><a class="share-linkedin" data-bi-name="linkedin" href="https://www.linkedin.com/cws/share?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps%26WT.mc_id%3Dlinkedin">
+									<span class="icon">
+										<span class="docon docon-brand-linkedin" aria-hidden="true"></span>
+									</span>
+									<span>LinkedIn</span></a></li>
+								<li><a class="share-facebook" data-bi-name="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps%26WT.mc_id%3Dfacebook">
+									<span class="icon">
+										<span class="docon docon-brand-facebook" aria-hidden="true"></span>
+									</span>
+									<span>Facebook</span></a></li>
+								<li><a class="share-email" data-bi-name="email" href="mailto:?subject=%5BShared%20Article%5D%20Backup-SqlDatabase%20(sqlserver)%20%7C%20Microsoft%20Docs&amp;body=Backup-SqlDatabase%20(sqlserver)%20%7C%20Microsoft%20Docs%0A%0Ahttps%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fpowershell%2Fmodule%2Fsqlserver%2Fbackup-sqldatabase%3Fview%3Dsqlserver-ps%26WT.mc_id%3Demail">
+									<span class="icon">
+										<span class="docon docon-mail-message-fill" aria-hidden="true"></span>
+									</span>
+									<span>Email</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<button class="toggle-theme button is-text is-size-7 is-icon-only-touch" aria-label="toggle-theme" data-bi-name="select-theme" data-theme-to="dark"><!---->
+		<span class="icon docon docon-clear-night"></span>
+		<span class="action-item-text"><!---->Dark<!----></span>
+	<!----></button>
+				</li>
+				<li class="is-unstyled-action-list-item">
+					<a class="docs-sign-in auth-status-determined not-authenticated button is-text has-text-primary is-size-7" href="#">Sign in</a>
+					<div class="dropdown has-caret auth-status-determined authenticated" auto-align="">
+						<button class="dropdown-trigger button is-text is-size-7 is-icon-only-touch has-inner-focus" aria-label="Your Account" aria-haspopup="true" aria-controls="user-menu" aria-expanded="false">
+							<span class="image icon" aria-hidden="true">
+								<img class="has-body-background-medium is-rounded" data-profile-property="avatarUrl">
+							</span>
+							<span class="is-truncated" data-profile-property="userName"></span>
+						</button>
+						<div class="dropdown-menu box" id="user-menu" role="menu">
+							<div class="media is-user-dir">
+								<div class="media-left">
+									<span class="image is-64x64" aria-hidden="true">
+										<img class="has-body-background-medium is-rounded" data-profile-property="avatarUrl">
+									</span>
+								</div>
+								<div class="media-content">
+									<p class="title has-margin-top-small">
+										<span class="is-truncated" style="max-width: 200px" data-profile-property="userName"></span>
+									</p>
+									<p class="subtitle">
+										<span class="is-truncated" style="max-width: 200px" data-profile-property="upn"></span>
+									</p>
+								</div>
+							</div>
+							<ul class="is-unstyled has-margin-none">
+								<li><a href="https://docs.microsoft.com/profile" data-profile-property="profileUrl">Profile</a></li>
+								<li><a class="docs-sign-out" href="#">Sign out</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<button type="button" class="contents-button" aria-label="Contents" data-bi-name="contents-expand-">
+				<span class="docon docon-editor-list-bullet"></span><span>Contents</span>
+			</button>
+		</div>
+	</div>
+
+
+	<div id="disclaimer-holder" class="has-overflow-hidden"></div>
+	</div>
+
+	<div class="mainContainer uhf-container  has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps ">
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns has-large-gaps ">
+
+					<div id="page-actions" class="right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Page Actions">
+							<nav id="side-doc-outline" class="doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="On page navigation" style="width: 199.2px; top: 24px; bottom: 24px;">
+								<h3>In this article</h3>
+							<ol><li class=""><a href="#syntax">Syntax</a></li><li class="selected"><a href="#description">Description</a></li><li class=""><a href="#examples">Examples</a></li><li><a href="#required-parameters">Required Parameters</a></li><li><a href="#optional-parameters">Optional Parameters</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#outputs">Outputs</a></li><li><a href="#related-links">Related Links</a></li></ol></nav>
+					</div>
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" dir="ltr" lang="en-us">
+
+
+
+						
+
+
+
+						<!-- <content> -->
+							
+<div class="moniker-picker" data-bi-name="moniker-picker">
+		<button class="products" id="ax-2" aria-haspopup="true" aria-controls="ax-3" aria-expanded="false" disabled="disabled">
+			<span class="visually-hidden">Select Package</span>
+			<span aria-hidden="true">SQL Server Power<wbr>Shell</span>
+		</button>
+		<div class="products" id="ax-3" role="menu" aria-labelledby="ax-2" style="z-index: 5000">
+			<span aria-hidden="true">Version</span>
+			<ul aria-label="Product"><li><a class="preserve-view has-inner-focus" role="menuitem" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase?view=sqlserver-ps" aria-label="SQL Server PowerShell" data-default="true" tabindex="-1">Latest</a></li></ul>
+		</div></div><form class="api-search-field" data-bi-name="api-search-field" action="javascript:"><label><span class="visually-hidden">Search</span><input type="search" class="input empty" placeholder="Search"><a href="#" title="Clear Term" class="clear"></a></label></form><div class="api-search-results-container"></div><h1>Backup-Sql<wbr>Database</h1>
+
+
+<div class="metadata">
+		<dl class="attributeList">
+			<dt>Module:</dt><dd><a href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps" data-linktype="relative-path">sqlserver</a></dd>
+		</dl>
+</div>
+
+	<div class="summaryHolder">
+		<div class="summary">
+			Backs up SQL Server database objects.
+		</div>
+	</div>
+
+<nav id="center-doc-outline" class="doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="On page navigation">
+  <h3>In This Article</h3>
+<ol><li><a href="#syntax">Syntax</a></li><li><a href="#description">Description</a></li><li><a href="#examples">Examples</a></li><li><a href="#required-parameters">Required Parameters</a></li><li><a href="#optional-parameters">Optional Parameters</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#outputs">Outputs</a></li><li><a href="#related-links">Related Links</a></li></ol></nav>
+	<h2 class="hiddenAnchor heading-with-anchor" id="syntax">Syntax<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#syntax"></a></h2>
+		<div class="codeHeader" id="code-try-0" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre class="wrap"><code class="lang-powershell" dir="ltr"><span class="hljs-pscommand">Backup-SqlDatabase</span>
+      [-BackupContainer &lt;String&gt;]
+      [-MirrorDevices &lt;BackupDeviceList[]&gt;]
+      [-BackupAction &lt;BackupActionType&gt;]
+      [-BackupSetName &lt;String&gt;]
+      [-BackupSetDescription &lt;String&gt;]
+      [-CompressionOption &lt;BackupCompressionOptions&gt;]
+      [-CopyOnly]
+      [-ExpirationDate &lt;DateTime&gt;]
+      [-FormatMedia]
+      [-Incremental]
+      [-Initialize]
+      [-LogTruncationType &lt;BackupTruncateLogType&gt;]
+      [-MediaDescription &lt;String&gt;]
+      [-RetainDays &lt;Int32&gt;]
+      [-SkipTapeHeader]
+      [-UndoFileName &lt;String&gt;]
+      [-EncryptionOption &lt;BackupEncryptionOptions&gt;]
+      [-Database] &lt;String&gt;
+      [-Path &lt;String[]&gt;]
+      [[-BackupFile] &lt;String[]&gt;]
+      [-SqlCredential &lt;PSObject&gt;]
+      [-BackupDevice &lt;BackupDeviceItem[]&gt;]
+      [-PassThru]
+      [-Checksum]
+      [-ContinueAfterError]
+      [-NoRewind]
+      [-Restart]
+      [-UnloadTapeAfter]
+      [-NoRecovery]
+      [-DatabaseFile &lt;String[]&gt;]
+      [-DatabaseFileGroup &lt;String[]&gt;]
+      [-BlockSize &lt;Int32&gt;]
+      [-BufferCount &lt;Int32&gt;]
+      [-MaxTransferSize &lt;Int32&gt;]
+      [-MediaName &lt;String&gt;]
+      [-Script]
+      [-WhatIf]
+      [-Confirm]
+      [&lt;CommonParameters&gt;]</code></pre>
+		<div class="codeHeader" id="code-try-1" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre class="wrap"><code class="lang-powershell" dir="ltr"><span class="hljs-pscommand">Backup-SqlDatabase</span>
+      [-BackupContainer &lt;String&gt;]
+      [-MirrorDevices &lt;BackupDeviceList[]&gt;]
+      [-BackupAction &lt;BackupActionType&gt;]
+      [-BackupSetName &lt;String&gt;]
+      [-BackupSetDescription &lt;String&gt;]
+      [-CompressionOption &lt;BackupCompressionOptions&gt;]
+      [-CopyOnly]
+      [-ExpirationDate &lt;DateTime&gt;]
+      [-FormatMedia]
+      [-Incremental]
+      [-Initialize]
+      [-LogTruncationType &lt;BackupTruncateLogType&gt;]
+      [-MediaDescription &lt;String&gt;]
+      [-RetainDays &lt;Int32&gt;]
+      [-SkipTapeHeader]
+      [-UndoFileName &lt;String&gt;]
+      [-EncryptionOption &lt;BackupEncryptionOptions&gt;]
+      [-DatabaseObject] &lt;Database&gt;
+      [[-BackupFile] &lt;String[]&gt;]
+      [-SqlCredential &lt;PSObject&gt;]
+      [-BackupDevice &lt;BackupDeviceItem[]&gt;]
+      [-PassThru]
+      [-Checksum]
+      [-ContinueAfterError]
+      [-NoRewind]
+      [-Restart]
+      [-UnloadTapeAfter]
+      [-NoRecovery]
+      [-DatabaseFile &lt;String[]&gt;]
+      [-DatabaseFileGroup &lt;String[]&gt;]
+      [-BlockSize &lt;Int32&gt;]
+      [-BufferCount &lt;Int32&gt;]
+      [-MaxTransferSize &lt;Int32&gt;]
+      [-MediaName &lt;String&gt;]
+      [-Script]
+      [-WhatIf]
+      [-Confirm]
+      [&lt;CommonParameters&gt;]</code></pre>
+		<div class="codeHeader" id="code-try-2" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre class="wrap"><code class="lang-powershell" dir="ltr"><span class="hljs-pscommand">Backup-SqlDatabase</span>
+      [-BackupContainer &lt;String&gt;]
+      [-MirrorDevices &lt;BackupDeviceList[]&gt;]
+      [-BackupAction &lt;BackupActionType&gt;]
+      [-BackupSetName &lt;String&gt;]
+      [-BackupSetDescription &lt;String&gt;]
+      [-CompressionOption &lt;BackupCompressionOptions&gt;]
+      [-CopyOnly]
+      [-ExpirationDate &lt;DateTime&gt;]
+      [-FormatMedia]
+      [-Incremental]
+      [-Initialize]
+      [-LogTruncationType &lt;BackupTruncateLogType&gt;]
+      [-MediaDescription &lt;String&gt;]
+      [-RetainDays &lt;Int32&gt;]
+      [-SkipTapeHeader]
+      [-UndoFileName &lt;String&gt;]
+      [-EncryptionOption &lt;BackupEncryptionOptions&gt;]
+      [-Database] &lt;String&gt;
+     <span class="hljs-parameter"> -ServerInstance</span> &lt;String[]&gt;
+      [-Credential &lt;PSCredential&gt;]
+      [-ConnectionTimeout &lt;Int32&gt;]
+      [[-BackupFile] &lt;String[]&gt;]
+      [-SqlCredential &lt;PSObject&gt;]
+      [-BackupDevice &lt;BackupDeviceItem[]&gt;]
+      [-PassThru]
+      [-Checksum]
+      [-ContinueAfterError]
+      [-NoRewind]
+      [-Restart]
+      [-UnloadTapeAfter]
+      [-NoRecovery]
+      [-DatabaseFile &lt;String[]&gt;]
+      [-DatabaseFileGroup &lt;String[]&gt;]
+      [-BlockSize &lt;Int32&gt;]
+      [-BufferCount &lt;Int32&gt;]
+      [-MaxTransferSize &lt;Int32&gt;]
+      [-MediaName &lt;String&gt;]
+      [-Script]
+      [-WhatIf]
+      [-Confirm]
+      [&lt;CommonParameters&gt;]</code></pre>
+		<div class="codeHeader" id="code-try-3" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre class="wrap"><code class="lang-powershell" dir="ltr"><span class="hljs-pscommand">Backup-SqlDatabase</span>
+      [-BackupContainer &lt;String&gt;]
+      [-MirrorDevices &lt;BackupDeviceList[]&gt;]
+      [-BackupAction &lt;BackupActionType&gt;]
+      [-BackupSetName &lt;String&gt;]
+      [-BackupSetDescription &lt;String&gt;]
+      [-CompressionOption &lt;BackupCompressionOptions&gt;]
+      [-CopyOnly]
+      [-ExpirationDate &lt;DateTime&gt;]
+      [-FormatMedia]
+      [-Incremental]
+      [-Initialize]
+      [-LogTruncationType &lt;BackupTruncateLogType&gt;]
+      [-MediaDescription &lt;String&gt;]
+      [-RetainDays &lt;Int32&gt;]
+      [-SkipTapeHeader]
+      [-UndoFileName &lt;String&gt;]
+      [-EncryptionOption &lt;BackupEncryptionOptions&gt;]
+      [-Database] &lt;String&gt;
+     <span class="hljs-parameter"> -InputObject</span> &lt;Server[]&gt;
+      [[-BackupFile] &lt;String[]&gt;]
+      [-SqlCredential &lt;PSObject&gt;]
+      [-BackupDevice &lt;BackupDeviceItem[]&gt;]
+      [-PassThru]
+      [-Checksum]
+      [-ContinueAfterError]
+      [-NoRewind]
+      [-Restart]
+      [-UnloadTapeAfter]
+      [-NoRecovery]
+      [-DatabaseFile &lt;String[]&gt;]
+      [-DatabaseFileGroup &lt;String[]&gt;]
+      [-BlockSize &lt;Int32&gt;]
+      [-BufferCount &lt;Int32&gt;]
+      [-MaxTransferSize &lt;Int32&gt;]
+      [-MediaName &lt;String&gt;]
+      [-Script]
+      [-WhatIf]
+      [-Confirm]
+      [&lt;CommonParameters&gt;]</code></pre>
+		<div class="codeHeader" id="code-try-4" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre class="wrap"><code class="lang-powershell" dir="ltr"><span class="hljs-pscommand">Backup-SqlDatabase</span>
+      [-BackupContainer &lt;String&gt;]
+      [-MirrorDevices &lt;BackupDeviceList[]&gt;]
+      [-BackupAction &lt;BackupActionType&gt;]
+      [-BackupSetName &lt;String&gt;]
+      [-BackupSetDescription &lt;String&gt;]
+      [-CompressionOption &lt;BackupCompressionOptions&gt;]
+      [-CopyOnly]
+      [-ExpirationDate &lt;DateTime&gt;]
+      [-FormatMedia]
+      [-Incremental]
+      [-Initialize]
+      [-LogTruncationType &lt;BackupTruncateLogType&gt;]
+      [-MediaDescription &lt;String&gt;]
+      [-RetainDays &lt;Int32&gt;]
+      [-SkipTapeHeader]
+      [-UndoFileName &lt;String&gt;]
+      [-EncryptionOption &lt;BackupEncryptionOptions&gt;]
+      [[-BackupFile] &lt;String[]&gt;]
+      [-SqlCredential &lt;PSObject&gt;]
+      [-BackupDevice &lt;BackupDeviceItem[]&gt;]
+      [-PassThru]
+      [-Checksum]
+      [-ContinueAfterError]
+      [-NoRewind]
+      [-Restart]
+      [-UnloadTapeAfter]
+      [-NoRecovery]
+      [-DatabaseFile &lt;String[]&gt;]
+      [-DatabaseFileGroup &lt;String[]&gt;]
+      [-BlockSize &lt;Int32&gt;]
+      [-BufferCount &lt;Int32&gt;]
+      [-MaxTransferSize &lt;Int32&gt;]
+      [-MediaName &lt;String&gt;]
+      [-Script]
+      [-WhatIf]
+      [-Confirm]
+      [&lt;CommonParameters&gt;]</code></pre>
+
+	<h2 id="description" class="heading-with-anchor">Description<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#description"></a></h2>
+	<p>The Backup-SqlDatabase cmdlet performs backup operations on a SQL Server database.</p>
+<p>This includes full database backups, transaction log backups, and database file backups.</p>
+<p>This cmdlet is modeled after the Microsoft.SqlServer.Management.Smo.Backup class.</p>
+<p>The parameters on this class generally correspond to properties on that Smo object.</p>
+<p>To back up a database by server instance path and database name, 
+specify the server instance path in the Path parameter and the database 
+name in the Database parameter.</p>
+<p>To back up a database using an Smo.Server object and database name, 
+specify the Smo.Server object in the InputObject parameter, either 
+directly or by using the pipeline operator, and the database name in the
+ Database parameter.</p>
+<p>To back up a database by server instance and database name, specify 
+the server instance in the ServerInstance parameter and the database 
+name in the Database parameter.</p>
+<p>To back up a database using an Smo.Database object, specify the 
+Smo.Database object in the DatabaseObject parameter, either directly or 
+by using the pipeline operator.</p>
+<p>By default this cmdlet performs a full database backup.</p>
+<p>Set the type of the backup by using the BackupAction parameter.</p>
+<p>By default the backup file is stored in the default server backup location under the name databasename.bak
+for full and/or file backups and under the name databasename.trn for log backups. To specify a different file name,
+use the BackupFile parameter.</p>
+<p>To specify a backup file location and use an auto-generated file name, specify the location by using the
+BackupContainer parameter.</p>
+
+
+	<h2 id="examples" class="heading-with-anchor">Examples<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#examples"></a></h2>
+	<p><strong>Example 1: Backup a complete database</strong></p>
+	
+	<div class="codeHeader" id="code-try-5" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span></code></pre>
+	<p>This command creates a complete database backup of the database named 'MainDB' to the default backup location
+of the server instance 'Computer\Instance'. The backup file is named 'MainDB.bak'.</p>
+
+	<p><strong>Example 2: Backup a database based on location</strong></p>
+	
+	<div class="codeHeader" id="code-try-6" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Set-Location</span> <span class="hljs-string">"SQLSERVER:\SQL\Computer\Instance"</span> 
+PS SQLSERVER:\SQL\Computer\Instance&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span></code></pre>
+	<p>This command creates a complete database backup of the database 'MainDB' to the default backup location
+of the server instance 'Computer\Instance'. The current working directory is used to determine the server
+instance where the backup occurs.</p>
+
+	<p><strong>Example 3: Backup the transaction log</strong></p>
+	
+	<div class="codeHeader" id="code-try-7" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupAction</span> Log</code></pre>
+	<p>This command creates a backup of the transaction log of the database 'MainDB' to the default backup location
+of the server instance 'Computer\Instance'. The backup file is named 'MainDB.trn'.</p>
+
+	<p><strong>Example 4: Backup a database and prompt for credentials</strong></p>
+	
+	<div class="codeHeader" id="code-try-8" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -Credential</span> (<span class="hljs-pscommand">Get-Credential</span> <span class="hljs-string">"sa"</span>)</code></pre>
+	<p>This command creates a complete database backup of the database 'MainDB' using the 'sa' SQL Server login.
+This command prompts for a password to complete the authentication.</p>
+
+	<p><strong>Example 5: Backup a database to a network file share</strong></p>
+	
+	<div class="codeHeader" id="code-try-9" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupFile</span> <span class="hljs-string">"\\mainserver\databasebackup\MainDB.bak"</span></code></pre>
+	<p>This command creates a complete database backup of the database 'MainDB' to the file "\\mainserver\databasebackup\MainDB.bak".</p>
+
+	<p><strong>Example 6: Backup all databases in a server instance</strong></p>
+	
+	<div class="codeHeader" id="code-try-10" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Get-ChildItem</span> <span class="hljs-string">"SQLSERVER:\SQL\Computer\Instance\Databases"</span> | <span class="hljs-pscommand">Backup-SqlDatabase</span></code></pre>
+	<p>This command backs up all databases on the server instance 'Computer\Instance' to the default backup location.
+The backup files are named &lt;database name&gt;.bak.</p>
+
+	<p><strong>Example 7: Backup all databases in a server instance to a network file share</strong></p>
+	
+	<div class="codeHeader" id="code-try-11" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Set-Location</span> <span class="hljs-string">"SQLSERVER:\SQL\Computer\Instance\Databases"</span>
+PS SQLSERVER:\SQL\Computer\Instance\Databases&gt; <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$database</span> <span class="hljs-keyword">in</span> (<span class="hljs-pscommand">Get-ChildItem</span>)) {
+     <span class="hljs-variable">$dbName</span> = <span class="hljs-variable">$database</span>.Name
+     <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -Database</span> <span class="hljs-variable">$dbName</span><span class="hljs-parameter"> -BackupFile</span> <span class="hljs-string">"\\mainserver\databasebackup\<span class="hljs-variable">$dbName</span>.bak"</span> }</code></pre>
+	<p>This command creates a full backup for each database on the server instance 'Computer\Instance' to the share 
+"\\mainserver\databasebackup". The backup files are named &lt;database name&gt;.bak.</p>
+
+	<p><strong>Example 8: Backup all files in secondary file groups</strong></p>
+	
+	<div class="codeHeader" id="code-try-12" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupAction</span> Files<span class="hljs-parameter"> -DatabaseFileGroup</span> <span class="hljs-string">"FileGroupJan"</span>,<span class="hljs-string">"FileGroupFeb"</span></code></pre>
+	<p>This command creates a full file backup of every file in the secondary filegroups 'FileGroupJan' and 'FileGroupFeb'.</p>
+
+	<p><strong>Example 9: Create a differential backup</strong></p>
+	
+	<div class="codeHeader" id="code-try-13" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -Incremental</span></code></pre>
+	<p>This command creates a differential backup of the database 'MainDB' to the default backup location of the server
+instance 'Computer\Instance'. The backup file is named "MainDB.bak".</p>
+
+	<p><strong>Example 10: Create a backup to a tape drive</strong></p>
+	
+	<div class="codeHeader" id="code-try-14" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-variable">$TapeDevice</span> = <span class="hljs-pscommand">New-Object</span> Microsoft.Sqlserver.Management.Smo.BackupDeviceItem(<span class="hljs-string">"\\.\tape0"</span>, <span class="hljs-string">"Tape"</span>)
+PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupDevice</span> <span class="hljs-variable">$TapeDevice</span></code></pre>
+	<p>This command creates a full backup of the database MainDB to the tape device "\\.\tape0".
+To represent this device, the command constructs an instance of the Microsoft.Sqlserver.Management.Smo.BackupDeviceItem
+object. The constructor takes two arguments, the name of the backup device and the type of the backup device.
+This BackupDeviceItem object is passed to the BackupDevice parameter of the <em>Backup-SqlDatabase</em> cmdlet.</p>
+
+	<p><strong>Example 11: Backup a database to the Azure Blob Storage service</strong></p>
+	
+	<div class="codeHeader" id="code-try-15" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupContainer</span> <span class="hljs-string">"https://storageaccountname.blob.core.windows.net/containername"</span><span class="hljs-parameter"> -SqlCredential</span> <span class="hljs-string">"SQLCredentialName"</span></code></pre>
+	<p>This command creates a full backup of the database 'MainDB' to the Windows Azure Blob Storage service.
+It uses BackupContainer to specify the location (URL) of the Windows Azure Blob container.
+The name of the backup file is auto-generated.
+The SqlCredential parameter is used to specify the name of the SQL Server credential that stores the 
+authentication information.</p>
+
+	<p><strong>Example 12: Backup a database to the Azure Blob Storage service and specify the file name</strong></p>
+	
+	<div class="codeHeader" id="code-try-16" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"Computer\Instance"</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainyDB"</span><span class="hljs-parameter"> -BackupFile</span> <span class="hljs-string">"https://storageaccountname.blob.core.windows.net/containername/MainDB.bak"</span><span class="hljs-parameter"> -SqlCredential</span> <span class="hljs-string">"SQLCredentialName"</span></code></pre>
+	<p>This command creates a full backup of the database MainDB to the Windows Azure Blob Storage service.
+It uses the BackupFile parameter to specify the location (URL) and the backup file name.
+The SqlCredential parameter is used to specify the name of the SQL Server credential.</p>
+
+	<p><strong>Example 13: Backup all databases to the Azure Blob Storage service</strong></p>
+	
+	<div class="codeHeader" id="code-try-17" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-pscommand">Get-ChildItem</span> <span class="hljs-string">"SQLSERVER:\SQL\Computer\Instance\Databases"</span> | <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -BackupContainer</span> <span class="hljs-string">"https://storageaccountname.blob.core.windows.net/containername"</span><span class="hljs-parameter"> -SqlCredential</span> <span class="hljs-string">"SQLCredentialName"</span></code></pre>
+	<p>This command backs up all databases on the server instance 'Computer\Instance' to the Windows Azure Blob Storage
+service location by using the BackupContainer parameter. The backup file names are auto generated.</p>
+
+	<p><strong>Example 14: Create an encrypted backup</strong></p>
+	
+	<div class="codeHeader" id="code-try-18" data-bi-name="code-header"><span class="language">PowerShell</span>
+			<button class="action" data-bi-name="copy">
+				<span class="docon docon-edit-copy" role="presentation"></span>
+				<span>Copy</span>
+			</button></div><pre><code class="lang-powershell">PS C:\&gt; <span class="hljs-variable">$EncryptionOption</span> = <span class="hljs-pscommand">New-SqlBackupEncryptionOption</span><span class="hljs-parameter"> -Algorithm</span> Aes256<span class="hljs-parameter"> -EncryptorType</span> ServerCertificate<span class="hljs-parameter"> -EncryptorName</span> <span class="hljs-string">"BackupCert"</span>
+PS C:\&gt; <span class="hljs-pscommand">Backup-SqlDatabase</span><span class="hljs-parameter"> -ServerInstance</span> <span class="hljs-string">"."</span><span class="hljs-parameter"> -Database</span> <span class="hljs-string">"MainDB"</span><span class="hljs-parameter"> -BackupFile</span> <span class="hljs-string">"MainDB.bak"</span><span class="hljs-parameter"> -CompressionOption</span> On<span class="hljs-parameter"> -EncryptionOption</span> <span class="hljs-variable">$EncryptionOption</span></code></pre>
+	<p>This example creates the encryption options and uses it as a parameter value in <em>Backup-SqlDatabase</em> to create an
+encrypted backup.</p>
+
+
+	<h2 id="required-parameters" class="heading-with-anchor">Required Parameters<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#required-parameters"></a></h2>
+	
+	<div class="parameterName stack">-Database</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the name of the database to back up.
+This parameter cannot be used with the DatabaseObject parameter.
+When this parameter is specified, the Path, InputObject, or ServerInstance parameters must also be specified.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>1</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-DatabaseObject</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the database object for the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Database</span></td></tr>
+				<tr><td>Position:</td><td>1</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>True (ByValue)</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-InputObject</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the server object for the backup location.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Server[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>True (ByValue)</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-ServerInstance</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the name of a SQL Server instance.
+This server instance becomes the target of the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>True (ByPropertyName, ByValue)</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>
+	<h2 id="optional-parameters" class="heading-with-anchor">Optional Parameters<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#optional-parameters"></a></h2>
+	
+	<div class="parameterName stack">-BackupAction</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the type of backup operation to perform.
+Valid values are:</p>
+<ul>
+<li>Database. Backs up all the data files in the database.</li>
+<li>Files. Backs up data files specified in the DatabaseFile or DatabaseFileGroup parameters. </li>
+<li>Log. Backs up the transaction log.</li>
+</ul>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupActionType</span></td></tr>
+				<tr><td>Parameter Sets:</td><td>Database, Files, Log</td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BackupContainer</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the folder or location where the cmdlet stores backups.
+This can be a folder on a disk or URL for an Azure Blob container.
+This parameter can be useful when backing up multiple databases in a given instance.
+This parameter cannot be used with a BackupDevice parameter.
+The BackupContainer parameter cannot be used with the BackupFile parameter.</p>
+<p>The path used to specify the location should end with a forward slash (/).</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BackupDevice</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the devices where the backups are stored.
+This parameter cannot be used with the BackupFile parameter.
+Use this parameter if you are backing up to tape.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupDeviceItem[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BackupFile</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the location and file name of the backup.
+This is an optional parameter.
+If not specified, the backups are stored in the default backup location of the server under the name 
+databasename.bak for full and file backups, or databasename.trn for log backups.
+This parameter cannot be used with the BackupDevice or BackupContainer parameters.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String[]</span></td></tr>
+				<tr><td>Position:</td><td>2</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BackupSetDescription</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the description of the backup set. This parameter is optional.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BackupSetName</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the name of the backup set.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BlockSize</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the physical block size for the backup, in bytes.
+The supported sizes are 512, 1024, 2048, 4096, 8192, 16384, 32768, and 65536 (64 KB) bytes.
+The default is 65536 for tape devices and 512 for all other devices.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Int32</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-BufferCount</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the number of I/O buffers to use for the backup operation.
+You can specify any positive integer.
+If there is insufficient virtual address space in the Sqlservr.exe process for the buffers, you will
+receive an out of memory error.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Int32</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Checksum</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that a checksum value is calculated during the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-CompressionOption</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the compression options for the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupCompressionOptions</span></td></tr>
+				<tr><td>Parameter Sets:</td><td>Default, On, Off</td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Confirm</div>
+	<div class="parameterInfo">
+		
+		<p>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Aliases:</td><td>cf</td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>False</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-ConnectionTimeout</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the number of seconds to wait for a server connection before a timeout failure.
+The timeout value must be an integer between 0 and 65534.
+If 0 is specified, connection attempts do not timeout.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Int32</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-ContinueAfterError</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the operation continues when a checksum error occurs.
+If not set, the operation will fail after a checksum error.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-CopyOnly</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the backup is a copy-only backup.
+A copy-only backup does not affect the normal sequence of your regularly scheduled conventional backups.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Credential</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies a PSCredential object that contains the credentials for a SQL Server login that has permission to
+perform this operation. This is not the SQL credential object that is used to store authentication information
+internally by SQL Server when accessing resources outside SQL Server.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">PSCredential</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-DatabaseFile</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies one or more database files to back up.
+This parameter is only used when BackupAction is set to Files.
+When BackupAction is set to Files, either the DatabaseFileGroups or DatabaseFiles parameter must be specified.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-DatabaseFileGroup</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the database file groups targeted by the backup operation.
+This parameter is only used when BackupAction property is set to Files.
+When BackupAction parameter is set to Files, either the DatabaseFileGroups or DatabaseFiles parameter must be specified.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-EncryptionOption</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the encryption options for the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupEncryptionOptions</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-ExpirationDate</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the date and time when the backup set expires and the backup data is no longer considered valid.
+This can only be used for backup data stored on disk or tape devices.
+Backup sets older than the expiration date are available to be overwritten by a later backup.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">DateTime</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-FormatMedia</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the tape is formatted as the first step of the backup operation.
+This doesnot apply to a disk backup.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Incremental</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that a differential backup is performed.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Initialize</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that devices associated with the backup operation are initialized.
+This overwrites any existing backup sets on the media and makes this backup the first backup set on the media.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-LogTruncationType</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the truncation behavior for log backups.
+Valid values are:</p>
+<p>-- TruncateOnly
+-- NoTruncate
+-- Truncate</p>
+<p>The default value is Truncate.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupTruncateLogType</span></td></tr>
+				<tr><td>Parameter Sets:</td><td>TruncateOnly, NoTruncate, Truncate</td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-MaxTransferSize</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the maximum number of bytes to be transferred between the backup media and the instance of SQL Server.
+The possible values are multiples of 65536 bytes (64 KB), up to 4194304 bytes (4 MB).</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Int32</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-MediaDescription</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the description for the medium that contains the backup set.
+This parameter is optional.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-MediaName</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the name used to identify the media set.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-MirrorDevices</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies an array of BackupDeviceList objects used by the mirrored backup.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">BackupDeviceList[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-NoRecovery</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the tail end of the log is not backed up.
+When restored, the database is in the restoring state.
+When not set, the tail end of the log is backed up.
+This only applies when the BackupAction parameter is set to Log.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-NoRewind</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that a tape drive is left open at the ending position when the backup completes.
+When not set, the tape is rewound after the operation completes.
+This does not apply to disk or URL backups.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-PassThru</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the cmdlet outputs the Smo.Backup object that performed the backup.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Path</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the path to the instance of SQL Server to execute the backup operation.
+This is an optional parameter.
+If not specified, the value of this parameter defaults to the current working location.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String[]</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Restart</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the cmdlet continues processing a partially completed backup operation.
+If not set, the cmdlet restarts an interrupted backup operation at the beginning of the backup set.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-RetainDays</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the number of days that must elapse before a backup set can be overwritten.
+This can only be used for backup data stored on disk or tape devices.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">Int32</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-Script</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that this cmdlet outputs a Transact-SQL script that performs the backup operation.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-SkipTapeHeader</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the tape header is not read.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-SqlCredential</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies an SQL Server credential object that stores authentication information.
+If you are backing up to Blob storage service, you must specify this parameter.
+The authentication information stored includes the Storage account name and the associated access key values.
+Do not specify this parameter for disk or tape.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">PSObject</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-UndoFileName</div>
+	<div class="parameterInfo">
+		
+		<p>Specifies the name of the undo file used to store uncommitted transactions that are rolled back during recovery.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">String</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-UnloadTapeAfter</div>
+	<div class="parameterInfo">
+		
+		<p>Indicates that the tape device is rewound and unloaded when the operation finishes.
+If not set, no attempt is made to rewind and unload the tape medium.
+This does not apply to disk or URL backups.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>None</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>	
+	<div class="parameterName stack">-WhatIf</div>
+	<div class="parameterInfo">
+		
+		<p>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</p>
+
+	
+		<div class="table-scroll-wrapper"><table class="nameValue stack">
+				<tbody><tr><td>Type:</td><td><span class="xref">SwitchParameter</span></td></tr>
+				<tr><td>Aliases:</td><td>wi</td></tr>
+				<tr><td>Position:</td><td>Named</td></tr>
+				<tr><td>Default value:</td><td>False</td></tr>
+				<tr><td>Accept pipeline input:</td><td>False</td></tr>
+				<tr><td>Accept wildcard characters:</td><td>False</td></tr>
+		</tbody></table></div>
+	</div>
+	<h2 id="inputs" class="heading-with-anchor">Inputs<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#inputs"></a></h2>
+		<p><strong>SMO.Server</strong></p>
+	
+	<h2 id="inputs" class="heading-with-anchor">Inputs<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#inputs"></a></h2>
+		<p><strong>Microsoft.SqlServer.Management.Smo.Database</strong></p>
+	
+	<h2 id="inputs" class="heading-with-anchor">Inputs<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#inputs"></a></h2>
+		<p><strong>Microsoft.SqlServer.Management.Smo.Server[]</strong></p>
+	<p>Specifies an SMO.Server object referring to the instance of SQL Server on which the backup operation occurs.</p>
+
+	<h2 id="inputs" class="heading-with-anchor">Inputs<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#inputs"></a></h2>
+		<p><strong>System.String[]</strong></p>
+	
+
+	<h2 id="outputs" class="heading-with-anchor">Outputs<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#outputs"></a></h2>
+		<p><strong>System.Object</strong></p>
+	
+
+
+	<h2 id="related-links" class="heading-with-anchor">Related Links<a class="docon docon-link heading-anchor" tabindex="-1" aria-hidden="true" href="#related-links"></a></h2>
+	<ul>
+	<li><a href="">Restore-SqlDatabase</a></li>
+	</ul>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- feedback section -->
+
+
+
+						<!-- end feedback section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <a data-mscc-ic="false" class="locale-selector-link" href="https://docs.microsoft.com/en-us/locale?target=https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase?view=sqlserver-ps" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small"></span><span class="local-selector-link-text">English (United States)</span></a>
+
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+				<div id="left-container" class="left-container column is-one-third-tablet is-one-quarter-desktop">
+					<nav class="sidebar" id="sidebar" data-bi-name="left toc" role="navigation" aria-label="Main Navigation" style="width: 364px; top: 24px; bottom: 24px;">
+						<button class="sidebar-header" type="button" aria-label="Close" data-bi-name="contents-collapse">
+							<span>Contents</span>
+							<span class="docon docon-navigate-close" aria-hidden="true"></span>
+						</button>
+						<div id="sidebarContent">
+							<div class="filterHolder">
+							<div class="moniker-picker" data-bi-name="moniker-picker">
+		<button class="products" id="ax-0" aria-haspopup="true" aria-controls="ax-1" aria-expanded="false" disabled="disabled">
+			<span class="visually-hidden">Select Package</span>
+			<span aria-hidden="true">SQL Server Power<wbr>Shell</span>
+		</button>
+		<div class="products" id="ax-1" role="menu" aria-labelledby="ax-0" style="z-index: 5000">
+			<span aria-hidden="true">Version</span>
+			<ul aria-label="Product"><li><a class="preserve-view has-inner-focus" role="menuitem" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase?view=sqlserver-ps" aria-label="SQL Server PowerShell" data-default="true" tabindex="-1">Latest</a></li></ul>
+		</div></div><form class="api-search-field" data-bi-name="api-search-field" action="javascript:"><label><span class="visually-hidden">Search</span><input type="search" class="input empty" placeholder="Search"><a href="#" title="Clear Term" class="clear"></a></label></form></div>
+							<nav class="toc" role="application" aria-label="Table of Contents" id="filterResults"><div class="api-search-results-container"></div><ul role="tree" onclick='msDocs.functions.stopSomePropagation(event, "top")'><li role="treeitem"><a onclick='msDocs.functions.stopSomePropagation(event, "left")' tabindex="0" href="https://docs.microsoft.com/en-us/powershell/sql-server/overview?view=sqlserver-ps" data-text="overview ">Overview</a></li><li role="group" class="group" aria-expanded="true" aria-label="reference " tabindex="0" onclick="event.stopPropagation();msDocs.functions.toggleAriaExpanded(this)"><span aria-hidden="true" data-text="reference ">Reference</span><ul role="tree" onclick='msDocs.functions.stopSomePropagation(event, "top")'><li role="group" aria-expanded="false" aria-label="sqlps " tabindex="0" onclick="event.stopPropagation();msDocs.functions.toggleAriaExpanded(this)" class="noSubs"><a onclick='msDocs.functions.stopSomePropagation(event, "left")' tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/?view=sqlserver-ps" data-text="sqlps ">sqlps</a><ul role="tree" onclick='msDocs.functions.stopSomePropagation(event, "top")'><li role="treeitem"><a onclick='msDocs.functions.stopSomePropagation(event, "left")' tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/add-sqlavailabilitydatabase?view=sqlserver-ps" data-text="add-sqlavailabilitydatabase ">Add-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/add-sqlavailabilitygrouplistenerstaticip?view=sqlserver-ps" data-text="add-sqlavailabilitygrouplistenerstaticip ">Add-Sql<wbr>Availability<wbr>Group<wbr>Listener<wbr>Static<wbr>Ip</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/backup-sqldatabase?view=sqlserver-ps" data-text="backup-sqldatabase ">Backup-Sql<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/convert-urntopath?view=sqlserver-ps" data-text="convert-urntopath ">Convert-Urn<wbr>ToPath</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/decode-sqlname?view=sqlserver-ps" data-text="decode-sqlname ">Decode-Sql<wbr>Name</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/disable-sqlalwayson?view=sqlserver-ps" data-text="disable-sqlalwayson ">Disable-Sql<wbr>Always<wbr>On</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/enable-sqlalwayson?view=sqlserver-ps" data-text="enable-sqlalwayson ">Enable-Sql<wbr>Always<wbr>On</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/encode-sqlname?view=sqlserver-ps" data-text="encode-sqlname ">Encode-Sql<wbr>Name</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/invoke-policyevaluation?view=sqlserver-ps" data-text="invoke-policyevaluation ">Invoke-Policy<wbr>Evaluation</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/invoke-sqlcmd?view=sqlserver-ps" data-text="invoke-sqlcmd ">Invoke-Sqlcmd</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/join-sqlavailabilitygroup?view=sqlserver-ps" data-text="join-sqlavailabilitygroup ">Join-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/new-sqlavailabilitygroup?view=sqlserver-ps" data-text="new-sqlavailabilitygroup ">New-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/new-sqlavailabilitygrouplistener?view=sqlserver-ps" data-text="new-sqlavailabilitygrouplistener ">New-Sql<wbr>Availability<wbr>Group<wbr>Listener</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/new-sqlavailabilityreplica?view=sqlserver-ps" data-text="new-sqlavailabilityreplica ">New-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/new-sqlhadrendpoint?view=sqlserver-ps" data-text="new-sqlhadrendpoint ">New-Sql<wbr>HADREndpoint</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/remove-sqlavailabilitydatabase?view=sqlserver-ps" data-text="remove-sqlavailabilitydatabase ">Remove-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/remove-sqlavailabilitygroup?view=sqlserver-ps" data-text="remove-sqlavailabilitygroup ">Remove-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/restore-sqldatabase?view=sqlserver-ps" data-text="restore-sqldatabase ">Restore-Sql<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/resume-sqlavailabilitydatabase?view=sqlserver-ps" data-text="resume-sqlavailabilitydatabase ">Resume-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/set-sqlavailabilitygroup?view=sqlserver-ps" data-text="set-sqlavailabilitygroup ">Set-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/set-sqlavailabilitygrouplistener?view=sqlserver-ps" data-text="set-sqlavailabilitygrouplistener ">Set-Sql<wbr>Availability<wbr>Group<wbr>Listener</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/set-sqlavailabilityreplica?view=sqlserver-ps" data-text="set-sqlavailabilityreplica ">Set-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/set-sqlhadrendpoint?view=sqlserver-ps" data-text="set-sqlhadrendpoint ">Set-Sql<wbr>HADREndpoint</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/suspend-sqlavailabilitydatabase?view=sqlserver-ps" data-text="suspend-sqlavailabilitydatabase ">Suspend-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/switch-sqlavailabilitygroup?view=sqlserver-ps" data-text="switch-sqlavailabilitygroup ">Switch-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/test-sqlavailabilitygroup?view=sqlserver-ps" data-text="test-sqlavailabilitygroup ">Test-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/test-sqlavailabilityreplica?view=sqlserver-ps" data-text="test-sqlavailabilityreplica ">Test-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlps/test-sqldatabasereplicastate?view=sqlserver-ps" data-text="test-sqldatabasereplicastate ">Test-Sql<wbr>Database<wbr>Replica<wbr>State</a></li></ul></li><li role="group" aria-expanded="true" aria-label="sqlserver " tabindex="0" onclick="event.stopPropagation();msDocs.functions.toggleAriaExpanded(this)" class="noSubs"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps" data-text="sqlserver ">sqlserver</a><ul role="tree" onclick='msDocs.functions.stopSomePropagation(event, "top")'><li role="treeitem"><a onclick='msDocs.functions.stopSomePropagation(event, "left")' tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-rolemember?view=sqlserver-ps" data-text="add-rolemember ">Add-Role<wbr>Member</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqlavailabilitydatabase?view=sqlserver-ps" data-text="add-sqlavailabilitydatabase ">Add-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqlavailabilitygrouplistenerstaticip?view=sqlserver-ps" data-text="add-sqlavailabilitygrouplistenerstaticip ">Add-Sql<wbr>Availability<wbr>Group<wbr>Listener<wbr>Static<wbr>Ip</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqlazureauthenticationcontext?view=sqlserver-ps" data-text="add-sqlazureauthenticationcontext ">Add-Sql<wbr>Azure<wbr>Authentication<wbr>Context</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqlcolumnencryptionkeyvalue?view=sqlserver-ps" data-text="add-sqlcolumnencryptionkeyvalue ">Add-Sql<wbr>Column<wbr>Encryption<wbr>Key<wbr>Value</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqlfirewallrule?view=sqlserver-ps" data-text="add-sqlfirewallrule ">Add-Sql<wbr>Firewall<wbr>Rule</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/add-sqllogin?view=sqlserver-ps" data-text="add-sqllogin ">Add-Sql<wbr>Login</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-asdatabase?view=sqlserver-ps" data-text="backup-asdatabase ">Backup-ASDatabase</a></li><li role="treeitem" class="selectedHolder"><a tabindex="0" class="selected" aria-current="page" data-showme="true" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase?view=sqlserver-ps" data-text="backup-sqldatabase ">Backup-Sql<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/complete-sqlcolumnmasterkeyrotation?view=sqlserver-ps" data-text="complete-sqlcolumnmasterkeyrotation ">Complete-Sql<wbr>Column<wbr>Master<wbr>Key<wbr>Rotation</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/convertfrom-encodedsqlname?view=sqlserver-ps" data-text="convertfrom-encodedsqlname ">Convert<wbr>From-Encoded<wbr>Sql<wbr>Name</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/convertto-encodedsqlname?view=sqlserver-ps" data-text="convertto-encodedsqlname ">Convert<wbr>To-Encoded<wbr>Sql<wbr>Name</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/convert-urntopath?view=sqlserver-ps" data-text="convert-urntopath ">Convert-Urn<wbr>ToPath</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/disable-sqlalwayson?view=sqlserver-ps" data-text="disable-sqlalwayson ">Disable-Sql<wbr>Always<wbr>On</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/enable-sqlalwayson?view=sqlserver-ps" data-text="enable-sqlalwayson ">Enable-Sql<wbr>Always<wbr>On</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/export-sqlvulnerabilityassessmentbaselineset?view=sqlserver-ps" data-text="export-sqlvulnerabilityassessmentbaselineset ">Export-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Baseline<wbr>Set</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/export-sqlvulnerabilityassessmentscan?view=sqlserver-ps" data-text="export-sqlvulnerabilityassessmentscan ">Export-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Scan</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagent?view=sqlserver-ps" data-text="get-sqlagent ">Get-Sql<wbr>Agent</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagentjob?view=sqlserver-ps" data-text="get-sqlagentjob ">Get-Sql<wbr>Agent<wbr>Job</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagentjobhistory?view=sqlserver-ps" data-text="get-sqlagentjobhistory ">Get-Sql<wbr>Agent<wbr>Job<wbr>History</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagentjobschedule?view=sqlserver-ps" data-text="get-sqlagentjobschedule ">Get-Sql<wbr>Agent<wbr>Job<wbr>Schedule</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagentjobstep?view=sqlserver-ps" data-text="get-sqlagentjobstep ">Get-Sql<wbr>Agent<wbr>Job<wbr>Step</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlagentschedule?view=sqlserver-ps" data-text="get-sqlagentschedule ">Get-Sql<wbr>Agent<wbr>Schedule</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlbackuphistory?view=sqlserver-ps" data-text="get-sqlbackuphistory ">Get-Sql<wbr>Backup<wbr>History</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlcolumnencryptionkey?view=sqlserver-ps" data-text="get-sqlcolumnencryptionkey ">Get-Sql<wbr>Column<wbr>Encryption<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlcolumnmasterkey?view=sqlserver-ps" data-text="get-sqlcolumnmasterkey ">Get-Sql<wbr>Column<wbr>Master<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlcredential?view=sqlserver-ps" data-text="get-sqlcredential ">Get-Sql<wbr>Credential</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqldatabase?view=sqlserver-ps" data-text="get-sqldatabase ">Get-Sql<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlerrorlog?view=sqlserver-ps" data-text="get-sqlerrorlog ">Get-Sql<wbr>Error<wbr>Log</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlinstance?view=sqlserver-ps" data-text="get-sqlinstance ">Get-Sql<wbr>Instance</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqllogin?view=sqlserver-ps" data-text="get-sqllogin ">Get-Sql<wbr>Login</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/get-sqlsmartadmin?view=sqlserver-ps" data-text="get-sqlsmartadmin ">Get-Sql<wbr>Smart<wbr>Admin</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/grant-sqlavailabilitygroupcreateanydatabase?view=sqlserver-ps" data-text="grant-sqlavailabilitygroupcreateanydatabase ">Grant-Sql<wbr>Availability<wbr>Group<wbr>Create<wbr>Any<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/import-sqlvulnerabilityassessmentbaselineset?view=sqlserver-ps" data-text="import-sqlvulnerabilityassessmentbaselineset ">Import-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Baseline<wbr>Set</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-ascmd?view=sqlserver-ps" data-text="invoke-ascmd ">Invoke-ASCmd</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-policyevaluation?view=sqlserver-ps" data-text="invoke-policyevaluation ">Invoke-Policy<wbr>Evaluation</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-processasdatabase?view=sqlserver-ps" data-text="invoke-processasdatabase ">Invoke-Process<wbr>ASDatabase</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-processcube?view=sqlserver-ps" data-text="invoke-processcube ">Invoke-Process<wbr>Cube</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-processdimension?view=sqlserver-ps" data-text="invoke-processdimension ">Invoke-Process<wbr>Dimension</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-processpartition?view=sqlserver-ps" data-text="invoke-processpartition ">Invoke-Process<wbr>Partition</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-processtable?view=sqlserver-ps" data-text="invoke-processtable ">Invoke-Process<wbr>Table</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-sqlcmd?view=sqlserver-ps" data-text="invoke-sqlcmd ">Invoke-Sqlcmd</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-sqlcolumnmasterkeyrotation?view=sqlserver-ps" data-text="invoke-sqlcolumnmasterkeyrotation ">Invoke-Sql<wbr>Column<wbr>Master<wbr>Key<wbr>Rotation</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-sqlvulnerabilityassessmentscan?view=sqlserver-ps" data-text="invoke-sqlvulnerabilityassessmentscan ">Invoke-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Scan</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/join-sqlavailabilitygroup?view=sqlserver-ps" data-text="join-sqlavailabilitygroup ">Join-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/merge-partition?view=sqlserver-ps" data-text="merge-partition ">Merge-Partition</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-restorefolder?view=sqlserver-ps" data-text="new-restorefolder ">New-Restore<wbr>Folder</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-restorelocation?view=sqlserver-ps" data-text="new-restorelocation ">New-Restore<wbr>Location</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilitygroup?view=sqlserver-ps" data-text="new-sqlavailabilitygroup ">New-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilitygrouplistener?view=sqlserver-ps" data-text="new-sqlavailabilitygrouplistener ">New-Sql<wbr>Availability<wbr>Group<wbr>Listener</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilityreplica?view=sqlserver-ps" data-text="new-sqlavailabilityreplica ">New-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlazurekeyvaultcolumnmasterkeysettings?view=sqlserver-ps" data-text="new-sqlazurekeyvaultcolumnmasterkeysettings ">New-Sql<wbr>Azure<wbr>Key<wbr>Vault<wbr>Column<wbr>Master<wbr>Key<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlbackupencryptionoption?view=sqlserver-ps" data-text="new-sqlbackupencryptionoption ">New-Sql<wbr>Backup<wbr>Encryption<wbr>Option</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcertificatestorecolumnmasterkeysettings?view=sqlserver-ps" data-text="new-sqlcertificatestorecolumnmasterkeysettings ">New-Sql<wbr>Certificate<wbr>Store<wbr>Column<wbr>Master<wbr>Key<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcngcolumnmasterkeysettings?view=sqlserver-ps" data-text="new-sqlcngcolumnmasterkeysettings ">New-Sql<wbr>Cng<wbr>Column<wbr>Master<wbr>Key<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcolumnencryptionkey?view=sqlserver-ps" data-text="new-sqlcolumnencryptionkey ">New-Sql<wbr>Column<wbr>Encryption<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcolumnencryptionkeyencryptedvalue?view=sqlserver-ps" data-text="new-sqlcolumnencryptionkeyencryptedvalue ">New-Sql<wbr>Column<wbr>Encryption<wbr>Key<wbr>Encrypted<wbr>Value</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcolumnencryptionsettings?view=sqlserver-ps" data-text="new-sqlcolumnencryptionsettings ">New-Sql<wbr>Column<wbr>Encryption<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcolumnmasterkey?view=sqlserver-ps" data-text="new-sqlcolumnmasterkey ">New-Sql<wbr>Column<wbr>Master<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcolumnmasterkeysettings?view=sqlserver-ps" data-text="new-sqlcolumnmasterkeysettings ">New-Sql<wbr>Column<wbr>Master<wbr>Key<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcredential?view=sqlserver-ps" data-text="new-sqlcredential ">New-Sql<wbr>Credential</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlcspcolumnmasterkeysettings?view=sqlserver-ps" data-text="new-sqlcspcolumnmasterkeysettings ">New-Sql<wbr>Csp<wbr>Column<wbr>Master<wbr>Key<wbr>Settings</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlhadrendpoint?view=sqlserver-ps" data-text="new-sqlhadrendpoint ">New-Sql<wbr>HADREndpoint</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlvulnerabilityassessmentbaseline?view=sqlserver-ps" data-text="new-sqlvulnerabilityassessmentbaseline ">New-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Baseline</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlvulnerabilityassessmentbaselineset?view=sqlserver-ps" data-text="new-sqlvulnerabilityassessmentbaselineset ">New-Sql<wbr>Vulnerability<wbr>Assessment<wbr>Baseline<wbr>Set</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/read-sqltabledata?view=sqlserver-ps" data-text="read-sqltabledata ">Read-Sql<wbr>Table<wbr>Data</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/read-sqlviewdata?view=sqlserver-ps" data-text="read-sqlviewdata ">Read-Sql<wbr>View<wbr>Data</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-rolemember?view=sqlserver-ps" data-text="remove-rolemember ">Remove-Role<wbr>Member</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlavailabilitydatabase?view=sqlserver-ps" data-text="remove-sqlavailabilitydatabase ">Remove-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlavailabilitygroup?view=sqlserver-ps" data-text="remove-sqlavailabilitygroup ">Remove-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlavailabilityreplica?view=sqlserver-ps" data-text="remove-sqlavailabilityreplica ">Remove-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlcolumnencryptionkey?view=sqlserver-ps" data-text="remove-sqlcolumnencryptionkey ">Remove-Sql<wbr>Column<wbr>Encryption<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlcolumnencryptionkeyvalue?view=sqlserver-ps" data-text="remove-sqlcolumnencryptionkeyvalue ">Remove-Sql<wbr>Column<wbr>Encryption<wbr>Key<wbr>Value</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlcolumnmasterkey?view=sqlserver-ps" data-text="remove-sqlcolumnmasterkey ">Remove-Sql<wbr>Column<wbr>Master<wbr>Key</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlcredential?view=sqlserver-ps" data-text="remove-sqlcredential ">Remove-Sql<wbr>Credential</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqlfirewallrule?view=sqlserver-ps" data-text="remove-sqlfirewallrule ">Remove-Sql<wbr>Firewall<wbr>Rule</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/remove-sqllogin?view=sqlserver-ps" data-text="remove-sqllogin ">Remove-Sql<wbr>Login</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/restore-asdatabase?view=sqlserver-ps" data-text="restore-asdatabase ">Restore-ASDatabase</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/restore-sqldatabase?view=sqlserver-ps" data-text="restore-sqldatabase ">Restore-Sql<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/resume-sqlavailabilitydatabase?view=sqlserver-ps" data-text="resume-sqlavailabilitydatabase ">Resume-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/revoke-sqlavailabilitygroupcreateanydatabase?view=sqlserver-ps" data-text="revoke-sqlavailabilitygroupcreateanydatabase ">Revoke-Sql<wbr>Availability<wbr>Group<wbr>Create<wbr>Any<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/save-sqlmigrationreport?view=sqlserver-ps" data-text="save-sqlmigrationreport ">Save-Sql<wbr>Migration<wbr>Report</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlauthenticationmode?view=sqlserver-ps" data-text="set-sqlauthenticationmode ">Set-Sql<wbr>Authentication<wbr>Mode</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlavailabilitygroup?view=sqlserver-ps" data-text="set-sqlavailabilitygroup ">Set-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlavailabilitygrouplistener?view=sqlserver-ps" data-text="set-sqlavailabilitygrouplistener ">Set-Sql<wbr>Availability<wbr>Group<wbr>Listener</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlavailabilityreplica?view=sqlserver-ps" data-text="set-sqlavailabilityreplica ">Set-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlavailabilityreplicaroletosecondary?view=sqlserver-ps" data-text="set-sqlavailabilityreplicaroletosecondary ">Set-Sql<wbr>Availability<wbr>Replica<wbr>Role<wbr>ToSecondary</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlcolumnencryption?view=sqlserver-ps" data-text="set-sqlcolumnencryption ">Set-Sql<wbr>Column<wbr>Encryption</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlcredential?view=sqlserver-ps" data-text="set-sqlcredential ">Set-Sql<wbr>Credential</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlerrorlog?view=sqlserver-ps" data-text="set-sqlerrorlog ">Set-Sql<wbr>Error<wbr>Log</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlhadrendpoint?view=sqlserver-ps" data-text="set-sqlhadrendpoint ">Set-Sql<wbr>HADREndpoint</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlnetworkconfiguration?view=sqlserver-ps" data-text="set-sqlnetworkconfiguration ">Set-Sql<wbr>Network<wbr>Configuration</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/set-sqlsmartadmin?view=sqlserver-ps" data-text="set-sqlsmartadmin ">Set-Sql<wbr>Smart<wbr>Admin</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/start-sqlinstance?view=sqlserver-ps" data-text="start-sqlinstance ">Start-Sql<wbr>Instance</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/stop-sqlinstance?view=sqlserver-ps" data-text="stop-sqlinstance ">Stop-Sql<wbr>Instance</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/suspend-sqlavailabilitydatabase?view=sqlserver-ps" data-text="suspend-sqlavailabilitydatabase ">Suspend-Sql<wbr>Availability<wbr>Database</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/switch-sqlavailabilitygroup?view=sqlserver-ps" data-text="switch-sqlavailabilitygroup ">Switch-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/test-sqlavailabilitygroup?view=sqlserver-ps" data-text="test-sqlavailabilitygroup ">Test-Sql<wbr>Availability<wbr>Group</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/test-sqlavailabilityreplica?view=sqlserver-ps" data-text="test-sqlavailabilityreplica ">Test-Sql<wbr>Availability<wbr>Replica</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/test-sqldatabasereplicastate?view=sqlserver-ps" data-text="test-sqldatabasereplicastate ">Test-Sql<wbr>Database<wbr>Replica<wbr>State</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/test-sqlsmartadmin?view=sqlserver-ps" data-text="test-sqlsmartadmin ">Test-Sql<wbr>Smart<wbr>Admin</a></li><li role="treeitem"><a tabindex="0" href="https://docs.microsoft.com/en-us/powershell/module/sqlserver/write-sqltabledata?view=sqlserver-ps" data-text="write-sqltabledata ">Write-Sql<wbr>Table<wbr>Data</a></li></ul></li></ul></li></ul></nav>
+							<div class="pdf-download-holder"></div>
+						</div>
+					</nav>
+				</div>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container">
+		<form aria-live="assertive" class="rating has-default-focus rating-helpful-active" action="javascript:" data-bi-name="rating">
+			<button class="rating-close has-default-focus has-inner-focus docon docon-navigate-close" type="button" aria-label="Close" data-bi-name="rating-close"></button>
+			<button class="button is-primary rating-mobile-feedback" type="button" data-bi-name="rating-mobile-feedback">Feedback</button>
+			<div class="rating-helpful">
+				<label>Is this page helpful?</label>
+				<div class="buttons">
+					<button class="button is-primary" type="button" data-bi-name="rating-yes" data-bi-sat="1">Yes</button>
+					<button class="button is-primary" type="button" data-bi-name="rating-no" data-bi-sat="0">No</button>
+				</div>
+			</div>
+			<div class="rating-thanks1 has-default-focus">
+				<p class="x-hidden-focus" tabindex="-1">Thanks for the feedback!</p>
+				<p>Comments or suggestions? <a href="#" data-bi-name="rating-verbatim-link">Tell us here</a>.</p>
+			</div>
+			<div class="rating-thanks2">
+				<span class="x-hidden-focus" tabindex="-1">Thanks for the feedback!</span>
+			</div>
+			<div class="rating-verbatim has-default-focus">
+				<label for="rating-0">How can we improve?</label>
+				<textarea class="rating-textarea textarea" required="required" id="rating-0" placeholder="Please share your ideas. We welcome feedback in any language."></textarea>
+				<button class="button is-primary" type="submit" data-bi-name="rating-verbatim" disabled="disabled">Submit</button>
+			</div>
+		</form></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <a data-mscc-ic="false" class="locale-selector-link" href="https://docs.microsoft.com/en-us/locale?target=https://docs.microsoft.com/en-us/powershell/module/sqlserver/backup-sqldatabase?view=sqlserver-ps" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small"></span><span class="local-selector-link-text">English (United States)</span></a>
+
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+    </ul>
+</footer>
+
+	</div>
+
+	<div class="action-panel has-default-focus"></div>
+
+
+</body></html>

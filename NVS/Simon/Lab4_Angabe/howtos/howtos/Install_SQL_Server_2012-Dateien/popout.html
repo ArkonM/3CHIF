@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<style type="text/css">@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i);</style><style type="text/css">*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.helpdotcom-popout .helpdotcom-actions {
+  padding: 10px 0 0 0;
+}
+
+.helpdotcom-popout .helpdotcom-actions button {
+  display: inline-block;
+  height: 30px;
+  font-weight: 700;
+  font-size: inherit;
+  line-height: 30px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 3px;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.helpdotcom-popout .helpdotcom-actions button.helpdotcom-reply {
+  color: #fff;
+  margin: 0 10px 0 0;
+  background: #00578f;
+}
+
+.helpdotcom-popout .helpdotcom-actions button.helpdotcom-reply:hover {
+  background: #00385c;
+}
+
+.helpdotcom-popout .helpdotcom-actions button.helpdotcom-ignore {
+  color: #00578f;
+  background: rgba(0, 87, 143, 0.2);
+}
+
+.helpdotcom-popout .helpdotcom-actions button.helpdotcom-ignore:hover {
+  background: rgba(0, 87, 143, 0.3);
+}
+
+.helpdotcom-popout .helpdotcom-background {
+  position: relative;
+  background-color: #00578f;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-close {
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-close::before {
+  content: none;
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-close svg polygon {
+  fill: #fff;
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-thumbnail {
+  top: -20px;
+  width: 60px;
+  height: 60px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00578f;
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.helpdotcom-popout .helpdotcom-background .helpdotcom-content {
+  color: #fff;
+}
+
+.helpdotcom-popout .helpdotcom-close {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  color: #00578f;
+  padding: 0;
+  background: rgba(0, 87, 143, 0.15);
+  border: 0;
+  border-radius: 50%;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.helpdotcom-popout .helpdotcom-close:hover {
+  background: rgba(0, 87, 143, 0.25);
+}
+
+.helpdotcom-popout .helpdotcom-close::before {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  left: -6px;
+  bottom: -6px;
+  content: "";
+}
+
+.helpdotcom-popout .helpdotcom-close svg {
+  display: block;
+  margin: 5px auto;
+}
+
+.helpdotcom-popout .helpdotcom-close svg polygon {
+  fill: #00578f;
+}
+
+.helpdotcom-popout .helpdotcom-reply {
+  margin: 0 -10px -10px -10px;
+}
+
+.helpdotcom-popout .helpdotcom-reply .helpdotcom-post {
+  display: block;
+  width: 100%;
+  height: 60px;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 20px;
+  color: inherit;
+  padding: 10px;
+  background: #fff;
+  border: 0;
+  border-radius: 0 0 3px 3px;
+  resize: none;
+}
+
+.helpdotcom-popout {
+  position: relative;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: "Open Sans", "Arial";
+  line-height: 1.5;
+  color: #333;
+  padding: 10px;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.helpdotcom-popout.helpdotcom-popout-short {
+  cursor: pointer;
+}
+
+.helpdotcom-popout.helpdotcom-popout-long {
+  padding-left: 60px;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatar {
+  padding-top: 20px;
+  background: none;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatar .helpdotcom-title {
+  font-size: 16px;
+  margin-left: 70px;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatar .helpdotcom-content {
+  padding: 10px 0;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatars {
+  padding-top: 20px;
+  background: none;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatars .helpdotcom-background {
+  padding-top: 50px;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatars .helpdotcom-title {
+  text-align: center;
+}
+
+.helpdotcom-popout.helpdotcom-popout-avatars .helpdotcom-content {
+  text-align: center;
+  padding: 5px 0 10px 0;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnail {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-size: cover;
+  background-position: center center;
+  background-color: #00578f;
+  border-radius: 50%;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnail svg {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnail svg path {
+  fill: #fff;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnails {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.helpdotcom-popout .helpdotcom-thumbnails .helpdotcom-thumbnail {
+  position: static;
+  top: 0;
+  left: 0;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnails li {
+  float: left;
+  list-style: none;
+  margin: 0 -5px;
+}
+
+.helpdotcom-popout .helpdotcom-thumbnails li:nth-child(2) {
+  position: relative;
+  z-index: 1;
+}
+
+.helpdotcom-popout .helpdotcom-title {
+  font-weight: 700;
+  color: #00578f;
+}
+
+</style></head>
+<body>
+<div class="helpdotcom-popout">
+</div>
+<script type="text/javascript" src="popout_data/popout.js"></script>
+
+</body></html>
