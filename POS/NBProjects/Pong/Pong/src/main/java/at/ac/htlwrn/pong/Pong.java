@@ -19,10 +19,13 @@ public class Pong extends JFrame {
     MouseListener listener;
     KeyListener keys;
 
-    double playerY = 0;
+    double playerL = 0;
+    double playerR = 0;
     double playerSpeed = 100;
-    boolean up = false;
-    boolean down = false;
+    boolean upL = false;
+    boolean downL = false;
+    boolean upR = false;
+    boolean downR = false;
 
     Color color;
 
@@ -43,43 +46,43 @@ public class Pong extends JFrame {
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    down = false;
+                    downR = false;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    up = false;
+                    upR = false;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_S)
                 {
-                    down = false;
+                    downL = false;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_W)
                 {
-                    up = false;
+                    upL = false;
                 }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(!down && e.getKeyCode() == KeyEvent.VK_DOWN)
+                if(!downR && e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    System.out.println("Down");
-                    down = true;
+                    System.out.println("DownL");
+                    downR = true;
                 }
-                if(!up && e.getKeyCode() == KeyEvent.VK_UP)
+                if(!upR && e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    System.out.println("Up");
-                    up = true;
+                    System.out.println("UpL");
+                    upR = true;
                 }
-                if(!down && e.getKeyCode() == KeyEvent.VK_S)
+                if(!downL && e.getKeyCode() == KeyEvent.VK_S)
                 {
-                    System.out.println("Down");
-                    down = true;
+                    System.out.println("DownR");
+                    downL = true;
                 }
-                if(!up && e.getKeyCode() == KeyEvent.VK_W)
+                if(!upL && e.getKeyCode() == KeyEvent.VK_W)
                 {
-                    System.out.println("Up");
-                    up = true;
+                    System.out.println("UpR");
+                    upL = true;
                 }
             }
 
@@ -95,21 +98,32 @@ public class Pong extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g1 = (Graphics2D) g;
         g2.setColor(Color.ORANGE);
-        g2.drawRect(10, (int) playerY, 15, 45);
+        g2.drawRect(10, (int) playerL, 15, 45);
+        g1.setColor(Color.BLUE);
+        g1.drawRect(this.getWidth()-28, (int) playerR, 15, 45);
 
     }
     
     public void update(double deltaInSeconds)
     {
         
-        if(up)
+        if(upL)
         {
-            playerY -= deltaInSeconds * playerSpeed;
+            playerL -= deltaInSeconds * playerSpeed;
         }
-        if(down)
+        if(downL)
         {
-            playerY += deltaInSeconds * playerSpeed;
+            playerL += deltaInSeconds * playerSpeed;
+        }
+        if(upR)
+        {
+            playerR -= deltaInSeconds * playerSpeed;
+        }
+        if(downR)
+        {
+            playerR += deltaInSeconds * playerSpeed;
         }
     }
 
