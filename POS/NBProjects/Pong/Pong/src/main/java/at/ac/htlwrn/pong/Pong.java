@@ -19,19 +19,20 @@ public class Pong extends JFrame {
     MouseListener listener;
     KeyListener keys;
 
-    double playerL = this.getHeight()/2;
-    double playerR = this.getHeight()/2;
+    static double playerL = 0;
+    static double playerR = 0;
     double pongBallX = 1;
     double pongBallY = 1;
-    double playerSpeed = 100;
-    int playerRpoints = 0;
-    int playerLpoints = 0;
-    double pongSpeed = 170;
+    double playerSpeed = 300;
+    char[] playerLPoints = new char[1];
+    char[] playerRPoints = new char[1];
+    double pongSpeed = 300;
     boolean gameOn = false;
     boolean runin = false;
     boolean pauseOn = false;
     boolean pauseOff = false;
     boolean paused = false;
+    boolean gameOver = false;
     boolean upL = false;
     boolean downL = false;
     boolean upR = false;
@@ -78,6 +79,8 @@ public class Pong extends JFrame {
                 {
                     runin = true;
                     System.out.println("Game Started");
+                    playerLPoints[0] = 48;
+                    playerRPoints[0] = 48;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE && runin && gameOn && pauseOn)
                 {
@@ -95,40 +98,46 @@ public class Pong extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(!downR && e.getKeyCode() == KeyEvent.VK_DOWN)
+                if(paused || gameOver)
                 {
-                    System.out.println("DownR");
-                    downR = true;
-                }
-                if(!upR && e.getKeyCode() == KeyEvent.VK_UP)
-                {
-                    System.out.println("UpR");
-                    upR = true;
-                }
-                if(!downL && e.getKeyCode() == KeyEvent.VK_S)
-                {
-                    System.out.println("DownL");
-                    downL = true;
-                }
-                if(!upL && e.getKeyCode() == KeyEvent.VK_W)
-                {
-                    System.out.println("UpL");
-                    upL = true;
-                }
-                if(!runin && e.getKeyCode() == KeyEvent.VK_SPACE)
-                {
-                    gameOn = true;
-                }
-                if(runin && e.getKeyCode() == KeyEvent.VK_SPACE)
-                {
-                    pauseOn = true;
-                }
-                if(paused && e.getKeyCode() == KeyEvent.VK_SPACE)
-                {
-                    pauseOff = true;
+                    if(paused && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        pauseOff = true;   
+                    }
+                    if(gameOver && e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        gameOver = false;   
+                    }
+                } else {
+
+                    if(!downR && e.getKeyCode() == KeyEvent.VK_DOWN)
+                    {
+                        System.out.println("DownR");
+                        downR = true;
+                    }
+                    if(!upR && e.getKeyCode() == KeyEvent.VK_UP)
+                    {
+                        System.out.println("UpR");
+                        upR = true;
+                    }
+                    if(!downL && e.getKeyCode() == KeyEvent.VK_S)
+                    {
+                        System.out.println("DownL");
+                        downL = true;
+                    }
+                    if(!upL && e.getKeyCode() == KeyEvent.VK_W)
+                    {
+                        System.out.println("UpL");
+                        upL = true;
+                    }
+                    if(!runin && e.getKeyCode() == KeyEvent.VK_SPACE)
+                    {
+                        gameOn = true;
+                    }
+                    if(runin && e.getKeyCode() == KeyEvent.VK_SPACE)
+                    {
+                        pauseOn = true;
+                    }
                 }
             }
-
         };
 
         setLayout(null);
@@ -140,107 +149,115 @@ public class Pong extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D g1 = (Graphics2D) g;
         Graphics2D g2 = (Graphics2D) g;
-        Graphics2D g3 = (Graphics2D) g;
-        Graphics2D pL = (Graphics2D) g;
-        Graphics2D pR = (Graphics2D) g;
-        g1.setColor(Color.ORANGE);
-        g1.fillRect(10, (int) playerL, 15, 45);
-        g2.setColor(Color.BLUE);
+        g2.setColor(Color.BLACK);
+        g2.fillRect(1, 1, this.getWidth(), this.getHeight());
+        g2.setColor(Color.WHITE);
+        g2.drawChars(playerLPoints, 0, 1, 20, 50);
+        g2.drawChars(playerRPoints, 0, 1, this.getWidth()-25, 50);
+        g2.fillRect(10, (int) playerL, 15, 45);
+        g2.setColor(Color.WHITE);
         g2.fillRect(this.getWidth()-26, (int) playerR, 15, 45);
-        g3.setColor(Color.GREEN);
-        g3.fillRect((int) pongBallX, (int) pongBallY, 10, 10);
+        g2.setColor(Color.WHITE);
+        g2.fillRect((int) pongBallX, (int) pongBallY, 10, 10);
         
 
     }
     
     public void update(double deltaInSeconds)
     {
-        
-        if(upL&&playerL>15)
-        {
-            playerL -= deltaInSeconds * playerSpeed;
-        }
-        if(downL&&playerL<this.getHeight()+44)
-        {
-            playerL += deltaInSeconds * playerSpeed;
-        }
-        if(upR)
-        {
-            playerR -= deltaInSeconds * playerSpeed;
-        }
-        if(downR)
-        {
-            playerR += deltaInSeconds * playerSpeed;
-        }
-        
-        if(pongLU){
-            pongBallX -= deltaInSeconds * pongSpeed;
-            pongBallY -= deltaInSeconds * pongSpeed/2;
-        }
-        if(pongLD){
-            pongBallX -= deltaInSeconds * pongSpeed;
-            pongBallY += deltaInSeconds * pongSpeed/2;
-        }
-        if(pongRU){
-            pongBallX += deltaInSeconds * pongSpeed;
-            pongBallY -= deltaInSeconds * pongSpeed/2;
-        }
-        if(pongRD){
-            pongBallX += deltaInSeconds * pongSpeed;
-            pongBallY += deltaInSeconds * pongSpeed/2;
-        }
-      
-        
-        
-        if(pongBallY >= this.getHeight()-14 && pongRD){
-           pongRD = false;
-           pongRU = true;
-        } else if (pongBallY >= this.getHeight()-14 && pongLD){
-            pongLD = false;
-            pongLU = true;
-        } else if(pongBallY <= 28 && pongLU){
-           pongLU = false;
-           pongLD = true;
-        } else if (pongBallY <= 28 && pongRU){
-            pongRU = false;
-            pongRD = true;
-        }
-        
-        if(pongBallX >= this.getWidth()-14 && pongRD){
-           playerLpoints += 1;
-           pongBallX = getWidth()/2;
-           pongBallY = getHeight()/2;
-        } else if(pongBallX <= 0){
-           playerRpoints += 1;
-           pongBallX = getWidth()/2;
-           pongBallY = getHeight()/2;
-        }
-        
-        if(pongBallY >= playerR && pongBallY <= playerR+44 && pongBallX >= this.getWidth()-35 && pongBallX <= this.getWidth()-33){
-            if(pongRD){
-                pongRD = false;
-                pongLD = true;
-                System.out.println("Contact R");
-            } else if (pongRU){
-                pongRU = false;
-                pongLU = true;
-                System.out.println("Contact R");
+        if(!paused && runin){
+            if(upL&&playerL>35)
+            {
+                playerL -= deltaInSeconds * playerSpeed;
             }
-            
-        } else if(pongBallY >= playerL && pongBallY+14 <= playerL+44 && pongBallX >= 21 && pongBallX <= 24){
+            if(downL&&playerL<this.getHeight()-55)
+            {
+                playerL += deltaInSeconds * playerSpeed;
+            }
+            if(upR&&playerR>35)
+            {
+                playerR -= deltaInSeconds * playerSpeed;
+            }
+            if(downR&&playerR<this.getHeight()-55)
+            {
+                playerR += deltaInSeconds * playerSpeed;
+            }
+
+            if(pongLU){
+                pongBallX -= deltaInSeconds * pongSpeed;
+                pongBallY -= deltaInSeconds * pongSpeed/2;
+            }
             if(pongLD){
+                pongBallX -= deltaInSeconds * pongSpeed;
+                pongBallY += deltaInSeconds * pongSpeed/2;
+            }
+            if(pongRU){
+                pongBallX += deltaInSeconds * pongSpeed;
+                pongBallY -= deltaInSeconds * pongSpeed/2;
+            }
+            if(pongRD){
+                pongBallX += deltaInSeconds * pongSpeed;
+                pongBallY += deltaInSeconds * pongSpeed/2;
+            }
+
+            if(pongBallY >= this.getHeight()-14 && pongRD){
+               pongRD = false;
+               pongRU = true;
+            } else if (pongBallY >= this.getHeight()-14 && pongLD){
                 pongLD = false;
+                pongLU = true;
+            } else if(pongBallY <= 28 && pongLU){
+               pongLU = false;
+               pongLD = true;
+            } else if (pongBallY <= 28 && pongRU){
+                pongRU = false;
                 pongRD = true;
-                System.out.println("Contact L");
-                
-            } else if (pongLU){
-                pongLU = false;
-                pongRU = true;
-                System.out.println("Contact L");
-        }
-            
+            }
+
+            if(pongBallX >= this.getWidth()-14 && pongRD){
+                playerLPoints[0] += 1;
+                pongBallX = getWidth()/2;
+                pongBallY = getHeight()/2;
+            } else if(pongBallX <= 0){
+                playerRPoints[0] += 1;
+                pongBallX = getWidth()/2;
+                pongBallY = getHeight()/2;
+            }
+
+            if((pongBallY >= playerR && pongBallY <= playerR+44 || pongBallY+10 >= playerR && pongBallY+10 <= playerR+44) && pongBallX >= this.getWidth()-35 && pongBallX <= this.getWidth()-33){
+                if(pongRD){
+                    pongRD = false;
+                    pongLD = true;
+                    System.out.println("Contact R");
+                } else if (pongRU){
+                    pongRU = false;
+                    pongLU = true;
+                    System.out.println("Contact R");
+                }
+
+            } else if((pongBallY >= playerL && pongBallY <= playerL+44 || pongBallY+10 >= playerL && pongBallY+10 <= playerL+44) && pongBallX >= 21 && pongBallX <= 24){
+                if(pongLD){
+                    pongLD = false;
+                    pongRD = true;
+                    System.out.println("Contact L");
+
+                } else if (pongLU){
+                    pongLU = false;
+                    pongRU = true;
+                    System.out.println("Contact L");
+                }
+            }
+
+            if(playerLPoints[0] > 54 || playerRPoints[0] > 54){
+                if(playerLPoints[0] >= 54){
+                    System.out.println("Left Player won!");
+                    runin = false;
+                } else {
+                    System.out.println("Right Player won!");
+                    runin = false;
+                }
+            }
         }
     }
     
@@ -256,6 +273,9 @@ public class Pong extends JFrame {
         b.setTitle("Pong");
         b.setIgnoreRepaint(true);
         b.setSize(800, 600);
+        playerL = b.getHeight()/2;
+        playerR = b.getHeight()/2;
+        
         b.setVisible(true);
         b.createBufferStrategy(2);
         BufferStrategy buffer = b.getBufferStrategy();
