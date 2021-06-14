@@ -253,14 +253,14 @@ public class Pong extends JFrame {
     
     public void bounce(){
         if(pongBallY >= this.getHeight()-14 && pongRD){
-               pongRD = false;
-               pongRU = true;
+                pongRD = false;
+                pongRU = true;
             } else if (pongBallY >= this.getHeight()-14 && pongLD){
                 pongLD = false;
                 pongLU = true;
             } else if(pongBallY <= 28 && pongLU){
-               pongLU = false;
-               pongLD = true;
+                pongLU = false;
+                pongLD = true;
             } else if (pongBallY <= 28 && pongRU){
                 pongRU = false;
                 pongRD = true;
