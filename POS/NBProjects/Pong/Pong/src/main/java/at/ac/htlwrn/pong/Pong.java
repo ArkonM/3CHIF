@@ -28,15 +28,16 @@ public class Pong extends JFrame {
     double playerSpeed = startPlayerSpeed;
     char[] playerLPoints = new char[1];
     char[] playerRPoints = new char[1];
-    int startPongSpeed = 350;
+    int startPongSpeed = 200;
     double pongSpeed = startPongSpeed;
     boolean gameOn = false;
     boolean runin = false;
     boolean pauseOn = false;
     boolean pauseOff = false;
     boolean paused = false;
-    boolean resetPause = false;
+    boolean resetSlow = false;
     boolean gameOver = false;
+    boolean bounced = false;
     boolean upL = false;
     boolean downL = false;
     boolean upR = false;
@@ -46,6 +47,9 @@ public class Pong extends JFrame {
     boolean pongLD = false;
     boolean pongRD = true;
     long startTime = 0;
+    Random rn = new Random();
+    int rand;
+
     
 
     Color color;
@@ -116,22 +120,18 @@ public class Pong extends JFrame {
 
                     if(!downR && e.getKeyCode() == KeyEvent.VK_DOWN)
                     {
-                        System.out.println("DownR");
                         downR = true;
                     }
                     if(!upR && e.getKeyCode() == KeyEvent.VK_UP)
                     {
-                        System.out.println("UpR");
                         upR = true;
                     }
                     if(!downL && e.getKeyCode() == KeyEvent.VK_S)
                     {
-                        System.out.println("DownL");
                         downL = true;
                     }
                     if(!upL && e.getKeyCode() == KeyEvent.VK_W)
                     {
-                        System.out.println("UpL");
                         upL = true;
                     }
                     if(!runin && e.getKeyCode() == KeyEvent.VK_SPACE)
@@ -189,7 +189,7 @@ public class Pong extends JFrame {
     
     public void update(double deltaInSeconds)
     {
-        if(!paused && runin && !resetPause){
+        if(!paused && runin){
             if(upL&&playerL>35)
             {
                 playerL -= deltaInSeconds * playerSpeed;
@@ -224,10 +224,14 @@ public class Pong extends JFrame {
                 pongBallY += deltaInSeconds * pongSpeed/2;
             }
             
-            goal();
             bounce();
+            goal();
             game();
             
+            if(bounced && resetSlow){
+                resetSlow = false;
+                pongSpeed = 350;
+            }
         }
     }
     
@@ -238,7 +242,6 @@ public class Pong extends JFrame {
             pongSpeed = startPongSpeed;
             playerSpeed = startPlayerSpeed;
             tableReset();
-            timeDelay();
         } else if(pongBallX <= 0){
             playerRPoints[0] += 1;
             pongSpeed = startPongSpeed;
@@ -268,13 +271,14 @@ public class Pong extends JFrame {
                 pongLD = true;
                 pongSpeed += 10;
                 playerSpeed += 5;
-                System.out.println("Contact R");
+                bounced = true;
+                
             } else if (pongRU){
                 pongRU = false;
                 pongLU = true;
                 pongSpeed += 10;
                 playerSpeed += 5;
-                System.out.println("Contact R");
+                bounced = true;
             }
 
         } else if((pongBallY >= playerL && pongBallY <= playerL+44 || pongBallY+10 >= playerL && pongBallY+10 <= playerL+44) && pongBallX >= 20 && pongBallX <= 25){
@@ -283,14 +287,14 @@ public class Pong extends JFrame {
                 pongRD = true;
                 pongSpeed += 10;
                 playerSpeed += 5;
-                System.out.println("Contact L");
-
+                bounced = true;
+                
             } else if (pongLU){
                 pongLU = false;
                 pongRU = true;
                 pongSpeed += 10;
                 playerSpeed += 5;
-                System.out.println("Contact L");
+                bounced = true;
             }
         }
     }
@@ -300,19 +304,12 @@ public class Pong extends JFrame {
         pongBallY = getHeight()/2;
         playerL = getHeight()/2-22;
         playerR = getHeight()/2-22;
+        pongSpeed = 200;
+        resetSlow = true;
+        bounced = false;
+        directionSwitch();
     }
     
-    
-    public void timeDelay(){
-        if(!resetPause){
-            startTime = System.currentTimeMillis();
-            resetPause = true;
-        }
-        long endTime = System.currentTimeMillis();
-        if(endTime-startTime>=3){
-            resetPause = false;
-        }
-    }
     
     public void game(){
         if(playerLPoints[0] > 54 || playerRPoints[0] > 54){
@@ -329,30 +326,35 @@ public class Pong extends JFrame {
     }
     
     
-    /*public void directionSwitch(){
-        
-        if(){
-            pongLU = true;
-            pongLD = false;
-            pongRU = false;
-            pongRD = false;
-        } else if (){
-            pongLU = false;
-            pongLD = true;
-            pongRU = false;
-            pongRD = false;
-        } else if (){
-            pongLU = false;
-            pongLD = false;
-            pongRU = true;
-            pongRD = false;
-        } else {
-            pongLU = false;
-            pongLD = false;
-            pongRU = false;
-            pongRD = true;
+    public void directionSwitch(){
+        rand = rn.nextInt(4) + 1;
+        switch (rand) {
+            case 1:
+                pongLU = true;
+                pongLD = false;
+                pongRU = false;
+                pongRD = false;
+                break;
+            case 2:
+                pongLU = false;
+                pongLD = true;
+                pongRU = false;
+                pongRD = false;
+                break;
+            case 3:
+                pongLU = false;
+                pongLD = false;
+                pongRU = true;
+                pongRD = false;
+                break;
+            default:
+                pongLU = false;
+                pongLD = false;
+                pongRU = false;
+                pongRD = true;
+                break;
         }
-    }*/
+    }
     
 
 
@@ -366,10 +368,7 @@ public class Pong extends JFrame {
         b.setTitle("Pong");
         b.setIgnoreRepaint(true);
         b.setSize(800, 600);
-        playerL = b.getHeight()/2-22;
-        playerR = b.getHeight()/2-22;
-        pongBallX = b.getWidth()/2;
-        pongBallY = b.getHeight()/2;
+        b.tableReset();
         
         b.setVisible(true);
         b.createBufferStrategy(2);
