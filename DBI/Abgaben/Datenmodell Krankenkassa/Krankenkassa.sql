@@ -34,7 +34,7 @@ go
 create table BehArt(
 	BCode integer		not null primary key
 ,	BText varchar(58)	not null
-,	BKost decimal(2)	not null
+,	BKost decimal(6, 2)	not null
 );
 go
 
@@ -109,3 +109,50 @@ values
 commit
 
 
+
+select *
+  from behandelt b
+  join Arzt a on b.ANr = a.ANr
+ where BBeginn > '2019'
+;
+go
+
+
+select count(BCode) 'Operationen', p.PName 
+  from behandelt b
+  join Patient p on b.pnr = p.pnr
+  group by p.PName
+;
+go
+
+
+select AName, count(p.PNr) 'Patienten'
+  from behandelt b
+  join Arzt	   a on a.ANr = b.ANr
+  join Patient p on p.PNr = b.PNr
+  group by AName
+;
+go
+
+
+select p.PNr, BBeginn, AName
+  from behandelt b
+  join Arzt    a on a.ANr = b.ANr
+  join Patient p on p.PNr = b.PNr
+ where BBeginn < '2020'
+   and PGesch = 'm'
+;
+go
+
+
+select PName, AName, BText, BKost, BBeginn
+  from behandelt b
+  join Arzt    a on a.ANr = b.ANr
+  join Patient p on p.PNr = b.PNr
+  join BehArt  h on h.BCode = b.BCode
+ where exists (select *
+				 from behandelt b2
+			   having b.BBeginn = min(b2.BBeginn)
+			  )
+;
+go
