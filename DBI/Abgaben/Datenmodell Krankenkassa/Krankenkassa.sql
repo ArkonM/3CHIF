@@ -156,3 +156,41 @@ select PName, AName, BText, BKost, BBeginn
 			  )
 ;
 go
+
+
+create or alter view Abrechnung
+	as select a.ANr, AName, AFach, p.PNr, PName, PGesch, BBeginn, b.BCode, BText, BKost
+	  from behandelt b
+	  join Arzt    a on a.ANr = b.ANr
+	  join Patient p on p.PNr = b.PNr
+	  join BehArt  h on h.BCode = b.BCode
+;
+go
+
+
+
+select *
+  from Abrechnung
+ order by BBeginn desc
+;
+go
+
+
+
+
+select p.PNr, PName, PGesch, sum(BKost) 'BKost_Gesamt'
+  from behandelt b 
+  join BehArt h on b.BCode = h.BCode
+  join Patient p on b.PNr = p.PNr
+  group by p.PNr, PName, PGesch
+;
+
+
+select h.BCode, BText, BKost, count(BBeginn) 'BAnzahl'
+  from behandelt b
+  join BehArt h on b.BCode = h.BCode
+ group by h.BCode, BText, BKost
+ order by BAnzahl desc
+;
+
+
